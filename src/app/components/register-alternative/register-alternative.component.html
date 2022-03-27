@@ -1,0 +1,32 @@
+<main class="mx-auto w-full lg:w-5/6 lg:flex justify-between min-h-screen" style="position: relative">
+    <app-nav class="min-h-screen fixed lg:w-3/12 top-0 leftl-0"></app-nav>
+    <section class="w-full absolute lg:w-9/12 bg-white min-h-screen p-5 top-0 right-0">
+        <article class="py-10 lg:py-0 w-full flex items-center rounded-xl justify-center h-full border border-gray-200 shadow-lg">
+            <form class="my-10 border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
+                <h1 class="text-4xl mb-5 text-indigo-500">Registrar alternativa</h1>
+                <div class="mb-5 pt-5">
+                    <p class="mb-2">Usuario</p>
+                    <select class="form-select form-select-lg mb-3 block  px-4 py-2 text-xl font-normal bg-white bg-clip-padding bg-no-repeat border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700  placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        aria-label=".form-select-lg example">
+                        <option selected>Seleccionar usuario</option>
+                        <option value="1">User One</option>
+                        <option value="2">User Two</option>
+                        <option value="3">User Three</option>
+                    </select>
+                </div>
+                <div class="mb-5">
+                    <p class="mb-2">Problema</p>
+                    <select class="form-select form-select-lg mb-3 block  px-4 py-2 text-xl font-normal bg-white bg-clip-padding bg-no-repeat border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700  placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        aria-label=".form-select-lg example">
+                        <option selected>Seleccionar problema</option>
+                        <option value="1">Problem One</option>
+                        <option value="2">Problem Two</option>
+                        <option value="3">Problem Three</option>
+                    </select>
+                </div>
+                <app-textarea [textarea]="textarea"></app-textarea>
+                <app-button [data]="'Registrar'"></app-button>
+            </form>
+        </article>
+    </section>
+</main>

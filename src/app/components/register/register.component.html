@@ -1,0 +1,33 @@
+<section class="w-full min-h-screen md:flex overflow-hidden">
+    <article class="hidden md:block relative w-3/6 h-screen  bg-indigo-300">
+        <img src={{image}} class="inset-0 absolute object-cover object-center h-screen w-full" alt="">
+        <div class="absolute inset-0 bg-indigo-600 bg-opacity-70 flex items-center justify-center text-4xl text-white">Hola</div>
+    </article>
+    <article class="w-full md:w-3/6 bg-gray-100 min-h-screen flex items-center justify-center flex-col">
+        <form ngNativeValidate [formGroup]="formGroup" class="text-center w-8/12 py-12 border-3 ">
+            <h2 class="text-2xl">Bienvenido AHP</h2>
+            <div class="mt-6">
+                <p class="text-left">Correo electrónico</p>
+                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="email" name="email" placeholder="" type="email" required>
+            </div>
+            <div class="mt-6">
+                <p class="text-left">Contraseña</p>
+                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="password" name="password" placeholder="" type="password" required>
+            </div>
+            <div class="flex items-start my-6">
+                <div class="flex items-center h-5">
+                  <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800" required>
+                </div>
+                <div class="ml-3 text-sm">
+                  <label for="remember" class="font-medium text-gray-900 dark:text-gray-300">Mantenerme conectado</label>
+                </div>
+            </div>
+           
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Ingresar</button>
+            <button class="mt-3 text-blue-600 hover:underline" type="button" routerLink="forgot-password">Olvidó su contraseña</button>
+            <div class="mt-6">
+                <p>© 2022 AHP. All rights reserved.</p>
+            </div>
+        </form>
+    </article>
+</section>

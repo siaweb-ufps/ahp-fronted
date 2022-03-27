@@ -1,0 +1,11 @@
+<header class="w-full py-2 bg-indigo-600">
+    <nav class="mx-auto w-10/12 flex justify-between">
+        <!-- <img class="w-40" src={{logo}} alt="logo"> -->
+        <p class="uppercase text-2xl font-extrabold text-white">AHP</p>
+        <ul class="flex items-center">
+            <li *ngFor="let item of menu" class="ml-6">
+                <a class={{item.class}} routerLink={{item.url}}>{{item.name}}</a>
+            </li>
+        </ul>
+    </nav>
+</header>
