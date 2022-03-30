@@ -9,7 +9,8 @@
         </div>
     </article>
     <article class="w-full md:w-4/6 lg:w-3/6 bg-gray-50 min-h-screen flex items-center justify-center flex-col">
-        <form ngNativeValidate [formGroup]="formGroup" class="text-center w-10/12 sm:w-9/12 lg:w-8/12 p-8 rounded-md border-2 border-indigo-600 shadow-2xl">
+        <!-- [formGroup]="formGroup" -->
+        <form ngNativeValidate class="text-center w-10/12 sm:w-9/12 lg:w-8/12 p-8 rounded-md border-2 border-indigo-600 shadow-2xl">
             <img class="mx-auto w-12" src={{logo}} alt="logo">
             <h1 class="text-xl lg:text-2xl my-3 text-indigo-600">
                 Iniciar sesión
@@ -31,7 +32,6 @@
                   <label for="remember" class="font-medium text-indigo-400 dark:text-gray-300">Mantenerme conectado</label>
                 </div>
             </div>
-            
             <button routerLink="/list-decider" type="button" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full">Ingresar</button>
             <button class="mt-3 text-indigo-600 hover:underline" type="button" routerLink="/password-reset">Olvidó su contraseña</button>
             <div class="md:hidden mt-6 text-sm">
