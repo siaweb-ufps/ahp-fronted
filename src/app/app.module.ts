@@ -32,6 +32,7 @@ import { EditProblemComponent } from './components/edit-problem/edit-problem.com
 import { EditDeciderComponent } from './components/edit-decider/edit-decider.component';
 import { RegisterCriterionComponent } from './components/register-criterion/register-criterion.component';
 import { RegisterAlternativeComponent } from './components/register-alternative/register-alternative.component';
+import { QualifyComponent } from './components/qualify/qualify.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { RegisterAlternativeComponent } from './components/register-alternative/
     EditDeciderComponent,
     RegisterCriterionComponent,
     RegisterAlternativeComponent,
+    QualifyComponent,
   ],
   imports: [
     BrowserModule,
