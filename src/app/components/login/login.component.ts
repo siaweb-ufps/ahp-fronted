@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Router } from '@angular/router';
 
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -36,6 +38,8 @@ export class LoginComponent implements OnInit {
     //   password:[''],
     // })
   }
+  
+  faXmark = faXmark;
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {

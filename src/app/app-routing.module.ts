@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
+import { QualifyComponent } from './components/qualify/qualify.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterDeciderComponent } from './components/register-decider/register-decider.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'register-criterion', component:RegisterCriterionComponent},
   {path: 'register-alternative', component:RegisterAlternativeComponent},
   {path: 'edit-decider', component:EditDeciderComponent},
+  {path: 'qualify', component:QualifyComponent},
 ];
 
 @NgModule({
