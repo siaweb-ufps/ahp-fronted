@@ -1,28 +1,26 @@
 <nav class="bg-indigo-600 md:min-h-screen w-full flex flex-col justify-between uppercase text-sm tracking-widest font-bold">
-    <ul class="">
+    <ul>
         <img class="mx-auto w-32 my-4" src="{{ logo }}" alt="logo" />
         <hr>
-        <li class="transition delay-150 flex items-center border-y border-indigo-500 hover:bg-indigo-500">
+        <li *ngIf="isLogged" class="transition delay-150 flex items-center border-y border-indigo-500 hover:bg-indigo-500">
             <a class="transition hover:translate-x-2 ease-in-out delay-150 duration-300 py-3 px-5 w-full flex items-center text-white text-opacity-70 hover:text-opacity-100" routerLink="/list-decider">
                 <fa-icon class="text-lg mr-3" [icon]="faUser"></fa-icon>
                 Decisor
             </a>
         </li>
-        <li class="transition delay-150 py-3 px-5 flex items-center border-y border-indigo-500 hover:bg-indigo-500">
+        <li *ngIf="isLogged" class="transition delay-150 py-3 px-5 flex items-center border-y border-indigo-500 hover:bg-indigo-500">
             <a class="transition hover:translate-x-2 ease-in-out delay-150 duration-300 w-full flex items-center text-white text-opacity-70 hover:text-opacity-100" routerLink="/list-problem">
                 <fa-icon class="text-lg mr-3" [icon]="faXmarkSquare"></fa-icon>
                 Problema
             </a>
         </li>
-        <!-- <li class="transition delay-150 py-3 px-5 flex items-center border-y border-indigo-500 hover:bg-indigo-500">
-            <a class="transition hover:translate-x-2 ease-in-out delay-150 duration-300 w-full flex items-center text-white text-opacity-70 hover:text-opacity-100" routerLink="/chart">
-                <fa-icon class="text-lg mr-3" [icon]="faChartColumn"></fa-icon>
-                Estadisticas
-            </a>
-        </li> -->
     </ul>
-    <a routerLink="/login" class="duration-300 flex items-center py-2 justify-center bg-indigo-800 hover:bg-indigo-900 text-white px-3 lg:px-0">
+    <a *ngIf="isLogged" routerLink="/logout" class="duration-300 flex items-center py-2 justify-center bg-indigo-800 hover:bg-indigo-900 text-white px-3 lg:px-0">
         <fa-icon class="text-lg mr-3" [icon]="faArrowRightFromBracket"></fa-icon>
         Cerrar sesión
+    </a>
+    <a *ngIf="!isLogged" (click)="onLogOut()" routerLink="/login" class="duration-300 flex items-center py-2 justify-center bg-indigo-800 hover:bg-indigo-900 text-white px-3 lg:px-0">
+        <fa-icon class="text-lg mr-3" [icon]="faRightToBracket"></fa-icon>
+        Iniciar sesión
     </a>
 </nav>
