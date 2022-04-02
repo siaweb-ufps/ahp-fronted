@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,7 +34,8 @@ import { EditDeciderComponent } from './components/edit-decider/edit-decider.com
 import { RegisterCriterionComponent } from './components/register-criterion/register-criterion.component';
 import { RegisterAlternativeComponent } from './components/register-alternative/register-alternative.component';
 import { QualifyComponent } from './components/qualify/qualify.component';
-
+//Interceptors
+import { interceptorProvider } from './components/interceptors/paq-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,10 +71,11 @@ import { QualifyComponent } from './components/qualify/qualify.component';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    RouterModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,7 +11,6 @@ export class ListDeciderComponent implements OnInit {
   imgLoggedOut:string = "./assets/images/imgLoggedOut.jpg"
   isLogged:boolean = false;
 
-
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
