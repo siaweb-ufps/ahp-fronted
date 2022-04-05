@@ -9,14 +9,21 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class ListDeciderComponent implements OnInit {
   imgLoggedOut:string = "./assets/images/imgLoggedOut.jpg"
-  isLogged:boolean = false;
+  isLogin:any = localStorage.getItem("isLogged");
+  isLogged = JSON.parse(this.isLogin);
 
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
+    // (this.isLogged) 
+    //   ? console.log("Yes") 
+    //   : localStorage.clear();
+    // console.log(this.tokenService.getToken());
+    console.log(this.isLogged, this.isLogin);
+
     (this.tokenService.getToken())
       ? this.isLogged = true
-      : this.isLogged = false
+      : this.isLogged = false;
   }
 
   faUser = faUser;
