@@ -15,11 +15,11 @@
             </a>
         </li>
     </ul>
-    <a *ngIf="isLogged" routerLink="/logout" class="duration-300 flex items-center py-2 justify-center bg-indigo-800 hover:bg-indigo-900 text-white px-3 lg:px-0">
+    <a *ngIf="isLogged" (click)="onLogOut()" class="cursor-pointer duration-300 flex items-center py-2 justify-center bg-indigo-800 hover:bg-indigo-900 text-white px-3 lg:px-0">
         <fa-icon class="text-lg mr-3" [icon]="faArrowRightFromBracket"></fa-icon>
         Cerrar sesión
     </a>
-    <a *ngIf="!isLogged" (click)="onLogOut()" routerLink="/login" class="duration-300 flex items-center py-2 justify-center bg-indigo-800 hover:bg-indigo-900 text-white px-3 lg:px-0">
+    <a *ngIf="!isLogged" routerLink="/login" class="duration-300 flex items-center py-2 justify-center bg-indigo-800 hover:bg-indigo-900 text-white px-3 lg:px-0">
         <fa-icon class="text-lg mr-3" [icon]="faRightToBracket"></fa-icon>
         Iniciar sesión
     </a>

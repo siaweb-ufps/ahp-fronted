@@ -11,7 +11,7 @@ export class NavComponent implements OnInit {
   isLogged:boolean = false;
   logo:any = './assets/images/min-logo-white.png';
 
-  constructor(private tokenService: TokenService) { }
+  constructor( private tokenService: TokenService ) { }
   
   ngOnInit(): void {
     (this.tokenService.getToken()) 
@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
 
   onLogOut(): void {
     this.tokenService.logOut();
-    window.location.reload();
+    // window.location.reload();
   }
 
   faUser = faUser;

@@ -20,9 +20,9 @@ export class LoginComponent implements OnInit {
 
   loginInfo!: FormGroup;
   loginUser!: LoginUser;
-  isAdmin = false;
-  isLogged = false;
-  isLoginFail = false;
+  isAdmin:boolean = false;
+  isLogged:boolean = false;
+  isLoginFail:boolean = false;
   email!:string;
   password!:string;
   roles:string[] = [];
@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService
   ) { }
   
-
   ngOnInit(): void {
     this.loginInfo = this.fb.group({
       email: [
@@ -57,9 +56,8 @@ export class LoginComponent implements OnInit {
 
     if (this.tokenService.getToken()) {
       this.isLogged = true;
-      console.log("true 1: " + this.isLogged)
       this.router.navigate(['/']);
-      this.isLoginFail = false;
+      this.isLoginFail = true;
       this.roles = this.tokenService.getAuthorities();
     }
   }
@@ -75,7 +73,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginUser).subscribe(
       data => {
         this.isLogged = true;
-        console.log("true2: " + this.isLogged)
         this.tokenService.setToken(data.token);
         this.tokenService.setEmail(data.email);
         this.tokenService.setAuthorities(data.authorities);
@@ -84,20 +81,13 @@ export class LoginComponent implements OnInit {
       },
       err => {
         this.isLogged = false;
-        console.log("false: " + this.isLogged)
         this.errMsj = err.error.message;
       }
     );
   }
 
   guardarData() {
-    // if (!this.loginInfo.valid) {
-    //   this.toastr.error('Datos incorrectos', 'ERROR', {
-    //     timeOut: 3000,
-    //     positionClass: 'toast-top-center',
-    //   });
-    //   return;
-    // }
+    localStorage.setItem("isLogged", "true");
 
     this.authService.login(this.loginInfo.value).subscribe(
       (data) => {
@@ -106,42 +96,19 @@ export class LoginComponent implements OnInit {
         this.tokenService.setEmail(data.email);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        console.log("ingreso")
-        // this.toastr.success('Bienvenido ' + data.email, 'OK', {
-        //   timeOut: 3000,
-        //   positionClass: 'toast-bottom-center',
-        // });
-
-        // this.isAdministrador();
-
-        // if (this.isAdmin) {
-        //   this.router.navigate(['/administracion']);
-        // } else {
-        //   window.location.reload();
-        //   this.router.navigate(['/']);
-        // }
+        this.router.navigate(['/list-decider']);
       },
       (err) => {
         this.isLogged = false;
         this.errMsj = err.error;
+        this.isLoginFail = true;
         
         if (typeof err.error == 'object') {
           console.log("error")
           return;
         }
-
-        // if (typeof err.error == 'object') {
-        //   this.toastr.error('Contraseña incorrecta', '', {
-        //     timeOut: 3000,
-        //     positionClass: 'toast-bottom-center',
-        //   });
-        //   return;
-        // }
-        // this.toastr.error(this.errMsj, '', {
-        //   timeOut: 3000,
-        //   positionClass: 'toast-bottom-center',
-        // });
       }
-    );
+      );
+      //window.location.reload();
   }
 }
