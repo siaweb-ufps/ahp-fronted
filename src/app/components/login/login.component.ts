@@ -5,7 +5,6 @@ import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,7 +28,7 @@ export class LoginComponent implements OnInit {
   errMsj!:string;
 
   constructor(
-    public formulario:FormBuilder, 
+    // public formulario:FormBuilder, 
     private authService:AuthService,
     private tokenService:TokenService,
     private router: Router,
@@ -109,6 +108,5 @@ export class LoginComponent implements OnInit {
         }
       }
       );
-      //window.location.reload();
   }
 }

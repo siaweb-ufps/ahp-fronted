@@ -11,16 +11,11 @@ export class ListDeciderComponent implements OnInit {
   imgLoggedOut:string = "./assets/images/imgLoggedOut.jpg"
   isLogin:any = localStorage.getItem("isLogged");
   isLogged = JSON.parse(this.isLogin);
+  // isLogged = true;
 
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
-    // (this.isLogged) 
-    //   ? console.log("Yes") 
-    //   : localStorage.clear();
-    // console.log(this.tokenService.getToken());
-    console.log(this.isLogged, this.isLogin);
-
     (this.tokenService.getToken())
       ? this.isLogged = true
       : this.isLogged = false;
