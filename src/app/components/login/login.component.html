@@ -5,13 +5,15 @@
     <section class="w-full min-h-screen md:flex overflow-hidden">
         <article class="hidden md:block relative w-2/6 lg:w-3/6 h-screen  bg-indigo-300">
             <img src={{image}} class="inset-0 absolute object-cover object-center h-screen w-full" alt="">
-            <div class="text-center py-12 absolute inset-0 bg-indigo-600 bg-opacity-70 flex flex-col items-center justify-end text-4xl text-white">
+            <div
+                class="text-center py-12 absolute inset-0 bg-indigo-600 bg-opacity-70 flex flex-col items-center justify-end text-4xl text-white">
                 <p class="text-xl lg:text-2xl mb-1 opacity-60">Analytic Hierarchy Process</p>
                 <p class="text-sm">© 2022 AHP. All rights reserved.</p>
             </div>
         </article>
         <article class="w-full md:w-4/6 lg:w-3/6 bg-gray-50 min-h-screen flex items-center justify-center flex-col">
-            <form [formGroup]="loginInfo" novalidate role="form"  class="text-center w-10/12 sm:w-9/12 lg:w-8/12 p-8 rounded-md border-2 border-indigo-600 shadow-2xl">
+            <form [formGroup]="loginInfo" novalidate role="form"
+                class="text-center w-10/12 sm:w-9/12 lg:w-8/12 py-8 px-8 md:px-14 rounded-md border-2 border-indigo-600 shadow-2xl">
                 <img class="mx-auto w-12" src={{logo}} alt="logo">
                 <h1 class="text-xl lg:text-2xl my-3 text-indigo-600">
                     Iniciar sesión
@@ -19,18 +21,32 @@
                 </h1>
                 <div class="mt-8">
                     <p class="text-left">Correo electrónico</p>
-                    <input [class.border-green-600]="loginInfo.controls['email'].status=='VALID'" [class.border-indigo-600]="loginInfo.controls['email'].status!='VALID'"  class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600" placeholder="example@gmail.com" formControlName="email" name="email" type="email"  formControlName="email" required>
+                    <input [class.border-green-600]="loginInfo.controls['email'].status=='VALID'"
+                        [class.border-indigo-600]="loginInfo.controls['email'].status!='VALID'"
+                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        placeholder="ejemplo@gmail.com" formControlName="email" name="email" type="email" required>
                 </div>
                 <div class="my-6">
                     <p class="text-left">Contraseña</p>
-                    <input [class.border-green-600]="loginInfo.controls['password'].status=='VALID'" [class.border-indigo-600]="loginInfo.controls['password'].status!='VALID'" class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600" placeholder="* * * * * * * * *" formControlName="password" name="password" type="password" formControlName="password" required>
+                    <input [class.border-green-600]="loginInfo.controls['password'].status=='VALID'"
+                        [class.border-indigo-600]="loginInfo.controls['password'].status!='VALID'"
+                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        placeholder="* * * * * * * * *" formControlName="password" name="password" type="password" required>
                 </div>
                 <div *ngIf="isLoginFail" class="my-5 bg-red-500 text-red-50 w-full p-3 rounded-md text-center">
-                    <b>Credenciales incorrectas</b>
-                    <!-- <fa-icon class="text-lg mr-3" [icon]="faXmark"></fa-icon> -->
-                </div>
-                <button type="submit" name="Submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full" (click)="guardarData()">Ingresar</button>
-                <button class="mt-3 text-indigo-600 hover:underline" type="button" routerLink="/password-reset">Olvidó su contraseña</button>
+                    <b>Credenciales incorrectas</b></div>
+                <button type="submit" name="Submit"
+                    class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full"
+                    (click)="guardarData()">Ingresar</button>
+                <button class="mt-3 text-indigo-800 hover:underline" type="button" routerLink="/password-reset">¿Olvidó
+                    su contraseña?</button>
+                <p class="text-center w-full mt-3 text-indigo-400">
+                    ¿No tienes una cuenta?
+                    <button class="text-indigo-500 font-semibold hover:text-indigo-800 hover:underline" type="button"
+                        routerLink="/register">
+                        Regístrate
+                    </button>
+                </p>
                 <div class="md:hidden mt-6 text-sm">
                     <p>© 2022 AHP. All rights reserved.</p>
                 </div>
