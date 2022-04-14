@@ -23,14 +23,14 @@
                     <p class="text-left">Correo electrónico</p>
                     <input [class.border-green-600]="loginInfo.controls['email'].status=='VALID'"
                         [class.border-indigo-600]="loginInfo.controls['email'].status!='VALID'"
-                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        class="placeholder-indigo-400 p-3 bg-indigo-100 appearance-none border border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
                         placeholder="ejemplo@gmail.com" formControlName="email" name="email" type="email" required>
                 </div>
                 <div class="my-6">
                     <p class="text-left">Contraseña</p>
                     <input [class.border-green-600]="loginInfo.controls['password'].status=='VALID'"
                         [class.border-indigo-600]="loginInfo.controls['password'].status!='VALID'"
-                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        class="placeholder-indigo-400 p-3 bg-indigo-100 appearance-none border border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
                         placeholder="* * * * * * * * *" formControlName="password" name="password" type="password" required>
                 </div>
                 <div *ngIf="isLoginFail" class="my-5 bg-red-500 text-red-50 w-full p-3 rounded-md text-center">

@@ -89,11 +89,8 @@ export class RegisterComponent implements OnInit {
     }
 
     this.newUser = new NewUser(this.email, this.password, this.celular, this.empresa, this.nombre, this.profesion);
-    // this.newUser = new NewUser("prueba2@gmail.com", "12345", "3333333333", "ufps", "prueba2", "sistemas");
-    console.log(this.newUser);
-    console.log(usuarioNuevo);
-    // this.authService.new(this.registerInfo.value).subscribe(
-      this.authService.new(usuarioNuevo).subscribe(
+    console.log(this.newUser);console.log(usuarioNuevo);
+    this.authService.new(usuarioNuevo).subscribe(
       data => {
         this.isRegister = true;
         this.isRegisterinFail = false;
@@ -106,5 +103,4 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-
 }
