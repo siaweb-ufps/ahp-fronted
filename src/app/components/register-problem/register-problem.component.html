@@ -1,9 +1,11 @@
 <main class="mx-auto w-full lg:w-5/6 lg:flex justify-between">
     <app-nav class="lg:w-3/12"></app-nav>
     <section class="w-full lg:w-9/12 bg-white min-h-screen p-5">
-        <article class="py-10 lg:py-0 w-full flex items-center rounded-xl justify-center h-full border border-gray-200 shadow-lg">
-            <form class="border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
-                <h1 class="text-4xl mb-5 text-indigo-500">Registrar problema</h1>
+        <article
+            class="py-10 lg:py-0 w-full flex items-center rounded-xl justify-center h-full border border-gray-200 shadow-lg">
+            <form [formGroup]="form" (submit)="sendData()"
+                class="border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
+                <h1 class="text-4xl mb-5 text-indigo-500">{{title}}</h1>
                 <app-input [input]="input"></app-input>
                 <app-textarea [textarea]="textarea"></app-textarea>
                 <app-button [data]="'Registrar'"></app-button>
