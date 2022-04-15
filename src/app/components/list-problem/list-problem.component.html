@@ -15,9 +15,8 @@
                 <table datatable class="shadow-md text-left w-full">
                     <thead class="text-xs uppercase bg-indigo-200">
                         <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Descripción
-                            </th>
+                            <th scope="col" class="px-6 py-3">Descripción</th>
+                            <th scope="col" class="px-6 py-3">Usuario</th>
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
                             </th>
@@ -25,7 +24,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let problema of data" class="odd:bg-white even:bg-indigo-50">
-                            <td class="px-6 py-4">{{ problema.idProblem}}</td>
+                            <td class="px-6 py-4">{{ problema.descripcion}}</td>
+                            <td class="px-6 py-4">{{ problema.usuario.nombre}}</td>
                             <!-- [routerLink]="['/problem',problema.idProblem]" -->
                             <td  class="px-6 py-4 flex items-center">
                                 <a routerLink="/edit-problem" class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
