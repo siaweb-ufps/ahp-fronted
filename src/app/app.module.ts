@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from './app-routing.module';
+  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
+// import { DataTablesModule } from "angular-datatables";
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // Components
 import { HeaderComponent } from './components/layout/header/header.component';
@@ -36,6 +38,7 @@ import { RegisterAlternativeComponent } from './components/register-alternative/
 import { QualifyComponent } from './components/qualify/qualify.component';
 //Interceptors
 import { interceptorProvider } from './components/interceptors/paq-interceptor.service';
+import { ProblemService } from './service/problem.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +78,7 @@ import { interceptorProvider } from './components/interceptors/paq-interceptor.s
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [interceptorProvider],
+  providers: [interceptorProvider, ProblemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
