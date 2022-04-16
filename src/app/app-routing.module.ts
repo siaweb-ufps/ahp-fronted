@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ListDeciderComponent } from './components/list-decider/list-decider.component';
 import { RegisterProblemComponent } from './components/register-problem/register-problem.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { PasswordComponent } from './components/password/password.component';
 import { EditProblemComponent } from './components/edit-problem/edit-problem.component';
 import { EditDeciderComponent } from './components/edit-decider/edit-decider.component';
 import { RegisterCriterionComponent } from './components/register-criterion/register-criterion.component';
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'register-problem', component:RegisterProblemComponent},
   {path: 'list-problem', component:ListProblemComponent},
   {path: 'password-reset', component:PasswordResetComponent},
+  {path: 'password', component:PasswordComponent},
   {path: 'edit-problem', component:EditProblemComponent},
   {path: 'register-criterion', component:RegisterCriterionComponent},
   {path: 'register-alternative', component:RegisterAlternativeComponent},

@@ -11,6 +11,7 @@ import * as global from 'global'
 })
 export class AuthService {
   authURL = `${global.url}/auth/`;
+  url = `${global.url}/usuario/`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,5 +21,11 @@ export class AuthService {
 
   public login(loginUser: LoginUser): Observable<JwtDto> {
     return this.httpClient.post<JwtDto>(this.authURL + 'login', loginUser);
+  }
+
+  public getUsers():Observable<any> {
+    console.log('entre');
+    
+    return this.httpClient.get<any>(this.url);
   }
 }
