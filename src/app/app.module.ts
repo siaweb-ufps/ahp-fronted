@@ -39,6 +39,7 @@ import { QualifyComponent } from './components/qualify/qualify.component';
 //Interceptors
 import { interceptorProvider } from './components/interceptors/paq-interceptor.service';
 import { ProblemService } from './service/problem.service';
+import { PasswordComponent } from './components/password/password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,6 +67,7 @@ import { ProblemService } from './service/problem.service';
     RegisterCriterionComponent,
     RegisterAlternativeComponent,
     QualifyComponent,
+    PasswordComponent,
   ],
   imports: [
     BrowserModule,

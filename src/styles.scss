@@ -21,3 +21,14 @@ img {
     object-fit: cover;
     object-position: center;
 }
+.ico-select{
+	right: 20px;
+	top: calc(50% - 13px);
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-left:4px solid #a5b4fc;
+	border-bottom:4px solid #a5b4fc;
+	transform: rotate(-45deg);
+	transition: all 0.25s ease;
+}

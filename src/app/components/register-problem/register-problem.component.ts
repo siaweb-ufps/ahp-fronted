@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/service/token.service';
 import { ProblemService } from 'src/app/service/problem.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-register-problem',
@@ -13,10 +14,12 @@ export class RegisterProblemComponent implements OnInit {
   public form!: FormGroup;
   title:string = 'Registrar problema';
   btn:string = 'Agregar'; 
+  public usuarios:any = [];
   id: string | null;  
 
   constructor(
     private problemService: ProblemService,
+    private authService: AuthService,
     private tokenService: TokenService,
     private formBuilder: FormBuilder,
     private router: Router,
@@ -26,30 +29,26 @@ export class RegisterProblemComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loaderToken();
+    this.authService.getUsers().subscribe(usuario=>{
+      this.usuarios = usuario; 
+      console.log('empresas', this.usuarios);
+    })
     this.isEdit();
     this.form = this.formBuilder.group({
-      problem: ['', Validators.compose([
-        Validators.required,
-        Validators.min(100000000),
-        Validators.max(9999999999)
-      ])],
-      nameproblem: ['', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(50)
-      ])],
       description: ['',
         Validators.compose([
           Validators.required,
           Validators.maxLength(500)
         ])],
-      fecha: ['', Validators.required],
+        usuario: ['', Validators.compose([
+          Validators.required
+        ])],
     });
   }
 
   input:any = {
     title: 'Título del problema',
-    name: 'problem',
+    name: 'nameproblem',
     placeholder: 'Lorem ipsum',
     type: 'text',
   };
@@ -60,7 +59,38 @@ export class RegisterProblemComponent implements OnInit {
     placeholder: 'Lorem ipsum',
   };
 
+  // public loadUser(){
+  //   console.log('cargando');
+    
+  //   this.authService.getUsers().subscribe(usuario=>{
+  //     this.usuarios = usuario; 
+  //     console.log('empresas', this.usuarios);
+  //   })
+  // }
+
   sendData() {
+    let informacion =(this.form.value);
+    var usuario = {
+      "nombre":informacion.nombre,
+      "email":informacion.email,
+      "password": informacion.password,
+      "empresa": informacion.empresa,
+      "profesion": informacion.profesion,
+      "celular": informacion.celular,
+    }
+
+    console.log('Enviado');
+    if (!this.form.valid) {
+      console.log('error en send data valid');
+      return;
+    }
+
+    // this.problemService.post(this.form.value)
+    this.problemService.post(usuario)
+      .subscribe(data => {
+        console.log("form value: " + this.form.value);
+        console.log('Agregado con exito');
+      });
   }
 
   isEdit() {
