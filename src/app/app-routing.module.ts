@@ -31,7 +31,7 @@ const routes: Routes = [
   {path: 'register-problem', component:RegisterProblemComponent},
   {path: 'list-problem', component:ListProblemComponent},
   {path: 'password-reset', component:PasswordResetComponent},
-  {path: 'password', component:PasswordComponent},
+  {path: 'password-reset/confirmation/:idConfirmation', component:PasswordComponent},
   {path: 'edit-problem', component:EditProblemComponent},
   {path: 'register-criterion', component:RegisterCriterionComponent},
   {path: 'register-alternative', component:RegisterAlternativeComponent},
