@@ -87,7 +87,8 @@ export class LoginComponent implements OnInit {
 
   guardarData() {
     localStorage.setItem("isLogged", "true");
-
+    localStorage.setItem("email", this.loginInfo.value.email);
+  
     this.authService.login(this.loginInfo.value).subscribe(
       (data) => {
         this.isLogged = true;

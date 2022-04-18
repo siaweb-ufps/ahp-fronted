@@ -7,7 +7,7 @@
                 <h1 class="text-4xl mb-5 text-indigo-500">{{title}}</h1>
                 <!-- <app-input [input]="input"></app-input>
                 <app-textarea [textarea]="textarea"></app-textarea> -->
-                <div class="mb-5 relative">
+                <!-- <div class="mb-5 relative">
                     <span class="contact100-form-combo">Usuario</span>
                     <div
                         class="flex justify-between placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:bg-white focus:border-indog-600 focus:border-indigo-600">
@@ -18,10 +18,14 @@
                                 value={{usuario.email}}>
                                 {{usuario.nombre}}</option>
                         </select>
-                        <!-- <i class="ico-select"></i> -->
                     </div>
+                </div> -->
+                <div class="mb-5 pt-5">
+                    <p class="mb-2">Fecha finalización</p>
+                    <input formControlName="fecha_finalizacion"
+                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        required type="date" name="fecha_finalizacion">
                 </div>
-                <!-- <button (click)="loadUser()">cargar</button> -->
                 <div class="mb-5">
                     <p class="mb-2">{{textarea.title}}</p>
                     <textarea formControlName="description" name="description" placeholder={{textarea.placeholder}}

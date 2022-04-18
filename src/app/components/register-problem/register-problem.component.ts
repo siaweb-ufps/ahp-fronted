@@ -14,8 +14,8 @@ export class RegisterProblemComponent implements OnInit {
   public form!: FormGroup;
   title:string = 'Registrar problema';
   btn:string = 'Agregar'; 
-  public usuarios:any = [];
   id: string | null;  
+  usuario:any = localStorage.getItem('email');
 
   constructor(
     private problemService: ProblemService,
@@ -29,21 +29,20 @@ export class RegisterProblemComponent implements OnInit {
   }
   ngOnInit(): void {
     this.loaderToken();
-    this.authService.getUsers().subscribe(usuario=>{
-      this.usuarios = usuario; 
-      console.log('empresas', this.usuarios);
-    })
     this.isEdit();
+    
     this.form = this.formBuilder.group({
+      usuario: {},
       description: ['',
         Validators.compose([
           Validators.required,
           Validators.maxLength(500)
-        ])],
-        usuario: ['', Validators.compose([
-          Validators.required
-        ])],
+      ])],
+      fecha_finalizacion: ['', Validators.required],
     });
+    console.log(this.form.value);
+    console.log(typeof(this.form));
+    
   }
 
   input:any = {
@@ -59,36 +58,21 @@ export class RegisterProblemComponent implements OnInit {
     placeholder: 'Lorem ipsum',
   };
 
-  // public loadUser(){
-  //   console.log('cargando');
-    
-  //   this.authService.getUsers().subscribe(usuario=>{
-  //     this.usuarios = usuario; 
-  //     console.log('empresas', this.usuarios);
-  //   })
-  // }
-
   sendData() {
-    let informacion =(this.form.value);
-    var usuario = {
-      "nombre":informacion.nombre,
-      "email":informacion.email,
-      "password": informacion.password,
-      "empresa": informacion.empresa,
-      "profesion": informacion.profesion,
-      "celular": informacion.celular,
-    }
-
-    console.log('Enviado');
+    this.problemService.getUser(this.usuario).subscribe((el) => {
+      this.form.patchValue({
+        usuario: el
+      })
+      console.log('edede',this.form.value);      
+    });
+        
     if (!this.form.valid) {
       console.log('error en send data valid');
       return;
     }
 
-    // this.problemService.post(this.form.value)
-    this.problemService.post(usuario)
+    this.problemService.post(this.form.value)
       .subscribe(data => {
-        console.log("form value: " + this.form.value);
         console.log('Agregado con exito');
       });
   }
