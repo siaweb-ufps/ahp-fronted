@@ -40,6 +40,7 @@ import { QualifyComponent } from './components/qualify/qualify.component';
 import { interceptorProvider } from './components/interceptors/paq-interceptor.service';
 import { ProblemService } from './service/problem.service';
 import { PasswordComponent } from './components/password/password.component';
+import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,7 @@ import { PasswordComponent } from './components/password/password.component';
     RegisterAlternativeComponent,
     QualifyComponent,
     PasswordComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

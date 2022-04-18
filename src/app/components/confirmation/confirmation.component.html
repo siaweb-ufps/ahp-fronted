@@ -1,0 +1,32 @@
+<section class="text-center" *ngIf="isLogged; else loggedOut">
+    <h2>Ya has iniciado sesión</h2>
+</section>
+<ng-template #loggedOut>
+    <section class="w-full min-h-screen md:flex overflow-hidden">
+        <article class="hidden md:block relative w-2/6 lg:w-3/6 h-screen  bg-indigo-300">
+            <img src={{image}} class="inset-0 absolute object-cover object-center h-screen w-full" alt="">
+            <div
+                class="text-center py-12 absolute inset-0 bg-indigo-600 bg-opacity-70 flex flex-col items-center justify-end text-4xl text-white">
+                <p class="text-xl lg:text-2xl mb-1 opacity-60">Analytic Hierarchy Process</p>
+                <p class="text-sm">© 2022 AHP. All rights reserved.</p>
+            </div>
+        </article>
+        <article class="w-full md:w-4/6 lg:w-3/6 bg-gray-50 min-h-screen flex items-center justify-center flex-col">
+            <form  novalidate role="form"
+                class="text-center w-10/12 sm:w-9/12 lg:w-8/12 py-8 px-8 md:px-14 rounded-md border-2 border-indigo-600 shadow-2xl">
+                <img class="mx-auto w-12" src={{logo}} alt="logo">
+                <h1 class="text-xl lg:text-2xl my-3 text-indigo-600">
+                    Confirmación de cuenta
+                    <p class="md:hidden font-bold">Analytic Hierarchy Process</p>
+                </h1>
+                <div class="mt-8">
+                    <img src="https://cdn.dribbble.com/users/1152773/screenshots/3832732/loader2.gif" style="width: 300px;height: 300px;" alt="" srcset="">
+                </div>
+             
+                <div class="md:hidden mt-6 text-sm">
+                    <p>© 2022 AHP. All rights reserved.</p>
+                </div>
+            </form>
+        </article>
+    </section>
+</ng-template>

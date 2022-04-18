@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class PasswordResetComponent implements OnInit {
 
   constructor(
     public formulario:FormBuilder,
-    private authS: AuthService 
+    private authS: AuthService,
+    private toastr: ToastrService    
   ) {
     this.formGroup = this.formulario.group({
       email:[''],
@@ -30,8 +32,20 @@ export class PasswordResetComponent implements OnInit {
     this.authS.solicitudCambioPassword(this.formGroup.value.email).subscribe(res=>{
     },error=>{
       if(error.status==200){
-        console.log(error.error.text);
+        console.log(error.error.text); 
+        this.toastr.success("Correo enviado, porfavor revisa tu bandeja de entrada", "OK", {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+         }) 
+        // Significa que el correo y todo está correcto, colocar notificacion que diga que ya se envio el correo y que se revise.
       }
+      if(error.status==404){
+        this.toastr.error("El correo no se encuentra registrado", "ERROR", {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+         }) 
+      }
+
     })
   }
 

@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LoginUser } from 'src/app/models/login-user';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
     private tokenService:TokenService,
     private router: Router,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+
   ) { }
   
   ngOnInit(): void {

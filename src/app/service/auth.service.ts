@@ -31,6 +31,10 @@ export class AuthService {
     return this.httpClient.get<any>(this.authURL+"solicitudPassword/"+email)
   }
 
+  public confirmacionCuenta(token:string): Observable<any>{
+    return this.httpClient.get<any>(this.authURL+"confirmacion/"+token)
+  }
+
   public getUsers():Observable<any> {
     console.log('entre');
     

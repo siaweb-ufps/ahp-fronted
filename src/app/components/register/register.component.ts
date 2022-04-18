@@ -4,6 +4,7 @@ import { TokenService } from 'src/app/service/token.service';
 import { NewUser } from 'src/app/models/new-user';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -36,6 +37,8 @@ export class RegisterComponent implements OnInit {
     private tokenService:TokenService,
     private fb: FormBuilder,
     private router: Router,
+    private toastr: ToastrService   
+
 
   ) { }
 
@@ -94,6 +97,10 @@ export class RegisterComponent implements OnInit {
       data => {
         this.isRegister = true;
         this.isRegisterinFail = false;
+        this.toastr.success("Usuario creado, confirma tu correo electrónico", "OK", {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+         })
         this.router.navigate(['/login']);
       },
       err => {

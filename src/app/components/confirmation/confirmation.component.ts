@@ -1,53 +1,53 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
+import { LoginUser } from 'src/app/models/login-user';
 import { AuthService } from 'src/app/service/auth.service';
-import { TokenService } from 'src/app/service/token.service';
 
 @Component({
-  selector: 'app-password',
-  templateUrl: './password.component.html',
-  styleUrls: ['./password.component.scss']
+  selector: 'app-confirmation',
+  templateUrl: './confirmation.component.html',
+  styleUrls: ['./confirmation.component.scss']
 })
-export class PasswordComponent implements OnInit {
+export class ConfirmationComponent implements OnInit {
   image:any = 'https://images.unsplash.com/photo-1634087990018-415aeb951215?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80';
-  logo:any = './assets/images/min-logo.png';
-  
-  password!: FormGroup;
+  logo:any = '/assets/images/min-logo.png';
+  faXmark = faXmark;
   idConfirmation!:any;
-  constructor(
-    public formulario:FormBuilder,
-    private authService:AuthService,
-    private aRouter: ActivatedRoute, 
-    private route: Router,
-    private tokenS:TokenService,
-    private toastr: ToastrService   
 
+
+  loginInfo!: FormGroup;
+  loginUser!: LoginUser;
+  isAdmin:boolean = false;
+  isLogged:boolean = false;
+  isLoginFail:boolean = false;
+  email!:string;
+  password!:string;
+  roles:string[] = [];
+  errMsj!:string;
+  mensaje!:string;
+
+  constructor(
+    private aRouter: ActivatedRoute, 
+    private authS: AuthService,
+    private toastr: ToastrService,
+    private route: Router,
   ) { }
 
   ngOnInit(): void {
     this.idConfirmation = this.aRouter.snapshot.paramMap.get('idConfirmation');
-    this.password = this.formulario.group({
-      password: [
-        '',
-        Validators.compose([Validators.required, Validators.minLength(3)]),
-      ],
-    })
+    this.confirmarCuenta()
   }
 
-  public enviarPassword(){
+  public confirmarCuenta(){
+    this.authS.confirmacionCuenta(this.idConfirmation).subscribe(res=>{
 
-    let infoLogin = {
-      email:" ",
-      password:this.password.value.password
-    }
-
-    this.authService.cambiarPassword(infoLogin,this.idConfirmation).subscribe(res=>{
-      console.log(res);
     },error=>{
       if(error.status==200){
-        this.toastr.success("Contraseña cambiada", "OK", {
+        this.mensaje = "Cuenta confirmada"
+        this.toastr.success("Cuenta confirmada", "OK", {
           positionClass: 'toast-top-center',
           timeOut: 3000
          })
@@ -61,5 +61,4 @@ export class PasswordComponent implements OnInit {
       }
     })
   }
-
 }
