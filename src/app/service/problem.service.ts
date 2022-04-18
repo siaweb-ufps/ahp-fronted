@@ -10,12 +10,17 @@ import { User } from '../models/user';
 
 export class ProblemService {
   url=`${global.url}/problema/`;
+  user=`${global.url}/usuario/usuarioPorEmail/`;
   constructor(private http: HttpClient) { }
 
   public getProblems():Observable<any>{
     return this.http.get<any>(this.url);
   }
-  // user: User
+
+  public getUser(email:string):Observable<any> {
+    return this.http.get<any>(this.user+email);
+  }
+
   public post(problema:any, ):Observable<any>{
     return this.http.post<any>(this.url, problema)
   }
