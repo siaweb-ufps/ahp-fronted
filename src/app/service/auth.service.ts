@@ -36,8 +36,14 @@ export class AuthService {
   }
 
   public getUsers():Observable<any> {
-    console.log('entre');
-    
+    console.log('entre');    
     return this.httpClient.get<any>(this.url);
   }
+
+  user=`${global.url}/usuario/usuarioPorEmail/`;
+
+  public getUser(email:string):Observable<any> {
+    return this.httpClient.get<any>(this.user+email);
+  }
+
 }
