@@ -66,11 +66,11 @@ export class RegisterProblemComponent implements OnInit {
         usuario: el
       })
       // console.log('edede',this.form.value);  
-      // this.toastr.success("Problema creado", "OK", {
-      //   positionClass: 'toast-top-center',
-      //   timeOut: 3000
-      //  })
-      // this.router.navigate(['/list-problem']);  
+        // this.toastr.success("Problema creado", "OK", {
+        //   positionClass: 'toast-top-center',
+        //   timeOut: 3000
+        //  })
+        // this.router.navigate(['/list-problem']);  
       
     }
     // ,
