@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/service/token.service';
 import { ProblemService } from 'src/app/service/problem.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-problem',
@@ -23,6 +24,7 @@ export class RegisterProblemComponent implements OnInit {
     private tokenService: TokenService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private toastr: ToastrService,
     private aRouter: ActivatedRoute,
   ) {
     this.id = aRouter.snapshot.paramMap.get('problem');
@@ -63,8 +65,29 @@ export class RegisterProblemComponent implements OnInit {
       this.form.patchValue({
         usuario: el
       })
-      console.log('edede',this.form.value);      
-    });
+      // console.log('edede',this.form.value);  
+      // this.toastr.success("Problema creado", "OK", {
+      //   positionClass: 'toast-top-center',
+      //   timeOut: 3000
+      //  })
+      // this.router.navigate(['/list-problem']);  
+      
+    }
+    // ,
+    // err => {
+    //   this.isRegister = false;
+    //   this.isRegisterinFail = true;
+    //   this.errMsj = err.error.message;
+    // }  
+    );
+
+    // if (typeof err.error == 'object') {
+    //   this.toastr.error('Contraseña incorrecta', '', {
+    //     timeOut: 3000,
+    //     positionClass: 'toast-bottom-center',
+    //   });
+    //   return;
+    // }
         
     if (!this.form.valid) {
       console.log('error en send data valid');
