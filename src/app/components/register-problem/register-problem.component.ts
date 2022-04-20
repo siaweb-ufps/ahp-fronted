@@ -35,12 +35,13 @@ export class RegisterProblemComponent implements OnInit {
     
     this.form = this.formBuilder.group({
       usuario: {},
-      description: ['',
+      descripcion: ['',
         Validators.compose([
           Validators.required,
           Validators.maxLength(500)
       ])],
-      fecha_finalizacion: ['', Validators.required],
+      fechaFinalizacion: ['', Validators.required],
+      fechaCreacion: ['', Validators.required],
     });
     console.log(this.form.value);
     console.log(typeof(this.form));
@@ -94,6 +95,8 @@ export class RegisterProblemComponent implements OnInit {
       return;
     }
 
+    console.log(this.form.value);
+    
     this.problemService.post(this.form.value)
       .subscribe(data => {
         console.log('Agregado con exito');
