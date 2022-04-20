@@ -25,11 +25,6 @@ export class ProblemService {
     return this.http.post<any>(this.url, problema)
   }
 
-  public post2(usuario:any, ):Observable<any>{
-    console.log(usuario);
-    return this.http.post<any>(this.url, usuario)
-  }
-
   editProblem(id:string,problema:any):Observable<any>{
       return this.http.put(`${global.url}/problema`,problema)
   }

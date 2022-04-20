@@ -13,10 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterProblemComponent implements OnInit {
   public form!: FormGroup;
-  title:string = 'Registrar problema';
-  btn:string = 'Agregar'; 
-  id: string | null;  
-  usuario:any = localStorage.getItem('email');
+  title: string = 'Registrar problema';
+  btn: string = 'Agregar';
+  id: string | null;
+  iduser:any;
+  usuario: any = localStorage.getItem('email');
 
   constructor(
     private problemService: ProblemService,
@@ -25,37 +26,38 @@ export class RegisterProblemComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private aRouter: ActivatedRoute,
+    private aRouter: ActivatedRoute
   ) {
-    this.id = aRouter.snapshot.paramMap.get('problem');
+    console.log('dsdjsdd: ',aRouter.snapshot.paramMap.get('idProblema'));
+    
+    this.id = aRouter.snapshot.paramMap.get('idProblema');
   }
   ngOnInit(): void {
+    console.log('id: ',this.id)
     this.loaderToken();
     this.isEdit();
-    
+
     this.form = this.formBuilder.group({
       usuario: {},
-      descripcion: ['',
-        Validators.compose([
-          Validators.required,
-          Validators.maxLength(500)
-      ])],
+      descripcion: [
+        '',
+        Validators.compose([Validators.required, Validators.maxLength(500)]),
+      ],
       fechaFinalizacion: ['', Validators.required],
       fechaCreacion: ['', Validators.required],
     });
-    console.log(this.form.value);
-    console.log(typeof(this.form));
-    
+    // console.log(this.form.value);
+    // console.log(typeof this.form);
   }
 
-  input:any = {
+  input: any = {
     title: 'Título del problema',
     name: 'nameproblem',
     placeholder: 'Lorem ipsum',
     type: 'text',
   };
-  
-  textarea:any = {
+
+  textarea: any = {
     title: 'Descripción',
     name: 'description',
     placeholder: 'Lorem ipsum',
@@ -64,78 +66,77 @@ export class RegisterProblemComponent implements OnInit {
   sendData() {
     this.problemService.getUser(this.usuario).subscribe((el) => {
       this.form.patchValue({
-        usuario: el
-      })
-      // console.log('edede',this.form.value);  
-        // this.toastr.success("Problema creado", "OK", {
-        //   positionClass: 'toast-top-center',
-        //   timeOut: 3000
-        //  })
-        // this.router.navigate(['/list-problem']);  
-        if (!this.form.valid) {
-          console.log('error en send data valid');
-          return;
-        }
-    
-        console.log(this.form.value);
-        
-        this.problemService.post(this.form.value)
-          .subscribe(data => {
-            console.log('Agregado con exito');
-          }, error=>{
-            if(error.status==200){
-              this.toastr.success("Problema creado", "OK", {
-              positionClass: 'toast-top-center',
-              timeOut: 3000
-            })
-            }
-          });
-    }
-    // ,
-    // err => {
-    //   this.isRegister = false;
-    //   this.isRegisterinFail = true;
-    //   this.errMsj = err.error.message;
-    // }  
-    );
+        usuario: el,
+      });
+      if (!this.form.valid) {
+        this.toastr.error('¡Datos incorrectos!', 'ERROR', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        console.log('error en send data valid');
+        return;
+      }
 
-    // if (typeof err.error == 'object') {
-    //   this.toastr.error('Contraseña incorrecta', '', {
-    //     timeOut: 3000,
-    //     positionClass: 'toast-bottom-center',
-    //   });
-    //   return;
-    // }
-        
-    
+      if (this.id !== null) {
+        this.problemService
+          .editProblem(this.id, this.form.value).subscribe((data) => {
+            this.toastr.success('Seguro Editado Con Exito!', 'Seguro Editado', {
+              positionClass: 'toast-bottom-right' 
+            })
+            this.router.navigate(["/list-problem"]);
+          });
+      } else {
+        this.problemService.post(this.form.value).subscribe(
+          (data) => {
+            console.log('Agregado con exito');
+          },
+          (error) => {
+            if (error.status == 200) {
+              this.router.navigate(['/list-problem']);
+              this.toastr.success('Problema creado', 'OK', {
+                positionClass: 'toast-top-center',
+                timeOut: 3000,
+              });
+            }
+          }
+        );
+      }
+      
+    });
   }
 
   isEdit() {
-    if (this.id !== null) {
-      this.title = 'Editar problema';
-      this.btn = 'Editar problema';
-      this.problemService.getProblem(this.id).subscribe((data) => {
-        this.form.setValue({
-          nombre: data.nombre,
-          problem: data.problem,
-          descripcion: data.descripcion,
-          // usuario: data.usuario,
-        });
-        const output = document.getElementById('idProblem');
-        if (output){
-          output.setAttribute("value",data.problem)
-        }
+    this.problemService.getUser(this.usuario).subscribe((el) => {
+      this.form.patchValue({
+        usuario: el,
       });
-    }
+  
+      if (this.id !== null) {
+        this.title = 'Editar problema';
+        this.btn = 'Editar';
+        this.problemService.getProblem(this.id).subscribe((data) => {
+          this.form.setValue({
+            nombre: data.nombre,
+            problem: data.problem,
+            fechaCreacion: data.fechaCreacion,
+            fechaFinalizacion: data.fechaFinalizacion,
+            descripcion: data.descripcion,
+          });
+          const output = document.getElementById('idProblema');
+          if (output) {
+            output.setAttribute('value', data.idProblema);
+          }
+        });
+      }
+    });
   }
 
   public loaderToken() {
     if (this.tokenService.getToken()) {
-      if(this.tokenService.getAuthorities().length < 2){
-      this.router.navigateByUrl("/register-problem");
+      if (this.tokenService.getAuthorities().length < 2) {
+        this.router.navigateByUrl('/register-problem');
       }
     } else {
-      this.router.navigateByUrl("/login");
+      this.router.navigateByUrl('/login');
     }
   }
 }

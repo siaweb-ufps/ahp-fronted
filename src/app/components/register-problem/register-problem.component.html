@@ -3,34 +3,22 @@
     <section class="w-full lg:w-9/12 bg-white min-h-screen p-5">
         <article
             class="py-10 lg:py-0 w-full flex items-center rounded-xl justify-center h-full border border-gray-200 shadow-lg">
-            <form [formGroup]="form" class="border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
+            <form [formGroup]="form" class="my-12 border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl"
+                action="">
                 <h1 class="text-4xl mb-5 text-indigo-500">{{title}}</h1>
                 <!-- <app-input [input]="input"></app-input>
                 <app-textarea [textarea]="textarea"></app-textarea> -->
-                <!-- <div class="mb-5 relative">
-                    <span class="contact100-form-combo">Usuario</span>
-                    <div
-                        class="flex justify-between placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:bg-white focus:border-indog-600 focus:border-indigo-600">
-                        <select class="bg-transparent w-full" formControlName="usuario"
-                            aria-label="Default select example" placeholder="usuario">
-                            <option value="">Seleccion un usuario</option>
-                            <option *ngFor="let usuario of usuarios" name="usuario" id="{{usuario.email}}"
-                                value={{usuario.email}}>
-                                {{usuario.nombre}}</option>
-                        </select>
-                    </div>
-                </div> -->
-                <div class="mb-5 pt-5">
-                    <p class="mb-2">Fecha finalización</p>
-                    <input formControlName="fechaFinalizacion"
-                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
-                        required type="date" name="fechaFinalizacion">
-                </div>
                 <div class="mb-5 pt-5">
                     <p class="mb-2">Fecha creación</p>
                     <input formControlName="fechaCreacion"
                         class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
                         required type="date" name="fechaCreacion">
+                </div>
+                <div class="mb-5">
+                    <p class="mb-2">Fecha finalización</p>
+                    <input formControlName="fechaFinalizacion"
+                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        required type="date" name="fechaFinalizacion">
                 </div>
                 <div class="mb-5">
                     <p class="mb-2">{{textarea.title}}</p>
