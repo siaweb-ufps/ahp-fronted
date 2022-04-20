@@ -3,10 +3,12 @@
     <section class="w-full lg:w-9/12 bg-white">
         <article class="w-full min-h-screen p-5 flex justify-center">
             <!-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full"> -->
-            <div class="rounded-xl bg-gradient-to-r bg-white border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden w-full shadow-lg">
+            <div
+                class="rounded-xl bg-gradient-to-r bg-white border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden w-full shadow-lg">
                 <div class="mb-8 flex items-center justify-between">
                     <p class="text-2xl">Lista problemas</p>
-                    <a class="duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600" routerLink="/register-problem">
+                    <a class="duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600"
+                        routerLink="/register-problem">
                         <fa-icon class="text-lg mr-1 " [icon]="faXmarkSquare"></fa-icon>
                         Agregar problema
                     </a>
@@ -17,6 +19,7 @@
                         <tr>
                             <th scope="col" class="px-6 py-3">Descripción</th>
                             <th scope="col" class="px-6 py-3">Usuario</th>
+                            <!-- <th scope="col" class="px-6 py-3">Fecha fin</th> -->
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
                             </th>
@@ -26,46 +29,22 @@
                         <tr *ngFor="let problema of data" class="odd:bg-white even:bg-indigo-50">
                             <td class="px-6 py-4">{{ problema.descripcion}}</td>
                             <td class="px-6 py-4">{{ problema.usuario.nombre}}</td>
-                            <!-- [routerLink]="['/problem',problema.idProblem]" -->
-                            <td  class="px-6 py-4 flex items-center">
-                                <a routerLink="/edit-problem" class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                            <!-- <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td> -->
+                            <td class="px-6 py-4 flex items-center">
+                                <a [routerLink]="['/edit-problem',problema.idProblema]"
+                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
                                 </a>
-                                <a routerLink="/problem" class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                <a class=" hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600
+                                    dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEye"></fa-icon>
                                 </a>
                             </td>
                         </tr>
-                        <!-- <tr class="odd:bg-white even:bg-indigo-50">
-                            <td class="px-6 py-4">
-                                ¿Cuál es la mejor metodología de desarrollo?
-                            </td>
-                            <td class="px-6 py-4 flex items-center">
-                                <a routerLink="/edit-problem" class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
-                                </a>
-                                <a routerLink="/problem" class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faEye"></fa-icon>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr class="odd:bg-white even:bg-indigo-50">
-                            <td class="px-6 py-4">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum accusantium repellat molestias minima totam blanditiis, ad recusandae quae autem, labore praesentium quis sint debitis, harum quo inventore id accusamus magnam?
-                            </td>
-                            <td class="px-6 py-4 flex items-center">
-                                <a routerLink="/edit-problem" class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
-                                </a>
-                                <a routerLink="/problem" class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faEye"></fa-icon>
-                                </a>
-                            </td>
-                        </tr> -->
                     </tbody>
                 </table>
                 <ng-template>
-                    
+
                 </ng-template>
             </div>
         </article>

@@ -34,11 +34,14 @@ const routes: Routes = [
   {path: 'list-problem', component:ListProblemComponent},
   {path: 'password-reset', component:PasswordResetComponent},
   {path: 'password-reset/confirmation/:idConfirmation', component:PasswordComponent},
-  {path: 'edit-problem', component:EditProblemComponent},
   {path: 'register-criterion', component:RegisterCriterionComponent},
   {path: 'register-alternative', component:RegisterAlternativeComponent},
   {path: 'edit-decider', component:EditDeciderComponent},
   {path: 'qualify', component:QualifyComponent},
+  
+  // {path: 'edit-problem', component:EditProblemComponent},
+  {path:"edit-problem/:idProblema", component:RegisterProblemComponent},
+
 ];
 
 @NgModule({
