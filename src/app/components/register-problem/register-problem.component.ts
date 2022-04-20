@@ -72,7 +72,24 @@ export class RegisterProblemComponent implements OnInit {
         //   timeOut: 3000
         //  })
         // this.router.navigate(['/list-problem']);  
-      
+        if (!this.form.valid) {
+          console.log('error en send data valid');
+          return;
+        }
+    
+        console.log(this.form.value);
+        
+        this.problemService.post(this.form.value)
+          .subscribe(data => {
+            console.log('Agregado con exito');
+          }, error=>{
+            if(error.status==200){
+              this.toastr.success("Problema creado", "OK", {
+              positionClass: 'toast-top-center',
+              timeOut: 3000
+            })
+            }
+          });
     }
     // ,
     // err => {
@@ -90,17 +107,7 @@ export class RegisterProblemComponent implements OnInit {
     //   return;
     // }
         
-    if (!this.form.valid) {
-      console.log('error en send data valid');
-      return;
-    }
-
-    console.log(this.form.value);
     
-    this.problemService.post(this.form.value)
-      .subscribe(data => {
-        console.log('Agregado con exito');
-      });
   }
 
   isEdit() {
