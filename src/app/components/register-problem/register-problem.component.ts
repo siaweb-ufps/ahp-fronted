@@ -85,6 +85,9 @@ export class RegisterProblemComponent implements OnInit {
                   positionClass: 'toast-bottom-right' 
                 })
               });
+              this.toastr.success('Problema Editado Con Exito!', 'Problema Editado', {
+                positionClass: 'toast-bottom-right' 
+              })
               this.router.navigate(["/list-problem"]);
             }
           });
