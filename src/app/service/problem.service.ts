@@ -17,6 +17,11 @@ export class ProblemService {
     return this.http.get<any>(this.url);
   }
 
+  public getProblemsUser(email:string):Observable<any>{
+    return this.http.get<any>(`${global.url}/usuario/problemas/`+email);
+  }
+
+
   public getUser(email:string):Observable<any> {
     return this.http.get<any>(this.user+email);
   }

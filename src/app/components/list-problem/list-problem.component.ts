@@ -14,7 +14,7 @@ export class ListProblemComponent implements OnInit {
   dtTrigger = new Subject<any>();
   // public data: any[]=[];
   public data: Array<any> = [];
-
+  public email:any = localStorage.getItem('email');
   constructor(
     private problemService: ProblemService,
     // private tokenS:TokenService,
@@ -22,7 +22,8 @@ export class ListProblemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.problemService.getProblems().subscribe((resp:any)=>{
+    
+    this.problemService.getProblemsUser(this.email).subscribe((resp:any)=>{
       console.log(resp);
       this.data = resp;
     })
