@@ -28,14 +28,12 @@ export class RegisterProblemComponent implements OnInit {
     private toastr: ToastrService,
     private aRouter: ActivatedRoute
   ) {
-    console.log('dsdjsdd: ',aRouter.snapshot.paramMap.get('idProblema'));
-    
     this.id = aRouter.snapshot.paramMap.get('idProblema');
   }
   ngOnInit(): void {
-    console.log('id: ',this.id)
     this.loaderToken();
-    this.isEdit();
+      this.isEdit();
+      console.log(this.id);
 
     this.form = this.formBuilder.group({
       usuario: {},
@@ -46,8 +44,6 @@ export class RegisterProblemComponent implements OnInit {
       fechaFinalizacion: ['', Validators.required],
       fechaCreacion: ['', Validators.required],
     });
-    // console.log(this.form.value);
-    // console.log(typeof this.form);
   }
 
   input: any = {
@@ -64,6 +60,8 @@ export class RegisterProblemComponent implements OnInit {
   };
 
   sendData() {
+    
+    
     this.problemService.getUser(this.usuario).subscribe((el) => {
       this.form.patchValue({
         usuario: el,
@@ -77,12 +75,19 @@ export class RegisterProblemComponent implements OnInit {
       }
 
       if (this.id !== null) {
-        this.problemService
-          .editProblem(this.id, this.form.value).subscribe((data) => {
-            this.toastr.success('Seguro Editado Con Exito!', 'Seguro Editado', {
-              positionClass: 'toast-bottom-right' 
-            })
-            this.router.navigate(["/list-problem"]);
+        this.problemService.getUser(this.usuario).subscribe((el) => {
+          this.form.patchValue({
+            usuario: el,
+          });
+          if (this.id !== null) {
+            this.problemService
+              .editProblem(this.id, this.form.value).subscribe((data) => {
+                this.toastr.success('Problema Editado Con Exito!', 'Problema Editado', {
+                  positionClass: 'toast-bottom-right' 
+                })
+                this.router.navigate(["/list-problem"]);
+              });
+            }
           });
       } else {
         this.problemService.post(this.form.value).subscribe(
@@ -100,26 +105,33 @@ export class RegisterProblemComponent implements OnInit {
           }
         );
       }
-      
     });
   }
 
   isEdit() {
+    console.log('feo');
+    
     this.problemService.getUser(this.usuario).subscribe((el) => {
+      console.log('entre');      console.log('id1: ',this.id);
+
       this.form.patchValue({
         usuario: el,
       });
   
       if (this.id !== null) {
+      console.log('id2: ',this.id);
+
         this.title = 'Editar problema';
         this.btn = 'Editar';
         this.problemService.getProblem(this.id).subscribe((data) => {
+          console.log(data);
+      console.log('id3: ',this.id);
+          
           this.form.setValue({
-            nombre: data.nombre,
-            problem: data.problem,
             fechaCreacion: data.fechaCreacion,
             fechaFinalizacion: data.fechaFinalizacion,
             descripcion: data.descripcion,
+            usuario: this.usuario,
           });
           const output = document.getElementById('idProblema');
           if (output) {
@@ -127,6 +139,8 @@ export class RegisterProblemComponent implements OnInit {
           }
         });
       }
+      console.log('id4'+this.id);
+      
     });
   }
 
