@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAuthorities(data.authorities);
 
         this.roles = data.authorities;
-        this.router.navigate(['/list-decider']);
+        this.router.navigate(['/list-problem']);
 
         this.toastr.success('Bienvenido ', 'OK', {
           timeOut: 3000,

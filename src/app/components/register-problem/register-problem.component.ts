@@ -60,8 +60,6 @@ export class RegisterProblemComponent implements OnInit {
   };
 
   sendData() {
-    
-    
     this.problemService.getUser(this.usuario).subscribe((el) => {
       this.form.patchValue({
         usuario: el,
@@ -80,13 +78,14 @@ export class RegisterProblemComponent implements OnInit {
             usuario: el,
           });
           if (this.id !== null) {
+            this.form.value.idProblema = this.id;
             this.problemService
               .editProblem(this.id, this.form.value).subscribe((data) => {
                 this.toastr.success('Problema Editado Con Exito!', 'Problema Editado', {
                   positionClass: 'toast-bottom-right' 
                 })
-                this.router.navigate(["/list-problem"]);
               });
+              this.router.navigate(["/list-problem"]);
             }
           });
       } else {

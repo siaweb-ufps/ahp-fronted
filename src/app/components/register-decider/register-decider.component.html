@@ -1,12 +1,29 @@
 <main class="mx-auto w-full lg:w-5/6 lg:flex justify-between">
     <app-nav class="lg:w-3/12"></app-nav>
     <section class="w-full lg:w-9/12 bg-white min-h-screen p-5">
-        <article class="py-10 lg:py-0 w-full flex items-center rounded-xl justify-center h-full border border-gray-200 shadow-lg">
+        <article
+            class="py-10 lg:py-0 w-full flex items-center rounded-xl justify-center h-full border border-gray-200 shadow-lg">
             <form class="border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
                 <h1 class="text-4xl mb-5 text-indigo-500">Registrar decisor</h1>
-                <app-input [input]="inputs[0]"></app-input>
-                <app-input [input]="inputs[1]"></app-input>
-                <app-button [data]="'Registrar'"></app-button>
+                <!-- <app-input [input]="inputs[0]"></app-input>
+                <app-input [input]="inputs[1]"></app-input> -->
+                <div class="mb-5 pt-5">
+                    <!-- formControlName="name" -->
+                    <p class="mb-2">Nombre</p>
+                    <input
+                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        required type="text" name="name" placeholder="Santiago Serrano">
+                </div>
+                <!-- formControlName="email" -->
+                <div class="mb-5 pt-5">
+                    <p class="mb-2">Correo electrónico</p>
+                    <input
+                        class="placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        required type="email" name="email" placeholder="santiagos@ejemplo.com">
+                </div>
+                <button type="submit"
+                    class="mt-5 uppercase text-sm w-1/3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Registrar</button>
+                <!-- <app-button [data]="'Registrar'"></app-button> -->
             </form>
         </article>
     </section>
