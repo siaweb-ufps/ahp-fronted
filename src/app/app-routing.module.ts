@@ -38,7 +38,6 @@ const routes: Routes = [
   {path: 'register-alternative', component:RegisterAlternativeComponent},
   {path: 'edit-decider', component:EditDeciderComponent},
   {path: 'qualify', component:QualifyComponent},
-  
   // {path: 'edit-problem', component:EditProblemComponent},
   {path:"edit-problem/:idProblema", component:RegisterProblemComponent},
 

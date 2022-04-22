@@ -54,6 +54,7 @@ export class ConfirmationComponent implements OnInit {
           
         this.route.navigateByUrl("")
       }else{
+        console.log(error);
         this.toastr.error(error.error.text, "ERROR", {
           positionClass: 'toast-top-center',
           timeOut: 3000

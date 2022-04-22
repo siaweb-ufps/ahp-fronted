@@ -28,6 +28,7 @@ export class PasswordResetComponent implements OnInit {
   logo:any = './assets/images/min-logo.png';
 
   enviarSolicitud(){
+
     console.log(this.formGroup.value.email);
     this.authS.solicitudCambioPassword(this.formGroup.value.email).subscribe(res=>{
     },error=>{
