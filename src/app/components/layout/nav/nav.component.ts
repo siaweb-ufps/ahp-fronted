@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faArrowRightFromBracket, faChartColumn, faRightToBracket, faUser, faXmarkSquare } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRightFromBracket, faChartColumn, faRightToBracket, faUser, faXmarkSquare ,faUserDoctor} from '@fortawesome/free-solid-svg-icons';
 import { TokenService } from 'src/app/service/token.service';
 
 @Component({
@@ -25,6 +25,7 @@ export class NavComponent implements OnInit {
   }
 
   faUser = faUser;
+  faUserDoctor = faUserDoctor;
   faXmarkSquare = faXmarkSquare;
   faChartColumn = faChartColumn;
   faRightToBracket = faRightToBracket;

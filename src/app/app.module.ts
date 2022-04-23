@@ -41,6 +41,8 @@ import { interceptorProvider } from './components/interceptors/paq-interceptor.s
 import { ProblemService } from './service/problem.service';
 import { PasswordComponent } from './components/password/password.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { MyaccountComponent } from './components/myaccount/myaccount.component';
+import { AccessGuard } from './guards/AccessGuard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +72,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     QualifyComponent,
     PasswordComponent,
     ConfirmationComponent,
+    MyaccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +85,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
   ],
-  providers: [interceptorProvider, ProblemService],
+  providers: [interceptorProvider, ProblemService, AccessGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

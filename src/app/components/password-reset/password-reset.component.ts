@@ -29,23 +29,16 @@ export class PasswordResetComponent implements OnInit {
 
   enviarSolicitud(){
 
-    console.log(this.formGroup.value.email);
     this.authS.solicitudCambioPassword(this.formGroup.value.email).subscribe(res=>{
+      this.toastr.success("Correo enviado, porfavor revisa tu bandeja de entrada", "OK", {
+        positionClass: 'toast-top-center',
+        timeOut: 3000
+       }) 
     },error=>{
-      if(error.status==200){
-        console.log(error.error.text); 
-        this.toastr.success("Correo enviado, porfavor revisa tu bandeja de entrada", "OK", {
+        this.toastr.error(error.error.mensaje, "ERROR", {
           positionClass: 'toast-top-center',
           timeOut: 3000
          }) 
-        // Significa que el correo y todo está correcto, colocar notificacion que diga que ya se envio el correo y que se revise.
-      }
-      if(error.status==404){
-        this.toastr.error("El correo no se encuentra registrado", "ERROR", {
-          positionClass: 'toast-top-center',
-          timeOut: 3000
-         }) 
-      }
 
     })
   }

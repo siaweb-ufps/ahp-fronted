@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
 
     if (this.tokenService.getToken()) {
       this.isLogged = true;
-      this.router.navigate(['/']);
+      this.router.navigate(['/my-account']);
       this.isLoginFail = true;
       this.roles = this.tokenService.getAuthorities();
     }
@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setEmail(data.email);
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
-        this.router.navigate(['/']);
+        this.router.navigate(['/my-account']);
       },
       err => {
         this.isLogged = false;

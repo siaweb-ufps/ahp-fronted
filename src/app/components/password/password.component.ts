@@ -59,20 +59,16 @@ export class PasswordComponent implements OnInit {
     }
 
     this.authService.cambiarPassword(infoLogin,this.idConfirmation).subscribe(res=>{
+      this.toastr.success("Contraseña cambiada", "OK", {
+        positionClass: 'toast-top-center',
+        timeOut: 3000
+       })
+       this.route.navigateByUrl("")
     },error=>{
-      if(error.status==200){
-        this.toastr.success("Contraseña cambiada", "OK", {
-          positionClass: 'toast-top-center',
-          timeOut: 3000
-         })
-          
-        this.route.navigateByUrl("")
-      }else{
-        this.toastr.error(error.error, "ERROR", {
+        this.toastr.error(error.error.mensaje, "ERROR", {
           positionClass: 'toast-top-center',
           timeOut: 3000
          }) 
-      }
     })
   }
 

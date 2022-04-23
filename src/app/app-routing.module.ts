@@ -18,28 +18,32 @@ import { EditDeciderComponent } from './components/edit-decider/edit-decider.com
 import { RegisterCriterionComponent } from './components/register-criterion/register-criterion.component';
 import { RegisterAlternativeComponent } from './components/register-alternative/register-alternative.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
+import { MyaccountComponent } from './components/myaccount/myaccount.component';
+import { AccessGuard } from './guards/AccessGuard';
 
 const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: ''},
-  { path: '', component: LoginComponent },
+  {path: '', component: LoginComponent},
   {path: 'login', component:LoginComponent},
   {path: 'login/confirmation/:idConfirmation', component:ConfirmationComponent},
   {path: 'contact', component:ContactComponent},
   {path: 'register', component:RegisterComponent},
-  {path: 'register-decider', component:RegisterDeciderComponent},
-  {path: 'chart', component:ChartComponent},
-  {path: 'problem', component:ProblemComponent},
-  {path: 'list-decider', component:ListDeciderComponent},
-  {path: 'register-problem', component:RegisterProblemComponent},
-  {path: 'list-problem', component:ListProblemComponent},
+  {path: 'register-decider', component:RegisterDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'chart', component:ChartComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'problem', component:ProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'list-decider', component:ListDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'register-problem', component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'list-problem', component:ListProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'password-reset', component:PasswordResetComponent},
   {path: 'password-reset/confirmation/:idConfirmation', component:PasswordComponent},
-  {path: 'register-criterion', component:RegisterCriterionComponent},
-  {path: 'register-alternative', component:RegisterAlternativeComponent},
-  {path: 'edit-decider', component:EditDeciderComponent},
+  {path: 'register-criterion', component:RegisterCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'register-alternative', component:RegisterAlternativeComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'edit-decider', component:EditDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'qualify', component:QualifyComponent},
+  {path: 'my-account', component:MyaccountComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+
   // {path: 'edit-problem', component:EditProblemComponent},
-  {path:"edit-problem/:idProblema", component:RegisterProblemComponent},
+  {path:"edit-problem/:idProblema", component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
 
 ];
 

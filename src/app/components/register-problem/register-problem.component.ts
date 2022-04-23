@@ -111,24 +111,15 @@ export class RegisterProblemComponent implements OnInit {
   }
 
   isEdit() {
-    console.log('feo');
-    
     this.problemService.getUser(this.usuario).subscribe((el) => {
-      console.log('entre');      console.log('id1: ',this.id);
-
       this.form.patchValue({
         usuario: el,
       });
   
       if (this.id !== null) {
-      console.log('id2: ',this.id);
-
         this.title = 'Editar problema';
         this.btn = 'Editar';
         this.problemService.getProblem(this.id).subscribe((data) => {
-          console.log(data);
-      console.log('id3: ',this.id);
-          
           this.form.setValue({
             fechaCreacion: data.fechaCreacion,
             fechaFinalizacion: data.fechaFinalizacion,
@@ -141,8 +132,6 @@ export class RegisterProblemComponent implements OnInit {
           }
         });
       }
-      console.log('id4'+this.id);
-      
     });
   }
 
