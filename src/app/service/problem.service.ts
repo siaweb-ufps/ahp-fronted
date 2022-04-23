@@ -37,5 +37,8 @@ export class ProblemService {
   getProblem(id:string): Observable<any>{
     return this.http.get(this.url+id)
   }
+  deleteProblem(idProblema:string):Observable<any>{
+    return this.http.delete(this.url+idProblema)
+  }
   
 }

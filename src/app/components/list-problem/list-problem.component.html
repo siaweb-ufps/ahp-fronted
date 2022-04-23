@@ -18,24 +18,43 @@
                 <table datatable class="shadow-md text-left w-full">
                     <thead  class="text-xs uppercase bg-indigo-200">
                         <tr>
+                            <th scope="col" class="px-6 py-3">ID</th>
                             <th scope="col" class="px-6 py-3">Descripción</th>
                             <th scope="col" class="px-6 py-3">Usuario</th>
+                            <th scope="col" class="px-6 py-3">Fecha Inicio</th>
+                            <th scope="col" class="px-6 py-3">Fecha Finalizacion</th>
+
                             <!-- <th scope="col" class="px-6 py-3">Fecha fin</th> -->
                             <th scope="col" class="px-6 py-3">
                                 <span class="sr-only">Edit</span>
                             </th>
+                            
                         </tr>
                     </thead>
                     <tbody *ngIf="data.length>0">
                         <tr *ngFor="let problema of data" class="odd:bg-white even:bg-indigo-50">
+                            <td class="px-6 py-4">{{ problema.idProblema}}</td>                        
                             <td class="px-6 py-4">{{ problema.descripcion}}</td>
                             <td class="px-6 py-4">{{ problema.usuario.nombre}}</td>
+                            <td class="px-6 py-4">{{ problema.fechaCreacion}}</td>
+                            <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td>
+
                             <!-- <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td> -->
                             <td class="px-6 py-4 flex items-center">
                                 <a [routerLink]="['/edit-problem',problema.idProblema]"
                                     class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
                                 </a>
+                                <!-- <a routerLink="/problem" class=" hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600
+                                    dark:text-indigo-500 hover:underline">
+                                    <fa-icon class="text-lg" [icon]="faEye"></fa-icon>
+                                </a> -->
+                            </td>
+                            <td class="px-6 py-4 flex items-center">
+                                <button (click)="eliminar(problema.idProblema)"
+                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                    <fa-icon class="text-lg" [icon]="faXmarkSquare"></fa-icon>
+                                </button>
                                 <!-- <a routerLink="/problem" class=" hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600
                                     dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEye"></fa-icon>

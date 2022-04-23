@@ -20,6 +20,7 @@ import { RegisterAlternativeComponent } from './components/register-alternative/
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { AccessGuard } from './guards/AccessGuard';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 const routes: Routes = [
   // {path: '', pathMatch: 'full', redirectTo: ''},
@@ -39,6 +40,7 @@ const routes: Routes = [
   {path: 'register-criterion', component:RegisterCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'register-alternative', component:RegisterAlternativeComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'edit-decider', component:EditDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'edit-user', component:EditUserComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'qualify', component:QualifyComponent},
   {path: 'my-account', component:MyaccountComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
 

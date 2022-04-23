@@ -5,18 +5,19 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
-  selector: 'app-myaccount',
-  templateUrl: './myaccount.component.html',
-  styleUrls: ['./myaccount.component.scss']
+  selector: 'app-edit-user',
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.scss']
 })
-export class MyaccountComponent implements OnInit {
+export class EditUserComponent implements OnInit {
   editInfo!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authS: AuthService,
     private toastr: ToastrService,
-  ) { }
+
+    ) { }
 
   ngOnInit(): void {
     this.editInfo = this.fb.group({
@@ -58,6 +59,7 @@ export class MyaccountComponent implements OnInit {
   }
   faUser = faUser;
   faUserEdit = faUserEdit;
+
   loadUser(){
     let email=localStorage.getItem("email");
     this.authS.getUser(email!).subscribe(resp=>{
@@ -77,4 +79,20 @@ export class MyaccountComponent implements OnInit {
     })
     
   }
+
+  onEdit(){
+    if(this.editInfo.status!="VALID"){
+      this.toastr.error("Datos incorrectos", 'ERROR', {
+        timeOut: 3000,
+        positionClass: 'toast-top-center',
+      });
+    }else{
+      this.authS.editUser(this.editInfo.value).subscribe(resp=>{
+        this.toastr.success(resp.mensaje, 'OK', {
+          timeOut: 3000,
+          positionClass: 'toast-top-center',
+        });
+      })
+    }
+  } 
 }

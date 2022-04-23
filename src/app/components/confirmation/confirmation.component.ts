@@ -43,23 +43,20 @@ export class ConfirmationComponent implements OnInit {
 
   public confirmarCuenta(){
     this.authS.confirmacionCuenta(this.idConfirmation).subscribe(res=>{
-
+      this.mensaje = "Cuenta confirmada"
+      this.toastr.success("Cuenta confirmada", "OK", {
+        positionClass: 'toast-top-center',
+        timeOut: 3000
+       })
+        
+      this.route.navigateByUrl("")
     },error=>{
-      if(error.status==200){
-        this.mensaje = "Cuenta confirmada"
-        this.toastr.success("Cuenta confirmada", "OK", {
+        this.toastr.error("Token expirado o erroneo", "ERROR", {
           positionClass: 'toast-top-center',
           timeOut: 3000
          })
-          
         this.route.navigateByUrl("")
-      }else{
-        console.log(error);
-        this.toastr.error(error.error.text, "ERROR", {
-          positionClass: 'toast-top-center',
-          timeOut: 3000
-         }) 
-      }
+
     })
   }
 }

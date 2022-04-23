@@ -31,10 +31,9 @@ export class RegisterProblemComponent implements OnInit {
     this.id = aRouter.snapshot.paramMap.get('idProblema');
   }
   ngOnInit(): void {
-    this.loaderToken();
+    if(this.id!=null){
       this.isEdit();
-      console.log(this.id);
-
+    }
     this.form = this.formBuilder.group({
       usuario: {},
       descripcion: [
@@ -42,7 +41,8 @@ export class RegisterProblemComponent implements OnInit {
         Validators.compose([Validators.required, Validators.maxLength(500)]),
       ],
       fechaFinalizacion: ['', Validators.required],
-      fechaCreacion: ['', Validators.required],
+      fechaCreacion: [new Date]
+
     });
   }
 
@@ -64,6 +64,7 @@ export class RegisterProblemComponent implements OnInit {
       this.form.patchValue({
         usuario: el,
       });
+      console.log(this.form);
       if (!this.form.valid) {
         this.toastr.error('¡Datos incorrectos!', 'ERROR', {
           timeOut: 3000, positionClass: 'toast-top-center'
@@ -94,16 +95,18 @@ export class RegisterProblemComponent implements OnInit {
       } else {
         this.problemService.post(this.form.value).subscribe(
           (data) => {
-            console.log('Agregado con exito');
-          },
-          (error) => {
-            if (error.status == 200) {
-              this.router.navigate(['/list-problem']);
+            this.router.navigate(['/list-problem']);
               this.toastr.success('Problema creado', 'OK', {
                 positionClass: 'toast-top-center',
                 timeOut: 3000,
               });
-            }
+              this.router.navigate(["/list-problem"]);
+          },
+          (error) => {
+            this.toastr.error(error.mensaje, 'ERROR', {
+              positionClass: 'toast-top-center',
+              timeOut: 3000,
+            });
           }
         );
       }
@@ -115,7 +118,7 @@ export class RegisterProblemComponent implements OnInit {
       this.form.patchValue({
         usuario: el,
       });
-  
+      
       if (this.id !== null) {
         this.title = 'Editar problema';
         this.btn = 'Editar';
@@ -133,15 +136,5 @@ export class RegisterProblemComponent implements OnInit {
         });
       }
     });
-  }
-
-  public loaderToken() {
-    if (this.tokenService.getToken()) {
-      if (this.tokenService.getAuthorities().length < 2) {
-        this.router.navigateByUrl('/register-problem');
-      }
-    } else {
-      this.router.navigateByUrl('/login');
-    }
   }
 }

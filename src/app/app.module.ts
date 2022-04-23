@@ -43,6 +43,7 @@ import { PasswordComponent } from './components/password/password.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
 import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { AccessGuard } from './guards/AccessGuard';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { AccessGuard } from './guards/AccessGuard';
     PasswordComponent,
     ConfirmationComponent,
     MyaccountComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
