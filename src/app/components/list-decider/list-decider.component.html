@@ -25,13 +25,13 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-700">
-                        <tr class=" odd:bg-white even:bg-indigo-50">
+                    <tbody *ngIf="deciders.length>0" class="text-gray-700">
+                        <tr *ngFor="let decider of deciders" class=" odd:bg-white even:bg-indigo-50">
                             <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap">
-                                Carlos René Angarita Sanguino
+                               {{decider.nombre}}
                             </th>
                             <td class="px-6 py-4">
-                                carlosreneas@ufps.edu.co
+                                {{decider.email}}
                             </td>
                             <td class="px-6 py-4 text-right">
                                 <a routerLink="/edit-decider" class="hover:bg-indigo-100 rounded-md p-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
@@ -40,6 +40,13 @@
                             </td>
                         </tr>
                         
+                    </tbody>
+                    <tbody *ngIf="deciders.length==0" class="text-gray-700">
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <h3 class="px-6 py-3" style="text-align: center;">No cuenta con decisores creados</h3>
+
                     </tbody>
                 </table>
                 <ng-template>

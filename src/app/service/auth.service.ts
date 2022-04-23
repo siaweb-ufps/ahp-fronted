@@ -49,5 +49,8 @@ export class AuthService {
   public getUser(email:string):Observable<any> {
     return this.httpClient.get<any>(this.user+email);
   }
+  public addDecider(idProblema:string, decisor:any):Observable<any> {
+    return this.httpClient.post<any>(this.user+"decisor/"+idProblema,decisor);
+  }
 
 }

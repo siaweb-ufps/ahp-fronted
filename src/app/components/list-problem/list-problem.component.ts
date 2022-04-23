@@ -46,5 +46,6 @@ export class ListProblemComponent implements OnInit {
 
   faXmarkSquare = faXmarkSquare;
   faEdit = faEdit;
+  
   faEye = faEye;
 }
