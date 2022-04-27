@@ -12,7 +12,7 @@ import { ProblemService } from 'src/app/service/problem.service';
 export class RegisterDeciderComponent implements OnInit {
 
   public problems:any[]=[];
-
+  public email:any = localStorage.getItem('email');
   public deciderInfo!:FormGroup
   constructor(
     private problemS:ProblemService,
@@ -61,10 +61,8 @@ export class RegisterDeciderComponent implements OnInit {
   }
 
   loadProblems(){
-    this.problemS.getProblems().subscribe(problems=>{
-      this.problems=problems
-    console.log(this.problems);
-
+    this.problemS.getProblemsUser(this.email).subscribe((resp:any)=>{
+      this.problems = resp;
     })
   }
 
