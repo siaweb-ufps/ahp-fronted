@@ -23,6 +23,7 @@
                             <th scope="col" class="px-6 py-3">Usuario</th>
                             <th scope="col" class="px-6 py-3">Fecha Inicio</th>
                             <th scope="col" class="px-6 py-3">Fecha Finalizacion</th>
+                            <th scope="col" class="px-6 py-3">Estado</th>
 
                             <!-- <th scope="col" class="px-6 py-3">Fecha fin</th> -->
                             <th scope="col" class="px-6 py-3">
@@ -38,10 +39,16 @@
                             <td class="px-6 py-4">{{ problema.usuario.nombre}}</td>
                             <td class="px-6 py-4">{{ problema.fechaCreacion}}</td>
                             <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td>
-
+                            <td *ngIf="problema.estado==1" class="px-6 py-4">
+                                <span class='rounded-full mr-2 bg-green-600 text-white p-2  leading-none flex items-center' style='color:White;'>ACTIVO</span>
+                            </td>
+                            <td *ngIf="problema.estado==0" class="px-6 py-4">
+                                <span class='rounded-full mr-2 bg-red-600 text-white p-2  leading-none flex items-center' style='color:White;'>INACTIVO</span>
+                            </td>
+                           
                             <!-- <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td> -->
                             <td class="px-6 py-4 flex items-center">
-                                <a [routerLink]="['/edit-problem',problema.idProblema]"
+                                <a [routerLink]="['/edit-problem',problema.token]"
                                     class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
                                 </a>
@@ -51,7 +58,7 @@
                                 </a> -->
                             </td>
                             <td class="px-6 py-4 flex items-center">
-                                <button (click)="eliminar(problema.idProblema)"
+                                <button (click)="deshabilitar(problema.token)"
                                     class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faXmarkSquare"></fa-icon>
                                 </button>

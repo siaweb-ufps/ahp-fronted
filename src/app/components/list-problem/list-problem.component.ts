@@ -34,9 +34,9 @@ export class ListProblemComponent implements OnInit {
     this.dtTrigger.unsubscribe();
   }
 
-  eliminar(idProblema:string){
-    this.problemService.deleteProblem(idProblema).subscribe(rep=>{
-      this.toastr.success("Problema eliminado", "OK", {
+  deshabilitar(token:string){
+    this.problemService.deleteProblem(token).subscribe(rep=>{
+      this.toastr.success("Problema inhabilitado", "OK", {
         positionClass: 'toast-top-center',
         timeOut: 3000
        })

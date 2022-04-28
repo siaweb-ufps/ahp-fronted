@@ -12,6 +12,8 @@ export class ListDeciderComponent implements OnInit {
   imgLoggedOut:string = "./assets/images/imgLoggedOut.jpg"
   isLogin:any = localStorage.getItem("isLogged");
   isLogged = JSON.parse(this.isLogin);
+  public email:any = localStorage.getItem('email');
+
   // isLogged = true;
 
   deciders:any[]= []
@@ -29,7 +31,7 @@ export class ListDeciderComponent implements OnInit {
   }
 
   loadDeciders(){
-    this.deciderS.getAllDecider().subscribe(deciders=>{
+    this.deciderS.getAllDeciderByUser(this.email).subscribe(deciders=>{
       this.deciders = deciders
     })
   }

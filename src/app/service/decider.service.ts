@@ -15,6 +15,9 @@ export class DeciderService {
   public getAllDecider(): Observable<any>{
     return this.httpClient.get<any>(this.url)
   }
+  public getAllDeciderByUser(email:string): Observable<any>{
+    return this.httpClient.get<any>(this.url+"usuario/"+email)
+  }
   public getAllDeciderByProblem(idProblema:string): Observable<any>{
     return this.httpClient.get<any>(this.url+idProblema)
   }

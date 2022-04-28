@@ -41,7 +41,8 @@ export class RegisterProblemComponent implements OnInit {
         Validators.compose([Validators.required, Validators.maxLength(500)]),
       ],
       fechaFinalizacion: ['', Validators.required],
-      fechaCreacion: [new Date]
+      fechaCreacion: [new Date],
+      token:[' ']
 
     });
   }
@@ -128,11 +129,13 @@ export class RegisterProblemComponent implements OnInit {
             fechaFinalizacion: data.fechaFinalizacion,
             descripcion: data.descripcion,
             usuario: this.usuario,
+            token:data.token
           });
           const output = document.getElementById('idProblema');
           if (output) {
             output.setAttribute('value', data.idProblema);
           }
+          console.log(this.form.value);
         });
       }
     });
