@@ -40,10 +40,10 @@
                             <td class="px-6 py-4">{{ problema.fechaCreacion}}</td>
                             <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td>
                             <td *ngIf="problema.estado==1" class="px-6 py-4">
-                                <span class='rounded-full mr-2 bg-green-600 text-white p-2  leading-none flex items-center' style='color:White;'>ACTIVO</span>
+                                <span class='rounded-full mr-2 bg-green-600 text-white p-2  leading-none flex items-center' style='color:White; font-size: 11px;'>ACTIVO</span>
                             </td>
                             <td *ngIf="problema.estado==0" class="px-6 py-4">
-                                <span class='rounded-full mr-2 bg-red-600 text-white p-2  leading-none flex items-center' style='color:White;'>INACTIVO</span>
+                                <span class='rounded-full mr-2 bg-red-600 text-white p-2  leading-none flex items-center' style='color:White;font-size: 11px;'>INACTIVO</span>
                             </td>
                            
                             <!-- <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td> -->
@@ -69,9 +69,12 @@
                             </td>
                         </tr>
                     </tbody>
-                    <tbody *ngIf="data.length==0">
-                        
-                        <h3 class="px-6 py-3" style="text-align: center;">No cuenta con problemas creados</h3>
+                    <tbody *ngIf="data.length==0" class="text-gray-700">
+                        <tr>
+                            <td colspan="6">
+                                <h3 class="px-6 py-3" style="text-align: center;">No cuenta con problemas creados</h3>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <ng-template>

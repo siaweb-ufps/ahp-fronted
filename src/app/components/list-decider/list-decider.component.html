@@ -3,10 +3,12 @@
     <section class="w-full lg:w-9/12 bg-white">
         <article *ngIf="isLogged; else loggedOut" class="w-full min-h-screen p-5 flex justify-center">
             <!-- <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full"> -->
-            <div class="rounded-xl bg-gradient-to-r bg-white border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden w-full shadow-lg">
+            <div
+                class="rounded-xl bg-gradient-to-r bg-white border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden w-full shadow-lg">
                 <div class="mb-8 flex items-center justify-between">
                     <p class="text-2xl">Lista de tus decisores</p>
-                    <a class="duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600" routerLink="/register-decider">
+                    <a class="duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600"
+                        routerLink="/register-decider">
                         <fa-icon class="text-lg mr-1 " [icon]="faUser"></fa-icon>
                         Agregar decisor
                     </a>
@@ -31,7 +33,7 @@
                     <tbody *ngIf="deciders.length>0" class="text-gray-700">
                         <tr *ngFor="let decider of deciders" class=" odd:bg-white even:bg-indigo-50">
                             <th scope="row" class="px-6 py-4 font-medium  whitespace-nowrap">
-                               {{decider.decisor.nombre}}
+                                {{decider.decisor.nombre}}
                             </th>
                             <td class="px-6 py-4">
                                 {{decider.decisor.email}}
@@ -40,23 +42,25 @@
                                 {{decider.problema.descripcion}}
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <a routerLink="/edit-decider" class="hover:bg-indigo-100 rounded-md p-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                <a routerLink="/edit-decider"
+                                    class="hover:bg-indigo-100 rounded-md p-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
                                 </a>
                             </td>
                         </tr>
-                        
+
                     </tbody>
                     <tbody *ngIf="deciders.length==0" class="text-gray-700">
-                        <tr></tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <h3 class="px-6 py-3" style="text-align: center;">No cuenta con decisores creados</h3>
+                        <tr>
+                            <td colspan="6">
+                                <h3 class="px-6 py-3" style="text-align: center;">No cuenta con decisores creados</h3>
 
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                 <ng-template>
-                    
+
                 </ng-template>
             </div>
         </article>
