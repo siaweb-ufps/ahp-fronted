@@ -1,0 +1,32 @@
+.spinner, .spinner:after{
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+}
+.spinner-1 {
+    border-top: 5px solid rgb(106, 51, 161);
+    border-right: 5px solid rgb(106, 51, 161);
+    border-bottom: 5px solid rgb(106, 51, 161);
+    border-left: 5px solid rgb(106, 51, 161, .2);
+}
+.spinner-2 {
+    color: rgb(228, 96, 92);
+    border-top: 5px solid rgb(228, 96, 92);
+    border-right: 5px solid rgb(228, 96, 92);
+    border-bottom: 5px solid rgb(228, 96, 92);
+    border-left: 5px solid rgb(228, 96, 92, .2);
+}
+.spinner-3 {
+    color: rgb(31, 170, 188);
+    border-top: 5px solid rgb(63, 197, 215);
+    border-right: 5px solid rgb(63, 197, 215);
+    border-bottom: 5px solid rgb(63, 197, 215);
+    border-left: 5px solid rgb(63, 197, 215, .2);
+}
+.spinner-4 {
+    color: rgb(217, 48, 178);
+    border-top: 5px solid rgb(217, 48, 178);
+    border-right: 5px solid rgb(217, 48, 178);
+    border-bottom: 5px solid rgb(217, 48, 178);
+    border-left: 5px solid rgb(217, 48, 178, .2);
+}

@@ -1,23 +1,59 @@
-<main class="mx-auto w-full lg:w-5/6 lg:flex justify-between">
-    <app-nav class="lg:w-3/12"></app-nav>
-    <section class="w-full lg:w-9/12 bg-white min-h-screen p-5">
-        <article
-            class="py-10 lg:py-0 w-full flex items-center rounded-xl justify-center h-full border border-gray-200 shadow-lg">
-            <form class="border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
-                <h1 class="text-4xl mb-5 text-indigo-500">Registrar criterio</h1>
-                <div class="mb-5 pt-5">
-                    <p class="mb-2">Problema</p>
-                    <select class="form-select form-select-lg mb-3 block  px-4 py-2 text-xl font-normal bg-clip-padding bg-no-repeat border-solid border-gray-300  transition ease-in-out m-0 focus:text-gray-700  placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
-                        aria-label=".form-select-lg example">
-                        <option selected>Seleccionar problema</option>
-                        <option value="1">Problem One</option>
-                        <option value="2">Problem Two</option>
-                        <option value="3">Problem Three</option>
-                    </select>
+<main class="mx-auto w-full lg:w-5/6 lg:flex justify-between relative">
+    <app-nav class="lg:w-1/5 lg:fixed top-0 z-40"></app-nav>
+    <section class="w-full lg:w-9/12 bg-white min-h-screen lg:absolute top-0 right-0 p-5">
+        <article class="py-10 lg:py-12 w-full rounded-xl h-full border border-gray-200 shadow-lg">
+            <form class="mx-auto border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
+                <div class="flex items-center justify-between mb-5">
+                    <h1 class="text-4xl text-indigo-500">{{title}}</h1>
+                    <fa-icon routerLink="/register-problem"
+                        class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
+                        [icon]="faLeftLong"></fa-icon>
                 </div>
-                <app-textarea [textarea]="textarea"></app-textarea>
-                <app-button [data]="'Registrar'"></app-button>
+                <div class="mb-5">
+                    <p class="mb-2">{{textarea.title}}</p>
+                    <!-- formControlName="descripcion" -->
+                    <textarea name="descripcion" placeholder={{textarea.placeholder}}
+                        class="h-32 placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                        name={{textarea.name}}></textarea>
+                </div>
+                <div>
+                    <button type="submit"
+                        class="duration-300 mt-5 uppercase text-sm w-1/3 border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Registrar</button>
+                    <button (click)="deleteCriterion()"
+                        class="ml-3 duration-300 mt-5 uppercase text-sm border-2 border-indigo-300 bg-indigo-300 hover:bg-transparent hover:text-indigo-400 text-white font-bold py-3 px-6 rounded-full">Quitar</button>
+                </div>
             </form>
+            <div *ngIf="cont > 0">
+                <form *ngFor="let item of criterions">
+                    <form class="mx-auto mt-5 border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
+                        <div class="flex items-center justify-between mb-5">
+                            <h1 class="text-4xl text-indigo-500">{{title}}</h1>
+                            <fa-icon routerLink="/register-problem"
+                                class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
+                                [icon]="faLeftLong"></fa-icon>
+                        </div>
+                        <div class="mb-5">
+                            <p class="mb-2">{{textarea.title}}</p>
+                            <textarea name="descripcion" placeholder={{textarea.placeholder}}
+                                class="h-32 placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                                name={{textarea.name}}></textarea>
+                        </div>
+                        <div>
+                            <button type="submit"
+                                class="duration-300 mt-5 uppercase text-sm w-1/3 border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Registrar</button>
+                            <button (click)="deleteCriterion()"
+                                class="ml-3 duration-300 mt-5 uppercase text-sm border-2 border-indigo-300 bg-indigo-300 hover:bg-transparent hover:text-indigo-400 text-white font-bold py-3 px-6 rounded-full">Quitar</button>
+                        </div>
+                    </form>
+                </form>
+            </div>
+            <div class="mx-auto w-3/4 mt-6">
+                <button (click)="addCriterion()"
+                    class="mx-auto duration-300 text-sm font-bold uppercase rounded-md bg-indigo-600 border-2 border-indigo-600 text-white py-3 px-6 hover:bg-transparent hover:text-indigo-600">
+                    <fa-icon class="mr-2" [icon]="faPlus"></fa-icon>
+                    Agregar otro
+                </button>
+            </div>
         </article>
     </section>
 </main>

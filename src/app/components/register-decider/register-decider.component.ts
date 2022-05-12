@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DeciderService } from 'src/app/service/decider.service';
 import { ProblemService } from 'src/app/service/problem.service';
+import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-register-decider',
@@ -10,6 +11,7 @@ import { ProblemService } from 'src/app/service/problem.service';
   styleUrls: ['./register-decider.component.scss']
 })
 export class RegisterDeciderComponent implements OnInit {
+  faLeftLong = faLeftLong;
 
   public problems:any[]=[];
   public email:any = localStorage.getItem('email');
