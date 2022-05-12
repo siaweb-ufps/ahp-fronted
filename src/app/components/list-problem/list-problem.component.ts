@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProblemService } from '../../service/problem.service';
 import { Subject } from 'rxjs';
-import { faEdit, faEye, faXmarkSquare } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye, faXmarkSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 // import { TokenService } from 'src/app/service/token.service';
 // import { Router } from '@angular/router';
@@ -46,6 +46,6 @@ export class ListProblemComponent implements OnInit {
 
   faXmarkSquare = faXmarkSquare;
   faEdit = faEdit;
-  
   faEye = faEye;
+  faPlus = faPlus;
 }

@@ -5,6 +5,7 @@ import { TokenService } from 'src/app/service/token.service';
 import { ProblemService } from 'src/app/service/problem.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { faPlus, faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-register-problem',
@@ -12,6 +13,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./register-problem.component.scss'],
 })
 export class RegisterProblemComponent implements OnInit {
+  faPlus = faPlus;
+  faLeftLong = faLeftLong;
+
   public form!: FormGroup;
   title: string = 'Registrar problema';
   btn: string = 'Agregar';
