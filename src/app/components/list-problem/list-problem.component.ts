@@ -24,7 +24,6 @@ export class ListProblemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
     this.problemService.getProblemsUser(this.email).subscribe((resp:any)=>{
       this.data = resp;
     })

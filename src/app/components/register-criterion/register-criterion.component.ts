@@ -51,6 +51,10 @@ export class RegisterCriterionComponent implements OnInit {
   addCriterion() {
     this.cont++    
     this.criterions[this.i++] = this.cont;
+    console.log(this.cont);
+    console.log(this.criterions);
+    
+    
   }
   deleteCriterion() {
     this.i--
