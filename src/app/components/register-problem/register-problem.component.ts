@@ -17,7 +17,7 @@ export class RegisterProblemComponent implements OnInit {
   faLeftLong = faLeftLong;
   @ViewChild('asDisabledAlternative') disabledalternative!: ElementRef;
   @ViewChild('asDisabledCriterion') disabledcriterion!: ElementRef;
-
+  findProblem:any[] = [];
   public form!: FormGroup;
   title: string = 'Registrar problema';
   btn: string = 'Agregar';
@@ -106,15 +106,15 @@ export class RegisterProblemComponent implements OnInit {
           });
       } else {
         this.problemService.post(this.form.value).subscribe(
-          (data) => {
-            this.router.navigate(['/problem']);
+          (res) => {
+            this.router.navigate(['/problem/',res.token]);
               this.toastr.success('Problema creado', 'OK', {
                 positionClass: 'toast-top-center',
                 timeOut: 3000,
               });
               // this.router.navigate(["/list-problem"]);
-              const asDisabledCriterion = this.disabledcriterion.nativeElement;
-              this.renderer2.removeAttribute(asDisabledCriterion, 'disabled');          
+              // const asDisabledCriterion = this.disabledcriterion.nativeElement;
+              // this.renderer2.removeAttribute(asDisabledCriterion, 'disabled');       
           },
           (error) => {
             this.toastr.error(error.mensaje, 'ERROR', {
@@ -127,6 +127,15 @@ export class RegisterProblemComponent implements OnInit {
     });
   }
 
+  // sendPrueba(){
+  //   this.problemService.getProblemsUser("appsranda@gmail.com").subscribe((resp:any)=>{
+  //     this.findProblem = resp;
+  //     console.log(this.findProblem.filter('filtroProblema',function(){
+
+  //     }));
+  //   })
+  // }
+  
   isEdit() {
     this.problemService.getUser(this.usuario).subscribe((el) => {
       this.form.patchValue({
@@ -142,7 +151,7 @@ export class RegisterProblemComponent implements OnInit {
             fechaFinalizacion: data.fechaFinalizacion,
             descripcion: data.descripcion,
             usuario: this.usuario,
-            token:data.token
+            token:data.idProblema
           });
           const output = document.getElementById('idProblema');
           if (output) {

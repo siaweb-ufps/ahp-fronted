@@ -2,27 +2,80 @@
     <app-nav class="lg:w-1/5 lg:fixed top-0 z-40"></app-nav>
     <section class="w-full lg:w-9/12 bg-white min-h-screen lg:absolute top-0 right-0 p-5">
         <article class="py-10 lg:py-12 w-full rounded-xl h-full border border-gray-200 shadow-lg">
-            <form class="mx-auto border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
-                <div class="flex items-center justify-between mb-5">
-                    <h1 class="text-4xl text-indigo-500">{{title}}</h1>
-                    <fa-icon routerLink="/problem"
-                        class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
-                        [icon]="faLeftLong"></fa-icon>
+            <div class="mx-auto border-2 border-indigo-600 p-12 rounded-2xl w-11/12 shadow-2xl flex justify-between">
+                <form class="p-12 rounded-2xl w-8/12 shadow-2xl mr-4" action="">
+                    <div class="flex items-center justify-between mb-5">
+                        <h1 class="text-2xl text-indigo-500">{{title}}</h1>
+                        <fa-icon routerLink="/problem"
+                            class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
+                            [icon]="faLeftLong"></fa-icon>
+                    </div>
+                    <div class="mb-5">
+                        <p class="mb-2">{{textarea.title}}</p>
+                        <textarea name="descripcion" placeholder={{textarea.placeholder}}
+                            class="h-32 placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                            name={{textarea.name}}></textarea>
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="duration-300 mt-5 uppercase text-sm w-full border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Registrar</button>
+                        <!-- <button (click)="deleteCriterion()"
+                            class="ml-3 duration-300 mt-5 uppercase text-sm border-2 border-indigo-300 bg-indigo-300 hover:bg-transparent hover:text-indigo-400 text-white font-bold py-3 px-6 rounded-full">Quitar</button> -->
+                    </div>
+                </form>
+                <div class="p-6 rounded-2xl w-4/12  bg-indigo-50">
+                    <h4 class="text-indigo-600">Criterios</h4>
+                    <ul class="mt-4">
+                        <li class="flex items-center justify-between bg-white rounded-md p-2 mb-2">
+                            <p>1 - Criterio</p>
+                            <div class="flex items-center">
+                                <fa-icon class="cursor-pointer text-xl text-red-600 hover:text-black duration-300 mr-1"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                                <fa-icon class="cursor-pointer text-xl text-indigo-600 hover:text-black duration-300"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between bg-white rounded-md p-2 mb-2">
+                            <p>2 - Criterio</p>
+                            <div class="flex items-center">
+                                <fa-icon class="cursor-pointer text-xl text-red-600 hover:text-black duration-300 mr-1"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                                <fa-icon class="cursor-pointer text-xl text-indigo-600 hover:text-black duration-300"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between bg-white rounded-md p-2 mb-2">
+                            <p>3 - Criterio</p>
+                            <div class="flex items-center">
+                                <fa-icon class="cursor-pointer text-xl text-red-600 hover:text-black duration-300 mr-1"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                                <fa-icon class="cursor-pointer text-xl text-indigo-600 hover:text-black duration-300"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                            </div>
+                        </li>
+
+                        <li class="flex items-center justify-between bg-white rounded-md p-2 mb-2">
+                            <p>4 - Criterio</p>
+                            <div class="flex items-center">
+                                <fa-icon class="cursor-pointer text-xl text-red-600 hover:text-black duration-300 mr-1"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                                <fa-icon class="cursor-pointer text-xl text-indigo-600 hover:text-black duration-300"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                            </div>
+                        </li>
+                        <li class="flex items-center justify-between bg-white rounded-md p-2 mb-2">
+                            <p>5 - Criterio</p>
+                            <div class="flex items-center">
+                                <fa-icon class="cursor-pointer text-xl text-red-600 hover:text-black duration-300 mr-1"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                                <fa-icon class="cursor-pointer text-xl text-indigo-600 hover:text-black duration-300"
+                                    [icon]="faXmarkSquare"></fa-icon>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="mb-5">
-                    <p class="mb-2">{{textarea.title}}</p>
-                    <textarea name="descripcion" placeholder={{textarea.placeholder}}
-                        class="h-32 placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
-                        name={{textarea.name}}></textarea>
-                </div>
-                <div>
-                    <button type="submit"
-                        class="duration-300 mt-5 uppercase text-sm w-1/3 border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Registrar</button>
-                    <button (click)="deleteCriterion()"
-                        class="ml-3 duration-300 mt-5 uppercase text-sm border-2 border-indigo-300 bg-indigo-300 hover:bg-transparent hover:text-indigo-400 text-white font-bold py-3 px-6 rounded-full">Quitar</button>
-                </div>
-            </form>
-            <div *ngIf="cont > 0">
+            </div>
+            <!-- <div *ngIf="cont > 0">
                 <form *ngFor="let item of criterions">
                     <form class="mx-auto mt-5 border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
                         <div class="flex items-center justify-between mb-5">
@@ -52,7 +105,7 @@
                     <fa-icon class="mr-2" [icon]="faPlus"></fa-icon>
                     Agregar otro
                 </button>
-            </div>
+            </div> -->
         </article>
     </section>
 </main>
