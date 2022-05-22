@@ -13,16 +13,16 @@ export class DeciderService {
   url = `${global.url}/decisor/`;
 
   public getAllDecider(): Observable<any>{
-    return this.httpClient.get<any>(this.url)
+    return this.httpClient.get<any>(this.url);
   }
   public getAllDeciderByUser(email:string): Observable<any>{
-    return this.httpClient.get<any>(this.url+"usuario/"+email)
+    return this.httpClient.get<any>(this.url+"usuario/"+email);
   }
   public getAllDeciderByProblem(idProblema:string): Observable<any>{
-    return this.httpClient.get<any>(this.url+idProblema)
+    return this.httpClient.get<any>(this.url+idProblema);
   }
   public saveDeciderByProblem(decisor:any): Observable<any>{
-    return this.httpClient.post<any>(this.url, decisor)
+    return this.httpClient.post<any>(this.url, decisor);
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { DeciderService } from 'src/app/service/decider.service';
@@ -16,13 +17,16 @@ export class RegisterDeciderComponent implements OnInit {
   public problems:any[]=[];
   public email:any = localStorage.getItem('email');
   public deciderInfo!:FormGroup
+  idProblema: string | null;
   constructor(
     private problemS:ProblemService,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private deciderS:DeciderService  
-
-  ) { }
+    private deciderS:DeciderService,
+    private aRouter: ActivatedRoute,
+  ) { 
+    this.idProblema = aRouter.snapshot.paramMap.get('idProblema');
+  }
 
   ngOnInit(): void {
     this.loadProblems();
@@ -65,6 +69,7 @@ export class RegisterDeciderComponent implements OnInit {
   loadProblems(){
     this.problemS.getProblemsUser(this.email).subscribe((resp:any)=>{
       this.problems = resp;
+      this.problems = this.problems.filter(problem => problem.token == this.idProblema);
     })
   }
 

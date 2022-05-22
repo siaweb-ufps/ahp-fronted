@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlus, faLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faLeftLong, faXmarkSquare } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,6 +15,7 @@ export class RegisterCriterionComponent implements OnInit {
 
   faPlus = faPlus;
   faLeftLong = faLeftLong;
+  faXmarkSquare = faXmarkSquare;
 
   public form!: FormGroup;
   title: string = 'Agregar criterio';
@@ -51,6 +52,10 @@ export class RegisterCriterionComponent implements OnInit {
   addCriterion() {
     this.cont++    
     this.criterions[this.i++] = this.cont;
+    console.log(this.cont);
+    console.log(this.criterions);
+    
+    
   }
   deleteCriterion() {
     this.i--

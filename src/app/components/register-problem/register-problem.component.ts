@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from 'src/app/service/token.service';
@@ -15,7 +15,9 @@ import { faPlus, faLeftLong } from '@fortawesome/free-solid-svg-icons';
 export class RegisterProblemComponent implements OnInit {
   faPlus = faPlus;
   faLeftLong = faLeftLong;
-
+  @ViewChild('asDisabledAlternative') disabledalternative!: ElementRef;
+  @ViewChild('asDisabledCriterion') disabledcriterion!: ElementRef;
+  findProblem:any[] = [];
   public form!: FormGroup;
   title: string = 'Registrar problema';
   btn: string = 'Agregar';
@@ -30,7 +32,8 @@ export class RegisterProblemComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private toastr: ToastrService,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private renderer2: Renderer2,
   ) {
     this.id = aRouter.snapshot.paramMap.get('idProblema');
   }
@@ -64,6 +67,10 @@ export class RegisterProblemComponent implements OnInit {
     placeholder: 'Lorem ipsum',
   };
 
+  change() {
+    const asDisabledAlternative = this.disabledalternative.nativeElement;
+    this.renderer2.removeAttribute(asDisabledAlternative, 'disabled');
+  }
   sendData() {
     this.problemService.getUser(this.usuario).subscribe((el) => {
       this.form.patchValue({
@@ -94,18 +101,20 @@ export class RegisterProblemComponent implements OnInit {
               this.toastr.success('Problema Editado Con Exito!', 'Problema Editado', {
                 positionClass: 'toast-bottom-right' 
               })
-              this.router.navigate(["/list-problem"]);
+              // this.router.navigate(["/list-problem"]);
             }
           });
       } else {
         this.problemService.post(this.form.value).subscribe(
-          (data) => {
-            this.router.navigate(['/list-problem']);
+          (res) => {
+            this.router.navigate(['/problem/',res.token]);
               this.toastr.success('Problema creado', 'OK', {
                 positionClass: 'toast-top-center',
                 timeOut: 3000,
               });
-              this.router.navigate(["/list-problem"]);
+              // this.router.navigate(["/list-problem"]);
+              // const asDisabledCriterion = this.disabledcriterion.nativeElement;
+              // this.renderer2.removeAttribute(asDisabledCriterion, 'disabled');       
           },
           (error) => {
             this.toastr.error(error.mensaje, 'ERROR', {
@@ -118,6 +127,15 @@ export class RegisterProblemComponent implements OnInit {
     });
   }
 
+  // sendPrueba(){
+  //   this.problemService.getProblemsUser("appsranda@gmail.com").subscribe((resp:any)=>{
+  //     this.findProblem = resp;
+  //     console.log(this.findProblem.filter('filtroProblema',function(){
+
+  //     }));
+  //   })
+  // }
+  
   isEdit() {
     this.problemService.getUser(this.usuario).subscribe((el) => {
       this.form.patchValue({
@@ -133,7 +151,7 @@ export class RegisterProblemComponent implements OnInit {
             fechaFinalizacion: data.fechaFinalizacion,
             descripcion: data.descripcion,
             usuario: this.usuario,
-            token:data.token
+            token:data.idProblema
           });
           const output = document.getElementById('idProblema');
           if (output) {
