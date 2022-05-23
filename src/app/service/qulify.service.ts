@@ -21,5 +21,7 @@ export class QulifyService {
     return this.httpClient.get<any>(this.url+"problema/accesoproblema/"+tokenProblem+"/"+emailDecisor);
   }
   
-
+ public getCriterionProblem(tokenProblem:string): Observable<any>{
+    return this.httpClient.get<any>(this.url+"problema/criterios/"+tokenProblem);
+  }
 }

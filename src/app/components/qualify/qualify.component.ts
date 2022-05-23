@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProblemService } from 'src/app/service/problem.service';
@@ -17,12 +18,15 @@ export class QualifyComponent implements OnInit {
   msg:string="";
   problema!:any;
   criteriosComparados!:any;
+  criterios!:any;
 
   constructor(
     private qualifyService:QulifyService,
     private aRouter: ActivatedRoute,
     private toastr: ToastrService,
-    private problemS:ProblemService
+    private problemS:ProblemService,
+    private fb: FormBuilder,
+    private fg:FormGroup
     ) {
       this.tokenProblem = aRouter.snapshot.paramMap.get('idProblema');
       this.emailDecisor = aRouter.snapshot.paramMap.get('emailDecisor');
@@ -32,6 +36,7 @@ export class QualifyComponent implements OnInit {
     this.getAccess(this.emailDecisor,this.tokenProblem)
     this.getProblem();
     this.getPairsCriterion();
+    this.getCriterios();
   }
   public getPairsCriterion(){
     this.qualifyService.getPairsCriterion(this.tokenProblem).subscribe(pairs=>{
@@ -39,17 +44,18 @@ export class QualifyComponent implements OnInit {
       console.log(pairs);
     })
   }
-  public getAccess(email:string,token:string){
 
+  public getCriterios(){
+    this.qualifyService.getCriterionProblem(this.tokenProblem).subscribe(criterios=>this.criterios=criterios)
+  }
+
+  public getAccess(email:string,token:string){
     this.qualifyService.getAccessProblem(token,email).subscribe(resp=>{
-      
       this.toastr.success(resp.mensaje, "Bienvenido", {
         positionClass: 'toast-top-center',
         timeOut: 3000
        })
-
        this.isValidDecisor=true;
-
     },error=>{
       this.msg=error.error.mensaje;
       this.toastr.error(error.error.mensaje, "Acceso denegado", {
@@ -66,22 +72,22 @@ export class QualifyComponent implements OnInit {
   }
 
   nums = [
-    {id: "9", name: "java"},
-    {id: "8", name: "java"},
-    {id: "7", name: "java"},
-    {id: "6", name: "java"},
-    {id: "5", name: "java"},
-    {id: "4", name: "java"},
-    {id: "3", name: "java"},
-    {id: "2", name: "java"},
-    {id: "1", name: "java"},
-    {id: "2", name: "java"},
-    {id: "3", name: "java"},
-    {id: "4", name: "java"},
-    {id: "5", name: "java"},
-    {id: "6", name: "java"},
-    {id: "7", name: "java"},
-    {id: "8", name: "java"},
-    {id: "9", name: "java"},
+    {id: "9"},
+    {id: "8"},
+    {id: "7"},
+    {id: "6"},
+    {id: "5"},
+    {id: "4"},
+    {id: "3"},
+    {id: "2"},
+    {id: "1"},
+    {id: "2"},
+    {id: "3"},
+    {id: "4"},
+    {id: "5"},
+    {id: "6"},
+    {id: "7"},
+    {id: "8"},
+    {id: "9"},
   ]
 }
