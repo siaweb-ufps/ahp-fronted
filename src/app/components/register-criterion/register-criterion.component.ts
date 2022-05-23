@@ -10,10 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegisterCriterionComponent implements OnInit {
   cont:number = 0;
-  criterions:any[] = [
-    {id: '1', name: 'hola'},
-    {id: '2', name: 'chao'}
-  ];
+  criterions:any[] = [];
   i:number=0;
 
   faPlus = faPlus;
@@ -22,7 +19,7 @@ export class RegisterCriterionComponent implements OnInit {
   faEye = faEye;
 
   public form!: FormGroup;
-  title: string = 'Agregar criterio';
+  title: string = 'Criterio';
   idProblema: string | null;
 
   constructor(
@@ -33,6 +30,9 @@ export class RegisterCriterionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem("criterios") !== null){
+      this.criterions = JSON.parse(localStorage.getItem("criterios")||"");
+    }
     if(this.idProblema!=null){
       this.isEdit();
     }
@@ -64,10 +64,12 @@ export class RegisterCriterionComponent implements OnInit {
   }
  
   addCriterion() {
-    this.criterions[this.i++] = this.cont;
+    this.criterions.push({descripcion:this.form.value.descripcion});
+    localStorage.setItem("criterios", JSON.stringify(this.criterions));
   }
+
   deleteCriterion(i:any) {
-    console.log(i);
-    this.criterions.splice(i, 1);
+    this.criterions.splice(i, 1)
+    localStorage.setItem("criterios", JSON.stringify(this.criterions));
   }
 }
