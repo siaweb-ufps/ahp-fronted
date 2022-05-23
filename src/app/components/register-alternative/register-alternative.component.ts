@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlus, faLeftLong } from '@fortawesome/free-solid-svg-icons';
-import { ActivatedRoute, Router } from '@angular/router';
+import { faPlus, faLeftLong, faXmarkSquare, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProblemService } from 'src/app/service/problem.service';
+import { AlternativeService } from 'src/app/service/alternative.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-alternative',
@@ -9,28 +12,44 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register-alternative.component.scss']
 })
 export class RegisterAlternativeComponent implements OnInit {
-  faLeftLong = faLeftLong;
-  faPlus = faPlus;
+  problem = { descripcion: '' };
 
   cont:number = 0;
   alternatives:any[] = [];
   i:number=0;
 
+  faPlus = faPlus;
+  faLeftLong = faLeftLong;
+  faXmarkSquare = faXmarkSquare;
+  faEye = faEye;
+
   public form!: FormGroup;
-  title: string = 'Agregar alternativa';
-  id: string | null;
+  title: string = 'Alternativa';
+  idProblema: string | null;
 
   constructor(
     private formBuilder: FormBuilder,
-    private aRouter: ActivatedRoute
+    private alternativeService: AlternativeService,
+    private problemService: ProblemService,
+    private aRouter: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
+
   ) {
-    this.id = aRouter.snapshot.paramMap.get('idProblema');
+    this.idProblema = aRouter.snapshot.paramMap.get('idProblema');
   }
 
   ngOnInit(): void {
-    if(this.id!=null){
-      this.isEdit();
+    if(this.idProblema !== null) {
+      this.problemService.getProblem("2cfc671b-da58-4cb5-b10c-6d20b9591345").subscribe(el => {
+        this.problem = el
+      })
     }
+
+    if(localStorage.getItem("alternativas") !== null){
+      this.alternatives = JSON.parse(localStorage.getItem("alternativas")||"");
+    }
+    
     this.form = this.formBuilder.group({
       descripcion: [
         '',
@@ -45,16 +64,25 @@ export class RegisterAlternativeComponent implements OnInit {
     placeholder: 'Lorem ipsum',
   };
 
-  isEdit() {
+  sendData() {
+    this.alternativeService.post(this.alternatives).subscribe(
+      (res) => {
+        this.router.navigate(['/register-alternative/',res.idProblema]);
+          this.toastr.success('Alternativa creada', 'OK', {
+            positionClass: 'toast-top-center',
+            timeOut: 3000,
+          });
+    });
   }
  
   addAlternative() {
-    this.cont++    
-    this.alternatives[this.i++] = this.cont;
-  }
-  deleteAlternative() {
-    this.i--
-    this.alternatives.shift()
+    this.alternatives.push({descripcion:this.form.value.descripcion});
+    localStorage.setItem("alternativas", JSON.stringify(this.alternatives));
+    this.form.reset();
   }
 
+  deleteAlternative(i:any) {
+    this.alternatives.splice(i, 1)
+    localStorage.setItem("alternativas", JSON.stringify(this.alternatives));
+  }
 }

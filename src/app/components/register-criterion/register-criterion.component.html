@@ -2,7 +2,13 @@
     <app-nav class="lg:w-1/5 lg:fixed top-0 z-40"></app-nav>
     <section class="w-full lg:w-9/12 bg-white min-h-screen lg:absolute top-0 right-0 p-5">
         <article class="py-10 lg:py-12 w-full rounded-xl h-full border border-gray-200 shadow-lg">
+            <!-- *ngFor="let item of problem" -->
+            <div class="w-11/12 mx-auto mb-6">
+                <h3 class="font-bold">Problema</h3>
+                <p class="text-indigo-500">{{problem.descripcion}}</p>
+            </div>
             <div class="mx-auto border-2 border-indigo-600 p-12 rounded-2xl w-11/12 shadow-2xl md:flex justify-between">
+
                 <form [formGroup]="form"
                     class="flex flex-col h-96 justify-between p-6 rounded-2xl w-full md:w-1/2 lg:w-7/12 shadow-2xl mb-6 md:mb-0"
                     action="">
@@ -44,9 +50,9 @@
                         </ul>
                         <ng-template #elseBlock>No hay criterios registrados</ng-template>
                     </div>
-                    <button (click)="addCriterion()" type="submit"
+                    <button (click)="sendData()" type="submit"
                         class="duration-300 uppercase text-sm w-full bg-indigo-400 hover:bg-indigo-700 text-white font-bold py-2 px-2 rounded-md tracking-normal">Registrar
-                        todos</button>
+                        todo</button>
                 </div>
             </div>
         </article>

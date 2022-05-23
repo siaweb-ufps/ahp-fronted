@@ -24,7 +24,7 @@ export class ProblemService {
     return this.http.get<any>(this.user+email);
   }
 
-  public post(problema:any, ):Observable<any>{
+  public post(problema:any):Observable<any>{
     return this.http.post<any>(this.url, problema)
   }
 

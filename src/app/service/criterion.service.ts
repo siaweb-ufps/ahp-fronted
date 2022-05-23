@@ -13,4 +13,12 @@ export class CriterionService {
   public getCriterions():Observable<any>{
     return this.http.get<any>(this.url);
   }
+
+  public post(criterion:any):Observable<any>{
+    return this.http.post<any>(`${global.url}/problema/criterios/`,criterion);
+  }
+
+  editCriterion(id:string,criterion:any):Observable<any>{
+    return this.http.put(this.url,criterion)
+  }
 }
