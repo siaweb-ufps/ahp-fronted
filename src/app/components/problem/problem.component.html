@@ -29,11 +29,23 @@
                         <fa-icon class="mr-1 " [icon]="faSitemap"></fa-icon>
                         Agregar Criterio
                     </button>
+                    <button [routerLink]="['/list-criterion',idProblema]" [disabled]="true" ejs-button
+                        class="mr-3 duration-300 text-sm disabled:opacity-50 disabled:hover:text-white disabled:hover:bg-indigo-500 font-bold uppercase rounded-md bg-indigo-500 border-2 border-indigo-500 text-white py-3 px-6 hover:bg-transparent hover:text-indigo-500"
+                        routerLink="/register-criterion">
+                        <fa-icon class="mr-1 " [icon]="faSitemap"></fa-icon>
+                        Lista Criterios
+                    </button>
                     <button [routerLink]="['/register-alternative',idProblema]" [disabled]="true" ejs-button
                         class="mr-3 duration-300 text-sm disabled:opacity-50 disabled:hover:text-white disabled:hover:bg-indigo-500 font-bold uppercase rounded-md bg-indigo-500 border-2 border-indigo-500 text-white py-3 px-6 hover:bg-transparent hover:text-indigo-500"
                         routerLink="/register-alternative">
                         <fa-icon class="mr-1 " [icon]="faCheck"></fa-icon>
                         Agregar Alternativa
+                    </button>
+                    <button [routerLink]="['/list-alternative',idProblema]" [disabled]="true" ejs-button
+                        class="mr-3 duration-300 text-sm disabled:opacity-50 disabled:hover:text-white disabled:hover:bg-indigo-500 font-bold uppercase rounded-md bg-indigo-500 border-2 border-indigo-500 text-white py-3 px-6 hover:bg-transparent hover:text-indigo-500"
+                        routerLink="/register-criterion">
+                        <fa-icon class="mr-1 " [icon]="faSitemap"></fa-icon>
+                        Lista Alternativas
                     </button>
                 </div>
                 <div class="flex flex-col justify-center">

@@ -10,6 +10,7 @@ import { ProblemComponent } from './components/problem/problem.component';
 import { ListProblemComponent } from './components/list-problem/list-problem.component';
 import { HomeComponent } from './components/home/home.component';
 import { ListDeciderComponent } from './components/list-decider/list-decider.component';
+import { ListCriterionComponent } from './components/list-criterion/list-criterion.component';
 import { RegisterProblemComponent } from './components/register-problem/register-problem.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordComponent } from './components/password/password.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'chart', component:ChartComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'problem/:idProblema', component:ProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'list-decider', component:ListDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'list-criterion/:idProblema', component:ListCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'register-problem', component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'list-problem', component:ListProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'password-reset', component:PasswordResetComponent},

@@ -75,7 +75,6 @@ export class RegisterProblemComponent implements OnInit {
       this.form.patchValue({
         usuario: el,
       });
-      console.log(this.form);
       if (!this.form.valid) {
         this.toastr.error('¡Datos incorrectos!', 'ERROR', {
           timeOut: 3000, positionClass: 'toast-top-center'
@@ -125,15 +124,6 @@ export class RegisterProblemComponent implements OnInit {
       }
     });
   }
-
-  // sendPrueba(){
-  //   this.problemService.getProblemsUser("appsranda@gmail.com").subscribe((resp:any)=>{
-  //     this.findProblem = resp;
-  //     console.log(this.findProblem.filter('filtroProblema',function(){
-
-  //     }));
-  //   })
-  // }
   
   isEdit() {
     this.problemService.getUser(this.usuario).subscribe((el) => {
