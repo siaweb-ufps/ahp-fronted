@@ -15,7 +15,6 @@ import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ImageComponent } from './components/layout/image/image.component';
 import { RegisterDeciderComponent } from './components/register-decider/register-decider.component';
@@ -31,7 +30,6 @@ import { ButtonComponent } from './components/layout/button/button.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { ListCriterionComponent } from './components/list-criterion/list-criterion.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
-import { EditProblemComponent } from './components/edit-problem/edit-problem.component';
 import { EditDeciderComponent } from './components/edit-decider/edit-decider.component';
 import { RegisterCriterionComponent } from './components/register-criterion/register-criterion.component';
 import { RegisterAlternativeComponent } from './components/register-alternative/register-alternative.component';
@@ -44,6 +42,7 @@ import { ConfirmationComponent } from './components/confirmation/confirmation.co
 import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { AccessGuard } from './guards/AccessGuard';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { EditCriterionComponent } from './components/edit-criterion/edit-criterion.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +50,6 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     FooterComponent,
     HomeComponent,
     LoginComponent,
-    ContactComponent,
     RegisterComponent,
     ImageComponent,
     RegisterDeciderComponent,
@@ -66,7 +64,6 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     ProblemComponent,
     ListCriterionComponent,
     PasswordResetComponent,
-    EditProblemComponent,
     EditDeciderComponent,
     RegisterCriterionComponent,
     RegisterAlternativeComponent,
@@ -75,6 +72,7 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     ConfirmationComponent,
     MyaccountComponent,
     EditUserComponent,
+    EditCriterionComponent,
   ],
   imports: [
     BrowserModule,

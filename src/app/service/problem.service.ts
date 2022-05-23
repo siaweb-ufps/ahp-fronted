@@ -2,7 +2,6 @@ import * as global from 'global'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,6 @@ export class ProblemService {
     return this.http.get<any>(`${global.url}/usuario/problemas/`+email);
   }
 
-
   public getUser(email:string):Observable<any> {
     return this.http.get<any>(this.user+email);
   }
@@ -37,8 +35,8 @@ export class ProblemService {
   getProblem(id:string): Observable<any>{
     return this.http.get(this.url+id)
   }
+
   deleteProblem(token:string):Observable<any>{
     return this.http.delete(this.url+token)
   }
-  
 }
