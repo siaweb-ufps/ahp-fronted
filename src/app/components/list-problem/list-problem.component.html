@@ -17,7 +17,6 @@
                         <tr>
                             <th scope="col" class="px-6 py-3">ID</th>
                             <th scope="col" class="px-6 py-3">Descripción</th>
-                            <th scope="col" class="px-6 py-3">Usuario</th>
                             <th scope="col" class="px-6 py-3">Fecha Inicio</th>
                             <th scope="col" class="px-6 py-3">Fecha Finalizacion</th>
                             <th scope="col" class="px-6 py-3">Estado</th>
@@ -30,15 +29,14 @@
                         <tr *ngFor="let problema of data" class="odd:bg-white even:bg-indigo-50">
                             <td class="px-6 py-4">{{ problema.idProblema}}</td>
                             <td class="px-6 py-4">{{ problema.descripcion}}</td>
-                            <td class="px-6 py-4">{{ problema.usuario.nombre}}</td>
                             <td class="px-6 py-4">{{ problema.fechaCreacion}}</td>
                             <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td>
                             <td class="px-6 py-4">
                                 <span *ngIf="problema.estado==1"
-                                    class='rounded-full mr-2 bg-green-600 text-white p-2 leading-none flex items-center'
+                                    class='justify-center rounded-full mr-2 bg-green-600 text-white p-2 leading-none flex items-center'
                                     style='color:White; font-size: 11px;'>ACTIVO</span>
                                 <span *ngIf="problema.estado==0"
-                                    class='rounded-full mr-2 bg-red-600 text-white p-2 leading-none flex items-center'
+                                    class='justify-center rounded-full mr-2 bg-red-600 text-white p-2 leading-none flex items-center'
                                     style='color:White;font-size: 11px;'>INACTIVO</span>
                             </td>
 

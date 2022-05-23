@@ -53,13 +53,6 @@ export class RegisterProblemComponent implements OnInit {
     });
   }
 
-  input: any = {
-    title: 'Título del problema',
-    name: 'nameproblem',
-    placeholder: 'Lorem ipsum',
-    type: 'text',
-  };
-
   textarea: any = {
     title: 'Descripción',
     name: 'description',
