@@ -7,7 +7,6 @@ import { RegisterDeciderComponent } from './components/register-decider/register
 import { ChartComponent } from './components/chart/chart.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { ListProblemComponent } from './components/list-problem/list-problem.component';
-import { HomeComponent } from './components/home/home.component';
 import { ListDeciderComponent } from './components/list-decider/list-decider.component';
 import { ListCriterionComponent } from './components/list-criterion/list-criterion.component';
 import { RegisterProblemComponent } from './components/register-problem/register-problem.component';
@@ -23,7 +22,6 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditCriterionComponent } from './components/edit-criterion/edit-criterion.component';
 
 const routes: Routes = [
-  // {path: '', pathMatch: 'full', redirectTo: ''},
   {path: '', component: LoginComponent},
   {path: 'login', component:LoginComponent},
   {path: 'login/confirmation/:idConfirmation', component:ConfirmationComponent},
@@ -45,7 +43,6 @@ const routes: Routes = [
   {path: 'my-account', component:MyaccountComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path:"edit-problem/:idProblema", component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path:"edit-criterion/:idProblema", component:EditCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
-
 ];
 
 @NgModule({
