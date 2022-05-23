@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faPlus, faLeftLong, faXmarkSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faLeftLong, faXmarkSquare, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,26 +10,30 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegisterCriterionComponent implements OnInit {
   cont:number = 0;
-  criterions:any[] = [];
+  criterions:any[] = [
+    {id: '1', name: 'hola'},
+    {id: '2', name: 'chao'}
+  ];
   i:number=0;
 
   faPlus = faPlus;
   faLeftLong = faLeftLong;
   faXmarkSquare = faXmarkSquare;
+  faEye = faEye;
 
   public form!: FormGroup;
   title: string = 'Agregar criterio';
-  id: string | null;
+  idProblema: string | null;
 
   constructor(
     private formBuilder: FormBuilder,
     private aRouter: ActivatedRoute
   ) {
-    this.id = aRouter.snapshot.paramMap.get('idProblema');
+    this.idProblema = aRouter.snapshot.paramMap.get('idProblema');
   }
 
   ngOnInit(): void {
-    if(this.id!=null){
+    if(this.idProblema!=null){
       this.isEdit();
     }
     this.form = this.formBuilder.group({
@@ -48,17 +52,22 @@ export class RegisterCriterionComponent implements OnInit {
 
   isEdit() {
   }
+
+  sendData() {
+    const obj = {id:"3", name: "como esta"}
+    this.criterions.push(obj)
+    // this.problemService.getUser(this.usuario).subscribe((el) => {
+    //   this.form.patchValue({
+    //     usuario: el,
+    //   });
+    // });
+  }
  
   addCriterion() {
-    this.cont++    
     this.criterions[this.i++] = this.cont;
-    console.log(this.cont);
-    console.log(this.criterions);
-    
-    
   }
-  deleteCriterion() {
-    this.i--
-    this.criterions.shift()
+  deleteCriterion(i:any) {
+    console.log(i);
+    this.criterions.splice(i, 1);
   }
 }

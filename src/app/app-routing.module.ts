@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: 'list-problem', component:ListProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'password-reset', component:PasswordResetComponent},
   {path: 'password-reset/confirmation/:idConfirmation', component:PasswordComponent},
-  {path: 'register-criterion', component:RegisterCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'register-criterion/:idProblema', component:RegisterCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'register-alternative', component:RegisterAlternativeComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'edit-decider', component:EditDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'edit-user', component:EditUserComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
