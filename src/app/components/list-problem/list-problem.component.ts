@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProblemService } from '../../service/problem.service';
 import { Subject } from 'rxjs';
-import { faEdit, faEye, faXmarkSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faEye, faXmarkSquare, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { ToastrService } from 'ngx-toastr';
 // import { TokenService } from 'src/app/service/token.service';
 // import { Router } from '@angular/router';
@@ -43,8 +43,18 @@ export class ListProblemComponent implements OnInit {
     })
   }
 
+  habilitar(token:string){
+    this.problemService.activateProblem(token).subscribe(rep=>{
+      this.toastr.success("Problema habilitado", "OK", {
+        positionClass: 'toast-top-center',
+        timeOut: 3000
+       })
+       window.location.reload();
+    })
+  }
   faXmarkSquare = faXmarkSquare;
   faEdit = faEdit;
   faEye = faEye;
   faPlus = faPlus;
+  faCheck=faCheck;
 }

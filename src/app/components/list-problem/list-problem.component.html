@@ -45,9 +45,13 @@
                                     class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
                                 </a>
-                                <button (click)="deshabilitar(problema.token)"
+                                <button *ngIf="problema.estado==1" (click)="deshabilitar(problema.token)"
                                     class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faXmarkSquare"></fa-icon>
+                                </button>
+                                <button *ngIf="problema.estado==0" (click)="habilitar(problema.token)"
+                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                    <fa-icon class="text-lg" [icon]="faCheck"></fa-icon>
                                 </button>
                             </td>
                         </tr>

@@ -39,4 +39,8 @@ export class ProblemService {
   deleteProblem(token:string):Observable<any>{
     return this.http.delete(this.url+token)
   }
+  activateProblem(token:string):Observable<any>{
+    return this.http.get(this.url+token+"/activar")
+  }
+  
 }

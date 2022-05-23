@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <form class="w-full p-10">
+                    <form class="w-full p-10" id="mainForm">
                         <div class="mb-8 flex items-center justify-between">
                             <p class="text-2xl">Calificación de criterios</p>
                         </div>
@@ -70,10 +70,14 @@
                         >
                             <div class="w-full sm:flex items-center">
                                 <p class="h-8 sm:h-16 px-3 flex items-center justify-center w-full sm:w-1/5">{{pair.criterio1Id.descripcion}}</p>
-                                <div *ngFor="let num of nums; let i"
+                                <div *ngFor="let num of nums; let i=index"
                                     class="flex sm:flex-col w-full sm:w-3/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200">
-                                    <div class="flex items-center justify-center w-1/2 sm:w-full h-8">
-                                        <input name={{pair.idPuntuacionDecisor}} type="radio" value={{num.id}} />
+
+                                    <div *ngIf="i>=9" class="flex items-center justify-center w-1/2 sm:w-full h-8">
+                                        <input (click)="cambiarPuntaje(1/num.id,pair.idPuntuacionDecisor)" name={{pair.idPuntuacionDecisor}} type="radio"value="{{1/num.id}}" />
+                                    </div>
+                                    <div *ngIf="i<=8" class="flex items-center justify-center w-1/2 sm:w-full h-8">
+                                        <input (click)="cambiarPuntaje(num.id,pair.idPuntuacionDecisor)" name={{pair.idPuntuacionDecisor}} type="radio"value="{{num.id}}" />
                                     </div>
                                     <p
                                         class="flex items-center justify-center w-1/2 sm:w-full h-8 border-l-2 sm:border-l-0 sm:border-t-2 border-indigo-200">
@@ -84,6 +88,9 @@
                                     {{pair.criterio2Id.descripcion}}</p>
                             </div>
                         </div>
+
+                        
+                        <button (click)="guardarPuntajes()">Ver</button>
                     </form>
                     <!-- <p class="text-lg mt-12">Resultados</p>
                     <div class="flex flex-col ">

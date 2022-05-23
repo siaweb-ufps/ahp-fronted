@@ -19,14 +19,13 @@ export class QualifyComponent implements OnInit {
   problema!:any;
   criteriosComparados!:any;
   criterios!:any;
+  puntajes:any[] = [];
 
   constructor(
     private qualifyService:QulifyService,
     private aRouter: ActivatedRoute,
     private toastr: ToastrService,
     private problemS:ProblemService,
-    private fb: FormBuilder,
-    private fg:FormGroup
     ) {
       this.tokenProblem = aRouter.snapshot.paramMap.get('idProblema');
       this.emailDecisor = aRouter.snapshot.paramMap.get('emailDecisor');
@@ -38,15 +37,56 @@ export class QualifyComponent implements OnInit {
     this.getPairsCriterion();
     this.getCriterios();
   }
+
+  public cambiarPuntaje(valor:number, idPuntaje:number){
+    
+    for (let i = 0; i < this.puntajes.length; i++) {
+      let puntaje = this.puntajes[i];
+      if(puntaje.puntuacionCriterio == idPuntaje){
+        let copiaPuntaje = {
+          puntuacionCriterio:puntaje.puntuacionCriterio,
+          valor:valor,
+          decisor:{
+            email:puntaje.decisor.email
+        }
+      }
+      this.puntajes[i]=copiaPuntaje
+      break;
+    }
+    }
+    // console.log(this.puntajes);
+  }
+
   public getPairsCriterion(){
     this.qualifyService.getPairsCriterion(this.tokenProblem).subscribe(pairs=>{
       this.criteriosComparados = pairs;
-      console.log(pairs);
+      // console.log(this.criteriosComparados);
+      for (let i = 0; i < this.criteriosComparados.length; i++) {
+        this.puntajes.push({
+          puntuacionCriterio:this.criteriosComparados[i].idPuntuacionDecisor,
+          valor:-1,
+          decisor:{
+            email:this.emailDecisor
+          }
+        })
+      }
+
+    })
+  }
+
+  public guardarPuntajes(){
+    this.qualifyService.saveQualifies(this.puntajes).subscribe(resp=>{
+      // console.log(resp)
     })
   }
 
   public getCriterios(){
-    this.qualifyService.getCriterionProblem(this.tokenProblem).subscribe(criterios=>this.criterios=criterios)
+    this.qualifyService.getCriterionProblem(this.tokenProblem).subscribe(criterios=>{
+      this.criterios=criterios;
+      for(let i = 0; i < this.criterios.length; i++) {
+        
+      }
+    })
   }
 
   public getAccess(email:string,token:string){
@@ -72,22 +112,22 @@ export class QualifyComponent implements OnInit {
   }
 
   nums = [
-    {id: "9"},
-    {id: "8"},
-    {id: "7"},
-    {id: "6"},
-    {id: "5"},
-    {id: "4"},
-    {id: "3"},
-    {id: "2"},
-    {id: "1"},
-    {id: "2"},
-    {id: "3"},
-    {id: "4"},
-    {id: "5"},
-    {id: "6"},
-    {id: "7"},
-    {id: "8"},
-    {id: "9"},
+    {id: 9},
+    {id: 8},
+    {id: 7},
+    {id: 6},
+    {id: 5},
+    {id: 4},
+    {id: 3},
+    {id: 2},
+    {id: 1},
+    {id: 2},
+    {id: 3},
+    {id: 4},
+    {id: 5},
+    {id: 6},
+    {id: 7},
+    {id: 8},
+    {id: 9},
   ]
 }
