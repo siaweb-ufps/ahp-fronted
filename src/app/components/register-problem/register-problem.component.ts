@@ -50,7 +50,6 @@ export class RegisterProblemComponent implements OnInit {
       fechaFinalizacion: ['', Validators.required],
       fechaCreacion: [new Date],
       token:[' ']
-
     });
   }
 
