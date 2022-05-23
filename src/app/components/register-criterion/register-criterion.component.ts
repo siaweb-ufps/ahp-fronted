@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { faPlus, faLeftLong, faXmarkSquare, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProblemService } from 'src/app/service/problem.service';
+import { CriterionService } from 'src/app/service/criterion.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-criterion',
@@ -9,6 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./register-criterion.component.scss']
 })
 export class RegisterCriterionComponent implements OnInit {
+  problem = { descripcion: '' };
+
   cont:number = 0;
   criterions:any[] = [];
   i:number=0;
@@ -24,18 +29,27 @@ export class RegisterCriterionComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private aRouter: ActivatedRoute
+    private criterionService: CriterionService,
+    private problemService: ProblemService,
+    private aRouter: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
+
   ) {
     this.idProblema = aRouter.snapshot.paramMap.get('idProblema');
   }
 
   ngOnInit(): void {
+    if(this.idProblema !== null) {
+      this.problemService.getProblem("2cfc671b-da58-4cb5-b10c-6d20b9591345").subscribe(el => {
+        this.problem = el
+      })
+    }
+
     if(localStorage.getItem("criterios") !== null){
       this.criterions = JSON.parse(localStorage.getItem("criterios")||"");
     }
-    if(this.idProblema!=null){
-      this.isEdit();
-    }
+    
     this.form = this.formBuilder.group({
       descripcion: [
         '',
@@ -50,22 +64,21 @@ export class RegisterCriterionComponent implements OnInit {
     placeholder: 'Lorem ipsum',
   };
 
-  isEdit() {
-  }
-
   sendData() {
-    const obj = {id:"3", name: "como esta"}
-    this.criterions.push(obj)
-    // this.problemService.getUser(this.usuario).subscribe((el) => {
-    //   this.form.patchValue({
-    //     usuario: el,
-    //   });
-    // });
+    this.criterionService.post(this.criterions).subscribe(
+      (res) => {
+        this.router.navigate(['/register-criterion/',res.idProblema]);
+          this.toastr.success('Criterio creado', 'OK', {
+            positionClass: 'toast-top-center',
+            timeOut: 3000,
+          });
+    });
   }
  
   addCriterion() {
     this.criterions.push({descripcion:this.form.value.descripcion});
     localStorage.setItem("criterios", JSON.stringify(this.criterions));
+    this.form.reset();
   }
 
   deleteCriterion(i:any) {

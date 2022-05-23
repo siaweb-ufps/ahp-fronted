@@ -2,56 +2,57 @@
     <app-nav class="lg:w-1/5 lg:fixed top-0 z-40"></app-nav>
     <section class="w-full lg:w-9/12 bg-white min-h-screen lg:absolute top-0 right-0 p-5">
         <article class="py-10 lg:py-12 w-full rounded-xl h-full border border-gray-200 shadow-lg">
-            <form class="mx-auto border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
-                <div class="flex items-center justify-between mb-5">
-                    <h1 class="text-4xl text-indigo-500">{{title}}</h1>
-                    <fa-icon routerLink="/problem"
-                        class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
-                        [icon]="faLeftLong"></fa-icon>
-                </div>
-                <div class="mb-5">
-                    <p class="mb-2">{{textarea.title}}</p>
-                    <textarea name="descripcion" placeholder={{textarea.placeholder}}
-                        class="h-32 placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
-                        name={{textarea.name}}></textarea>
-                </div>
-                <div>
-                    <button type="submit"
-                        class="duration-300 mt-5 uppercase text-sm w-1/3 border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Registrar</button>
-                    <button (click)="deleteAlternative()"
-                        class="ml-3 duration-300 mt-5 uppercase text-sm border-2 border-indigo-300 bg-indigo-300 hover:bg-transparent hover:text-indigo-400 text-white font-bold py-3 px-6 rounded-full">Quitar</button>
-                </div>
-            </form>
-            <div *ngIf="cont > 0">
-                <form *ngFor="let item of alternatives">
-                    <form class="mx-auto mt-5 border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl" action="">
+            <div class="w-11/12 mx-auto mb-6">
+                <h3 class="font-bold">Problema</h3>
+                <p class="text-indigo-500">{{problem.descripcion}}</p>
+            </div>
+            <div class="mx-auto border-2 border-indigo-600 p-12 rounded-2xl w-11/12 shadow-2xl md:flex justify-between">
+
+                <form [formGroup]="form"
+                    class="flex flex-col h-96 justify-between p-6 rounded-2xl w-full md:w-1/2 lg:w-7/12 shadow-2xl mb-6 md:mb-0"
+                    action="">
+                    <div>
                         <div class="flex items-center justify-between mb-5">
-                            <h1 class="text-4xl text-indigo-500">{{title}}</h1>
-                            <fa-icon routerLink="/register-problem"
+                            <h1 class="text-xl lg:text-2xl text-indigo-500">{{title}}</h1>
+                            <fa-icon [routerLink]="['/problem',idProblema]"
                                 class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
                                 [icon]="faLeftLong"></fa-icon>
                         </div>
                         <div class="mb-5">
                             <p class="mb-2">{{textarea.title}}</p>
-                            <textarea name="descripcion" placeholder={{textarea.placeholder}}
-                                class="h-32 placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
+                            <textarea formControlName="descripcion" placeholder={{textarea.placeholder}}
+                                class="h-40 placeholder-indigo-600 p-3 bg-indigo-100 appearance-none border-2 border-transparent rounded-md w-full text-indigo-700 leading-tight focus:outline-none focus:bg-white focus:border-indog-600 focus:border-indigo-600"
                                 name={{textarea.name}}></textarea>
                         </div>
-                        <div>
-                            <button type="submit"
-                                class="duration-300 mt-5 uppercase text-sm w-1/3 border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Registrar</button>
-                            <button (click)="deleteAlternative()"
-                                class="ml-3 duration-300 mt-5 uppercase text-sm border-2 border-indigo-300 bg-indigo-300 hover:bg-transparent hover:text-indigo-400 text-white font-bold py-3 px-6 rounded-full">Quitar</button>
-                        </div>
-                    </form>
+                    </div>
+                    <button (click)="addAlternative()" type="submit"
+                        class="duration-300 uppercase text-sm w-full border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full">Agregar</button>
                 </form>
-            </div>
-            <div class="mx-auto w-3/4 mt-6">
-                <button (click)="addAlternative()"
-                    class="mx-auto duration-300 text-sm font-bold uppercase rounded-md bg-indigo-600 border-2 border-indigo-600 text-white py-3 px-6 hover:bg-transparent hover:text-indigo-600">
-                    <fa-icon class="mr-2" [icon]="faPlus"></fa-icon>
-                    Agregar otra
-                </button>
+                <div
+                    class="justify-between flex flex-col h-96 p-6 rounded-2xl w-full md:w-1/2 lg:w-5/12 bg-indigo-50 md:ml-4">
+                    <div>
+                        <h4 class="text-indigo-600 mb-4">Alternativas</h4>
+                        <ul *ngIf="alternatives.length !== 0; else elseBlock"
+                            class="h-60 overflow-hidden overflow-y-auto">
+                            <li *ngFor="let item of alternatives; index as i"
+                                class="flex justify-between bg-white rounded-md p-2 mb-2">
+                                <p class="leading-2 text-gray-600">{{item.descripcion.length >
+                                    45?item.descripcion.substring(0,
+                                    45)+"...":item.descripcion}}
+                                </p>
+                                <div class="flex ml-2">
+                                    <fa-icon (click)="deleteAlternative(i)"
+                                        class="cursor-pointer text-xl text-red-600 hover:text-black duration-300"
+                                        [icon]="faXmarkSquare"></fa-icon>
+                                </div>
+                            </li>
+                        </ul>
+                        <ng-template #elseBlock>No hay alternativas registrados</ng-template>
+                    </div>
+                    <button (click)="sendData()" type="submit"
+                        class="duration-300 uppercase text-sm w-full bg-indigo-400 hover:bg-indigo-700 text-white font-bold py-2 px-2 rounded-md tracking-normal">Registrar
+                        todo</button>
+                </div>
             </div>
         </article>
     </section>
