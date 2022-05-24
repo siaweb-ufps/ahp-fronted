@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
 })
 export class AlternativeService {
   url=`${global.url}/alternativa/`;
+  uri=`${global.url}/problema/alternativas/2cfc671b-da58-4cb5-b10c-6d20b9591345`;
+
   constructor(private http: HttpClient) { }
 
   public getAlternatives():Observable<any>{
@@ -15,7 +17,7 @@ export class AlternativeService {
   }
 
   public post(alternative:any):Observable<any>{
-    return this.http.post<any>(`${global.url}/problema/alternativas/`,alternative);
+    return this.http.post<any>(this.uri,alternative);
   }
 
   editAlternative(id:string,alternative:any):Observable<any>{

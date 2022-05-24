@@ -43,6 +43,7 @@ import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { AccessGuard } from './guards/AccessGuard';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditCriterionComponent } from './components/edit-criterion/edit-criterion.component';
+import { ListAlternativeComponent } from './components/list-alternative/list-alternative.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { EditCriterionComponent } from './components/edit-criterion/edit-criteri
     MyaccountComponent,
     EditUserComponent,
     EditCriterionComponent,
+    ListAlternativeComponent,
   ],
   imports: [
     BrowserModule,
