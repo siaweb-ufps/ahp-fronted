@@ -41,6 +41,10 @@
                             </td>
 
                             <td class="px-6 py-4 flex items-center">
+                                <a [routerLink]="['/problem',problema.token]"
+                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                    <fa-icon class="text-lg" [icon]="faEye"></fa-icon>
+                                </a>
                                 <a [routerLink]="['/edit-problem',problema.token]"
                                     class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
