@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class CriterionService {
   url=`${global.url}/criterio/`;
+  uri=`${global.url}/problema/criterios/2cfc671b-da58-4cb5-b10c-6d20b9591345`;
   constructor(private http: HttpClient) { }
 
   public getCriterions():Observable<any>{
@@ -15,7 +16,7 @@ export class CriterionService {
   }
 
   public post(criterion:any):Observable<any>{
-    return this.http.post<any>(`${global.url}/problema/criterios/`,criterion);
+    return this.http.post<any>(this.uri, criterion);
   }
 
   editCriterion(id:string,criterion:any):Observable<any>{

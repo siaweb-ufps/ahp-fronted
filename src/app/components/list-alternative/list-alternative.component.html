@@ -5,11 +5,11 @@
             <div
                 class="rounded-xl bg-gradient-to-r bg-white border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden w-full shadow-lg">
                 <div class="mb-8 flex items-center justify-between">
-                    <p class="text-2xl">Lista criterios</p>
+                    <p class="text-2xl">Lista alternativa</p>
                     <a class="duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600"
                         routerLink="/register-problem">
                         <fa-icon class="text-lg mr-1 " [icon]="faXmarkSquare"></fa-icon>
-                        Agregar criterio
+                        Agregar alternative
                     </a>
                 </div>
                 <table datatable class="shadow-md text-left w-full">
@@ -23,11 +23,11 @@
                         </tr>
                     </thead>
                     <tbody *ngIf="data.length>0">
-                        <tr *ngFor="let criterion of data;" class="odd:bg-white even:bg-indigo-50">
-                            <td class="px-6 py-4">{{criterion.idCriterio}}</td>
-                            <td class="px-6 py-4">{{criterion.descripcion}}</td>
+                        <tr *ngFor="let alternative of data;" class="odd:bg-white even:bg-indigo-50">
+                            <td class="px-6 py-4">{{alternative.idAlternativa}}</td>
+                            <td class="px-6 py-4">{{alternative.descripcion}}</td>
                             <td class="px-6 py-4 flex items-center">
-                                <a [routerLink]="['/edit-problem',criterion.token]"
+                                <a [routerLink]="['/edit-problem',alternative.token]"
                                     class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
                                     <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
                                 </a>
@@ -37,7 +37,8 @@
                     <tbody *ngIf="data.length==0" class="text-gray-700">
                         <tr>
                             <td colspan="6">
-                                <h3 class="px-6 py-3" style="text-align: center;">No cuenta con criterios creados</h3>
+                                <h3 class="px-6 py-3" style="text-align: center;">No cuenta con alternativas creadas
+                                </h3>
                             </td>
                         </tr>
                     </tbody>
