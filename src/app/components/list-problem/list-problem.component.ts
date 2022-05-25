@@ -14,11 +14,13 @@ export class ListProblemComponent implements OnInit {
   dtTrigger = new Subject<any>();
   public data: Array<any> = [];
   public email:any = localStorage.getItem('email');
+
   constructor(
     private location:Location,
     private problemService: ProblemService,
     private toastr: ToastrService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.problemService.getProblemsUser(this.email).subscribe((resp:any)=>{

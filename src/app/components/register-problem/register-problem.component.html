@@ -5,12 +5,17 @@
             <form [formGroup]="form" class="mx-auto border-2 border-indigo-600 p-12 rounded-2xl w-3/4 shadow-2xl"
                 action="">
                 <div class="flex items-center justify-between mb-5">
-                    <h1 class="text-4xl text-indigo-500">{{title}}</h1>
+                    <div>
+                        <div *ngIf="this.isFalse" class="flex text-indigo-300">
+                            <b class="mr-2">Identificador: </b>
+                            <input type="button" formControlName="token">
+                        </div>
+                        <h1 class="text-4xl text-indigo-500">{{title}}</h1>
+                    </div>
                     <fa-icon (click)="goBack()"
                         class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
                         [icon]="faLeftLong"></fa-icon>
                 </div>
-                <input type="button" formControlName="token">
                 <div hidden class="mb-5 pt-5">
                     <p class="mb-2">Fecha creación</p>
                     <input formControlName="fechaCreacion"

@@ -41,10 +41,12 @@ export class RegisterAlternativeComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.idProblema !== null) {
-      this.problemService.getProblem("2cfc671b-da58-4cb5-b10c-6d20b9591345").subscribe(el => {
+      this.problemService.getProblem(this.idProblema).subscribe(el => {
         this.problem = el
       })
     }
+    console.log('id register-alternative: ', this.idProblema);
+    
 
     if(localStorage.getItem("alternativas") !== null){
       this.alternatives = JSON.parse(localStorage.getItem("alternativas")||"");
@@ -65,12 +67,11 @@ export class RegisterAlternativeComponent implements OnInit {
   };
 
   sendData() {
-    this.alternativeService.post(this.alternatives).subscribe(
+    this.alternativeService.post(this.idProblema, this.alternatives).subscribe(
       (res) => {
         localStorage.removeItem('alternativas');
         this.alternatives.splice(0, this.alternatives.length);
-        // res.idProblema
-        this.router.navigate(['/register-alternative/','2cfc671b-da58-4cb5-b10c-6d20b9591345']);
+        this.router.navigate(['/register-alternative/',this.idProblema]);
           this.toastr.success('Alternativa creada', 'OK', {
             positionClass: 'toast-top-center',
             timeOut: 3000,

@@ -16,14 +16,15 @@ import { Location } from '@angular/common';
 export class RegisterProblemComponent implements OnInit {
   faPlus = faPlus;
   faLeftLong = faLeftLong;
-  @ViewChild('asDisabledAlternative') disabledalternative!: ElementRef;
-  @ViewChild('asDisabledCriterion') disabledcriterion!: ElementRef;
+  // @ViewChild('asDisabledAlternative') disabledalternative!: ElementRef;
+  // @ViewChild('asDisabledCriterion') disabledcriterion!: ElementRef;
   findProblem:any[] = [];
   public form!: FormGroup;
   title: string = 'Registrar problema';
   btn: string = 'Agregar';
   id: string | null;
   iduser:any;
+  isFalse:boolean = false;
   usuario: any = localStorage.getItem('email');
 
   constructor(
@@ -41,7 +42,8 @@ export class RegisterProblemComponent implements OnInit {
   }
   ngOnInit(): void {
     if(this.id!=null){
-      this.isEdit();
+      this.isFalse = true;
+      this.isEdit();     
     }
     this.form = this.formBuilder.group({
       usuario: {},
@@ -63,10 +65,11 @@ export class RegisterProblemComponent implements OnInit {
     placeholder: 'Lorem ipsum',
   };
 
-  change() {
-    const asDisabledAlternative = this.disabledalternative.nativeElement;
-    this.renderer2.removeAttribute(asDisabledAlternative, 'disabled');
-  }
+  // change() {
+  //   const asDisabledAlternative = this.disabledalternative.nativeElement;
+  //   this.renderer2.removeAttribute(asDisabledAlternative, 'disabled');
+  // }
+
   sendData() {
     this.problemService.getUser(this.usuario).subscribe((el) => {
       this.form.patchValue({
@@ -143,7 +146,6 @@ export class RegisterProblemComponent implements OnInit {
           if (output) {
             output.setAttribute('value', data.idProblema);
           }
-          console.log(this.form.value);
         });
       }
     });

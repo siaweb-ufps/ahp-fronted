@@ -36,13 +36,12 @@ export class RegisterCriterionComponent implements OnInit {
     private toastr: ToastrService,
 
   ) {
-    // this.idProblema = aRouter.snapshot.paramMap.get('idProblema');
-    this.idProblema = "2cfc671b-da58-4cb5-b10c-6d20b9591345";
+    this.idProblema = aRouter.snapshot.paramMap.get('idProblema');
   }
 
   ngOnInit(): void {
     if(this.idProblema !== null) {
-      this.problemService.getProblem("2cfc671b-da58-4cb5-b10c-6d20b9591345").subscribe(el => {
+      this.problemService.getProblem(this.idProblema).subscribe(el => {
         this.problem = el
       })
     }
@@ -66,11 +65,11 @@ export class RegisterCriterionComponent implements OnInit {
   };
 
   sendData() {
-    this.criterionService.post(this.criterions).subscribe(
+    this.criterionService.post(this.idProblema, this.criterions).subscribe(
       (res) => {
         localStorage.removeItem('criterios');
         this.criterions.splice(0, this.criterions.length);
-        this.router.navigate(['/register-criterion/','2cfc671b-da58-4cb5-b10c-6d20b9591345']);
+        this.router.navigate(['/register-criterion/',this.idProblema]);
           this.toastr.success('Criterio creado', 'OK', {
             positionClass: 'toast-top-center',
             timeOut: 3000,
