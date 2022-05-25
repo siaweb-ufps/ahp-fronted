@@ -3,6 +3,7 @@ import { faUser, faEdit, faEye, faLeftLong } from '@fortawesome/free-solid-svg-i
 import { DeciderService } from 'src/app/service/decider.service';
 import { TokenService } from 'src/app/service/token.service';
 import {Location} from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-decider',
@@ -15,20 +16,21 @@ export class ListDeciderComponent implements OnInit {
   faEdit = faEdit;
   faEye = faEye;
 
+  idProblema: string | null;
   imgLoggedOut:string = "./assets/images/imgLoggedOut.jpg"
   isLogin:any = localStorage.getItem("isLogged");
   isLogged = JSON.parse(this.isLogin);
   public email:any = localStorage.getItem('email');
-
-  // isLogged = true;
-
   deciders:any[]= []
 
   constructor(
+    private aRouter: ActivatedRoute,
     private location: Location,
     private tokenService: TokenService,
     private deciderS:DeciderService
-    ) { }
+    ) {
+      this.idProblema = aRouter.snapshot.paramMap.get('idProblema') ;
+    }
 
   ngOnInit(): void {
     (this.tokenService.getToken())
@@ -38,7 +40,10 @@ export class ListDeciderComponent implements OnInit {
   }
 
   loadDeciders(){
-    this.deciderS.getAllDeciderByUser(this.email).subscribe(deciders=>{
+    // this.deciderS.getAllDeciderByUser(this.email).subscribe(deciders=>{
+    //   this.deciders = deciders
+    // })
+    this.deciderS.getDeciders(this.idProblema).subscribe(deciders=>{
       this.deciders = deciders
     })
   }
@@ -46,5 +51,4 @@ export class ListDeciderComponent implements OnInit {
   goBack():void {
     this.location.back();
   }
-
 }

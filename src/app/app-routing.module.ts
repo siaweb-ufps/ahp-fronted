@@ -29,7 +29,7 @@ const routes: Routes = [
   {path: 'register-decider/:idProblema', component:RegisterDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'chart', component:ChartComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'problem/:idProblema', component:ProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
-  {path: 'list-decider', component:ListDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path: 'list-decider/:idProblema', component:ListDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'list-criterion/:idProblema', component:ListCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'list-alternative/:idProblema', component:ListAlternativeComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'register-problem', component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
