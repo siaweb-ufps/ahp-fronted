@@ -6,6 +6,7 @@ import { ProblemService } from 'src/app/service/problem.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { faPlus, faLeftLong } from '@fortawesome/free-solid-svg-icons';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-register-problem',
@@ -26,6 +27,7 @@ export class RegisterProblemComponent implements OnInit {
   usuario: any = localStorage.getItem('email');
 
   constructor(
+    private location: Location,
     private problemService: ProblemService,
     private authService: AuthService,
     private tokenService: TokenService,
@@ -52,6 +54,8 @@ export class RegisterProblemComponent implements OnInit {
       token:[' ']
     });
   }
+
+  goBack():void { this.location.back(); }
 
   textarea: any = {
     title: 'Descripción',
