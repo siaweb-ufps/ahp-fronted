@@ -35,7 +35,7 @@ export class ProblemComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.idProblema !== null) {
-      this.problemService.getProblem("2cfc671b-da58-4cb5-b10c-6d20b9591345").subscribe(el => {
+      this.problemService.getProblem(this.idProblema).subscribe(el => {
         this.problem = el
       })
       this.criterionService.getAllCriterions().subscribe(el => {
@@ -45,10 +45,6 @@ export class ProblemComponent implements OnInit {
         if(el !== null) this.disabledAlternative=false;
       })
     }
-    // this.problemService.getProblemsUser(this.email).subscribe((resp:any)=>{
-    //   this.data = resp;
-    // })
-    console.log(this.idProblema);
   }
 
   faCheck = faCheck;

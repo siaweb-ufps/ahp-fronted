@@ -140,7 +140,7 @@ export class RegisterProblemComponent implements OnInit {
             fechaFinalizacion: data.fechaFinalizacion,
             descripcion: data.descripcion,
             usuario: this.usuario,
-            token:data.idProblema
+            token:data.idProblema,
           });
           const output = document.getElementById('idProblema');
           if (output) {
