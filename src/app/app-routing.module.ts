@@ -13,7 +13,6 @@ import { ListAlternativeComponent } from './components/list-alternative/list-alt
 import { RegisterProblemComponent } from './components/register-problem/register-problem.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { PasswordComponent } from './components/password/password.component';
-import { EditDeciderComponent } from './components/edit-decider/edit-decider.component';
 import { RegisterCriterionComponent } from './components/register-criterion/register-criterion.component';
 import { RegisterAlternativeComponent } from './components/register-alternative/register-alternative.component';
 import { ConfirmationComponent } from './components/confirmation/confirmation.component';
@@ -39,7 +38,6 @@ const routes: Routes = [
   {path: 'password-reset/confirmation/:idConfirmation', component:PasswordComponent},
   {path: 'register-criterion/:idProblema', component:RegisterCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'register-alternative/:idProblema', component:RegisterAlternativeComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
-  {path: 'edit-decider', component:EditDeciderComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'edit-user', component:EditUserComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'qualify/:idProblema/:emailDecisor', component:QualifyComponent},
   {path: 'my-account', component:MyaccountComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},

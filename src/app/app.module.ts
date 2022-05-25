@@ -30,7 +30,6 @@ import { ButtonComponent } from './components/layout/button/button.component';
 import { ProblemComponent } from './components/problem/problem.component';
 import { ListCriterionComponent } from './components/list-criterion/list-criterion.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
-import { EditDeciderComponent } from './components/edit-decider/edit-decider.component';
 import { RegisterCriterionComponent } from './components/register-criterion/register-criterion.component';
 import { RegisterAlternativeComponent } from './components/register-alternative/register-alternative.component';
 import { QualifyComponent } from './components/qualify/qualify.component';
@@ -65,7 +64,6 @@ import { ListAlternativeComponent } from './components/list-alternative/list-alt
     ProblemComponent,
     ListCriterionComponent,
     PasswordResetComponent,
-    EditDeciderComponent,
     RegisterCriterionComponent,
     RegisterAlternativeComponent,
     QualifyComponent,

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { faEdit, faEye, faXmarkSquare, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { AlternativeService } from '../../service/alternative.service';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { faEdit, faEye, faXmarkSquare, faPlus, faLeftLong } from '@fortawesome/free-solid-svg-icons';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-list-alternative',
@@ -10,6 +11,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./list-alternative.component.scss']
 })
 export class ListAlternativeComponent implements OnInit {
+  faLeftLong = faLeftLong;
   faXmarkSquare = faXmarkSquare;
   faEdit = faEdit;
   faEye = faEye;
@@ -18,6 +20,7 @@ export class ListAlternativeComponent implements OnInit {
   public data: Array<any> = [];
 
   constructor(
+    private location: Location,
     private alternativeService: AlternativeService,
     private toastr: ToastrService,
   ) { }
@@ -26,6 +29,10 @@ export class ListAlternativeComponent implements OnInit {
     this.alternativeService.getAlternatives().subscribe((resp:any)=>{
       this.data = resp;
     })
+  }
+
+  goBack():void {
+    this.location.back()
   }
 
 }

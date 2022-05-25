@@ -6,11 +6,16 @@
                 class="rounded-xl bg-gradient-to-r bg-white border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden w-full shadow-lg">
                 <div class="mb-8 flex items-center justify-between">
                     <p class="text-2xl">Lista criterios</p>
-                    <a class="duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600"
-                        routerLink="/register-problem">
-                        <fa-icon class="text-lg mr-1 " [icon]="faXmarkSquare"></fa-icon>
-                        Agregar criterio
-                    </a>
+                    <div class="flex items-center">
+                        <a class="mr-3 duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600"
+                            routerLink="/register-problem">
+                            <fa-icon class="text-lg mr-1 " [icon]="faXmarkSquare"></fa-icon>
+                            Agregar criterio
+                        </a>
+                        <fa-icon (click)="goBack()"
+                            class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
+                            [icon]="faLeftLong"></fa-icon>
+                    </div>
                 </div>
                 <table datatable class="shadow-md text-left w-full">
                     <thead class="text-xs uppercase bg-indigo-200">

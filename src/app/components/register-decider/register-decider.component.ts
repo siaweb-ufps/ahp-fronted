@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DeciderService } from 'src/app/service/decider.service';
 import { ProblemService } from 'src/app/service/problem.service';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-register-decider',
   templateUrl: './register-decider.component.html',
@@ -19,6 +19,7 @@ export class RegisterDeciderComponent implements OnInit {
   public deciderInfo!:FormGroup
   idProblema: string | null;
   constructor(
+    private location:Location,
     private problemS:ProblemService,
     private fb: FormBuilder,
     private toastr: ToastrService,
@@ -71,6 +72,10 @@ export class RegisterDeciderComponent implements OnInit {
       this.problems = resp;
       this.problems = this.problems.filter(problem => problem.token == this.idProblema);
     })
+  }
+
+  goBack():void {
+    this.location.back();
   }
 
 }

@@ -6,7 +6,7 @@
                 action="">
                 <div class="flex items-center justify-between mb-5">
                     <h1 class="text-4xl text-indigo-500">{{title}}</h1>
-                    <fa-icon routerLink="/list-problem"
+                    <fa-icon (click)="goBack()"
                         class="transform hover:scale-110 text-lg cursor-pointer duration-300 hover:bg-indigo-400 bg-indigo-300 text-white px-2 py-1 rounded-md"
                         [icon]="faLeftLong"></fa-icon>
                 </div>
