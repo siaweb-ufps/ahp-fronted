@@ -29,7 +29,7 @@ export class ProblemService {
   }
 
   editProblem(id:string,problema:any):Observable<any>{
-    return this.http.put(`${this.url}${id}`,problema)
+    return this.http.put(this.url,problema)
   }
 
   getProblem(id:string): Observable<any>{

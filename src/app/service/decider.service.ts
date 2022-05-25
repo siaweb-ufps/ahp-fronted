@@ -11,6 +11,10 @@ export class DeciderService {
   url = `${global.url}/decisor/`;
   uri=`${global.url}/problema/decisores/`;
 
+  public post(decisor:any): Observable<any> {
+    return this.httpClient.post<any>(this.url, decisor);
+  }
+
   public getAllDecider(): Observable<any>{
     return this.httpClient.get<any>(this.url);
   }

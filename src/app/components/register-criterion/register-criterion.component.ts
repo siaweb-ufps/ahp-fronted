@@ -69,7 +69,7 @@ export class RegisterCriterionComponent implements OnInit {
       (res) => {
         localStorage.removeItem('criterios');
         this.criterions.splice(0, this.criterions.length);
-        this.router.navigate(['/register-criterion/',this.idProblema]);
+        this.router.navigate(['/list-criterion/',this.idProblema]);
           this.toastr.success('Criterio creado', 'OK', {
             positionClass: 'toast-top-center',
             timeOut: 3000,
