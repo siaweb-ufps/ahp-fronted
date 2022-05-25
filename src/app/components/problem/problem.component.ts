@@ -38,10 +38,10 @@ export class ProblemComponent implements OnInit {
       this.problemService.getProblem("2cfc671b-da58-4cb5-b10c-6d20b9591345").subscribe(el => {
         this.problem = el
       })
-      this.criterionService.getCriterions().subscribe(el => {
+      this.criterionService.getAllCriterions().subscribe(el => {
         if(el !== null) this.disabledCriterion=false;
       })
-      this.alternativeService.getAlternatives().subscribe(el => {
+      this.alternativeService.getAllAlternatives().subscribe(el => {
         if(el !== null) this.disabledAlternative=false;
       })
     }
