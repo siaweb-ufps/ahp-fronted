@@ -71,7 +71,7 @@ export class RegisterAlternativeComponent implements OnInit {
       (res) => {
         localStorage.removeItem('alternativas');
         this.alternatives.splice(0, this.alternatives.length);
-        this.router.navigate(['/register-alternative/',this.idProblema]);
+        this.router.navigate(['/list-alternative/',this.idProblema]);
           this.toastr.success('Alternativa creada', 'OK', {
             positionClass: 'toast-top-center',
             timeOut: 3000,

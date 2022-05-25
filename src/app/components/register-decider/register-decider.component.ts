@@ -25,6 +25,7 @@ export class RegisterDeciderComponent implements OnInit {
     private toastr: ToastrService,
     private deciderS:DeciderService,
     private aRouter: ActivatedRoute,
+    private router: Router,
   ) { 
     this.idProblema = aRouter.snapshot.paramMap.get('idProblema');
   }
@@ -54,7 +55,11 @@ export class RegisterDeciderComponent implements OnInit {
        return;
     }
 
+    this.deciderInfo.value.problema = this.idProblema;
+    console.log(this.deciderInfo.value);
+    
     this.deciderS.saveDeciderByProblem(this.deciderInfo.value).subscribe(resp=>{
+      this.router.navigate(['/list-decider/',this.idProblema]);
       this.toastr.success("Decisor agregado correctamente, se ha enviado un correo al email del decisor", "OK", {
         positionClass: 'toast-top-center',
         timeOut: 3000
