@@ -69,6 +69,10 @@ export class ResultComponent implements OnInit {
     ngAfterViewInit():void {
     }
 
+    isNumber(val:any): boolean { return typeof val === 'number'; }
+    isString(val:any): boolean { return typeof val === 'string'; }
+
+
     loadResults(){
       this.qualifyService.getPrioritiesCriterions(this.emailDecisor,this.tokenProblem).subscribe(result=>{
         this.matrizPareadaCrit=result[0]
@@ -83,6 +87,7 @@ export class ResultComponent implements OnInit {
         }
 
       })
+
 
       this.qualifyService.getPrioritiesAlternatives(this.emailDecisor,this.tokenProblem).subscribe(result=>{
         this.matrizPareadaAlt=result[0]

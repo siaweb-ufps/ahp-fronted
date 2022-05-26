@@ -40,8 +40,8 @@
                                 <tbody class="text-black">
                                     <tr *ngFor="let item of tr; index as i" class="bg-white  ">
                                         <td *ngFor="let x of item">
-                                            <p *ngIf="x instanceof Object === true">{{x.descripcion}}</p>
-                                            <p *ngIf="x instanceof Object ===false">{{x}}</p>
+                                            <p *ngIf="!isString(x) && !isNumber(x)">{{x.descripcion}}</p>
+                                            <p *ngIf="isString(x) || isNumber(x)">{{x}}</p>
                                         
                                         </td>
                                     </tr>
@@ -69,8 +69,8 @@
                                 <tbody class="text-black">
                                     <tr *ngFor="let item of tr2; index as i" class="bg-white  ">
                                         <td *ngFor="let x of item; index as j">
-                                            <p *ngIf="x instanceof Object === true">{{x.descripcion}}</p>
-                                            <p *ngIf="x instanceof Object ===false">{{x}}</p>
+                                            <p *ngIf="!isString(x) && !isNumber(x)">{{x.descripcion}}</p>
+                                            <p *ngIf="isString(x) || isNumber(x)">{{x}}</p>
                                         
                                         </td>
                                     </tr>
