@@ -16,6 +16,9 @@ export class QulifyService {
   public getPairsCriterion(tokenProblema:string): Observable<any>{
     return this.httpClient.get<any>(this.url+"problema/criteriosComparados/"+tokenProblema);
   }
+  public getPairsCriterionAlternative(tokenProblema:string): Observable<any>{
+    return this.httpClient.get<any>(this.url+"problema/alternativaComparadas/"+tokenProblema);
+  }
 
   public getAccessProblem(tokenProblem:string, emailDecisor:string): Observable<any>{
     return this.httpClient.get<any>(this.url+"problema/accesoproblema/"+tokenProblem+"/"+emailDecisor);
@@ -25,7 +28,14 @@ export class QulifyService {
     return this.httpClient.get<any>(this.url+"problema/criterios/"+tokenProblem);
   }
 
+  public getAlternativeProblem(tokenProblem:string): Observable<any>{
+    return this.httpClient.get<any>(this.url+"problema/alternativas/"+tokenProblem);
+  }
+
   public saveQualifies(puntuaciones:any): Observable<any>{
     return this.httpClient.post<any>(this.url+"puntuacioncriterio/",puntuaciones);
+  }
+  public saveQualifiesAlternatives(puntuaciones:any): Observable<any>{
+    return this.httpClient.post<any>(this.url+"puntuacionalternativa/",puntuaciones);
   }
 }

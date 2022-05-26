@@ -74,31 +74,38 @@
                         <p>A continuación podrá realizar la calificacion de cada alternativa en base a los puntajes
                             mencionados anteriormente.</p>
                         <br>
-                        <div class="mb-3 lg:flex flex-wrap justify-center border-2 border-indigo-600 rounded-md w-full"
-                            *ngFor="let pair of criteriosComparados">
-                            <div class="w-full sm:flex items-center">
-                                <p
-                                    class="text-center text-xs h-8 sm:h-16 px-3 flex items-center justify-center w-full sm:w-1/5">
-                                    {{pair.criterio1Id.descripcion}}</p>
-                                <div *ngFor="let num of nums; let i=index"
-                                    class="flex sm:flex-col w-full sm:w-3/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200">
+                        <div 
+                            *ngFor="let pair of criteriosComparados let j=index">
 
-                                    <div *ngIf="i>=9" class="flex items-center justify-center w-1/2 sm:w-full h-8">
-                                        <input (click)="cambiarPuntaje(1/num.id,pair.idPuntuacionDecisor)"
-                                            name={{pair.idPuntuacionDecisor}} type="radio" value="{{1/num.id}}" />
-                                    </div>
-                                    <div *ngIf="i<=8" class="flex items-center justify-center w-1/2 sm:w-full h-8">
-                                        <input (click)="cambiarPuntaje(num.id,pair.idPuntuacionDecisor)"
-                                            name={{pair.idPuntuacionDecisor}} type="radio" value="{{num.id}}" />
+                            <p *ngIf="j%totalCriterios==0">{{pair.criterio.descripcion}}</p>
+
+                            <div class="mb-3 lg:flex flex-wrap justify-center border-2 border-indigo-600 rounded-md w-full">
+                                <div class="w-full sm:flex items-center">
+                                    <p
+                                        class="text-center text-xs h-8 sm:h-16 px-3 flex items-center justify-center w-full sm:w-1/5">
+                                        {{pair.alternativa1.descripcion}}</p>
+    
+                                    <div *ngFor="let num of nums; let i=index"
+                                        class="flex sm:flex-col w-full sm:w-3/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200">
+    
+                                        <div *ngIf="i>=9" class="flex items-center justify-center w-1/2 sm:w-full h-8">
+                                            <input (click)="cambiarPuntaje(1/num.id,pair.idPuntuacionAltCrit)"
+                                                name={{pair.idPuntuacionAltCrit}} type="radio" value="{{1/num.id}}" />
+                                        </div>
+                                        <div *ngIf="i<=8" class="flex items-center justify-center w-1/2 sm:w-full h-8">
+                                            <input (click)="cambiarPuntaje(num.id,pair.idPuntuacionAltCrit)"
+                                                name={{pair.idPuntuacionAltCrit}} type="radio" value="{{num.id}}" />
+                                        </div>
+                                        <p
+                                            class="flex items-center justify-center w-1/2 sm:w-full h-8 border-l-2 sm:border-l-0 sm:border-t-2 border-indigo-200">
+                                            {{num.id}}</p>
                                     </div>
                                     <p
-                                        class="flex items-center justify-center w-1/2 sm:w-full h-8 border-l-2 sm:border-l-0 sm:border-t-2 border-indigo-200">
-                                        {{num.id}}</p>
+                                        class="text-center text-xs w-full sm:w-1/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200 h-8 sm:h-16 flex items-center justify-center px-3">
+                                        {{pair.alternativa2.descripcion}}</p>
                                 </div>
-                                <p
-                                    class="text-center text-xs w-full sm:w-1/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200 h-8 sm:h-16 flex items-center justify-center px-3">
-                                    {{pair.criterio2Id.descripcion}}</p>
                             </div>
+                            
                         </div>
                         <button
                             class="duration-300 mt-5 uppercase text-sm w-48 border-2 border-indigo-600 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 rounded-md"

@@ -20,6 +20,7 @@ export class QualifyAlternativesComponent implements OnInit {
   criteriosComparados!:any;
   alternatives!:any;
   puntajes:any[] = [];
+  totalCriterios=0;
 
   constructor(
     private qualifyService:QulifyService,
@@ -36,15 +37,15 @@ export class QualifyAlternativesComponent implements OnInit {
     this.getProblem();
     this.getPairsCriterion();
     this.getAlternatives();
+    this.getCriterion();
   }
 
   public cambiarPuntaje(valor:number, idPuntaje:number){
-    
     for (let i = 0; i < this.puntajes.length; i++) {
       let puntaje = this.puntajes[i];
-      if(puntaje.puntuacionCriterio == idPuntaje){
+      if(puntaje.puntuacionAlternativaCriterio == idPuntaje){
         let copiaPuntaje = {
-          puntuacionCriterio:puntaje.puntuacionCriterio,
+          puntuacionAlternativaCriterio:puntaje.puntuacionAlternativaCriterio,
           valor:valor,
           decisor:{
             email:puntaje.decisor.email
@@ -57,32 +58,37 @@ export class QualifyAlternativesComponent implements OnInit {
   }
 
   public getPairsCriterion(){
-    this.qualifyService.getPairsCriterion(this.tokenProblem).subscribe(pairs=>{
+    this.qualifyService.getPairsCriterionAlternative(this.tokenProblem).subscribe(pairs=>{
       this.criteriosComparados = pairs;
       for (let i = 0; i < this.criteriosComparados.length; i++) {
         this.puntajes.push({
-          puntuacionCriterio:this.criteriosComparados[i].idPuntuacionDecisor,
+          puntuacionAlternativaCriterio:this.criteriosComparados[i].idPuntuacionAltCrit,
           valor:-1,
           decisor:{
             email:this.emailDecisor
           }
         })
       }
-
     })
   }
 
   public guardarPuntajes(){
-    this.qualifyService.saveQualifies(this.puntajes).subscribe(resp=>{
+    this.qualifyService.saveQualifiesAlternatives(this.puntajes).subscribe(resp=>{
     })
   }
 
   public getAlternatives(){
-    this.qualifyService.getCriterionProblem(this.tokenProblem).subscribe(el=>{
+    this.qualifyService.getAlternativeProblem(this.tokenProblem).subscribe(el=>{
       this.alternatives=el;
       for(let i = 0; i < this.alternatives.length; i++) {
         
       }
+    })
+  }
+
+  public getCriterion(){
+    this.qualifyService.getCriterionProblem(this.tokenProblem).subscribe(el=>{
+      this.totalCriterios=el.length
     })
   }
 
