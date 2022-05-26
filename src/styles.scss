@@ -35,3 +35,20 @@ img {
 button{
     letter-spacing: 0.3rem;
 }
+.matriz {
+    display: grid;
+    width: 100%;
+}
+.matriz_div {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    height: 5rem;
+    min-width: 5rem;
+    border: 1px solid rgb(236, 233, 255);
+    flex:none;
+    align-items: center;
+    justify-content: center;
+}
+.matriz_row {
+    height: auto;
+}

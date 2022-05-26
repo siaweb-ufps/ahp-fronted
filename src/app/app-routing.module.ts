@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { QualifyComponent } from './components/qualify/qualify.component';
 import { QualifyAlternativesComponent } from './components/qualify-alternatives/qualify-alternatives.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ResultComponent } from './components/result/result.component';
 import { RegisterDeciderComponent } from './components/register-decider/register-decider.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ProblemComponent } from './components/problem/problem.component';
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: 'qualify-alternatives/:idProblema/:emailDecisor', component:QualifyAlternativesComponent},
   {path: 'my-account', component:MyaccountComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path:"edit-problem/:idProblema", component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
+  {path:"result", component:ResultComponent},
   {path:"edit-criterion/:idProblema", component:EditCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
 ];
 
