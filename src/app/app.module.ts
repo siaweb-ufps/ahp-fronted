@@ -43,6 +43,7 @@ import { AccessGuard } from './guards/AccessGuard';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditCriterionComponent } from './components/edit-criterion/edit-criterion.component';
 import { ListAlternativeComponent } from './components/list-alternative/list-alternative.component';
+import { QualifyAlternativesComponent } from './components/qualify-alternatives/qualify-alternatives.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ import { ListAlternativeComponent } from './components/list-alternative/list-alt
     EditUserComponent,
     EditCriterionComponent,
     ListAlternativeComponent,
+    QualifyAlternativesComponent,
   ],
   imports: [
     BrowserModule,
