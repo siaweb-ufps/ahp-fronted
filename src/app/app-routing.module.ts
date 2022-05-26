@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { QualifyComponent } from './components/qualify/qualify.component';
+import { QualifyAlternativesComponent } from './components/qualify-alternatives/qualify-alternatives.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterDeciderComponent } from './components/register-decider/register-decider.component';
 import { ChartComponent } from './components/chart/chart.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'register-alternative/:idProblema', component:RegisterAlternativeComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'edit-user', component:EditUserComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path: 'qualify/:idProblema/:emailDecisor', component:QualifyComponent},
+  {path: 'qualify-alternatives/:idProblema/:emailDecisor', component:QualifyAlternativesComponent},
   {path: 'my-account', component:MyaccountComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path:"edit-problem/:idProblema", component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path:"edit-criterion/:idProblema", component:EditCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
