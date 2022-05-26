@@ -23,17 +23,9 @@
                             <h3 class="mb-3 text-xl font-semibold text-white">Criterios</h3>
                             <div class="px-5 py-2 bg-pink-100 rounded-md">
                                 <h3 class="my-3 font-bold">Prioridades</h3>
-                                <div class="py-3 flex items-center border-t border-pink-800">
-                                    <p>Criterio 1</p>
-                                    <p>90.2%</p>
-                                </div>
-                                <div class="py-3 flex items-center border-t border-pink-800">
-                                    <p>Criterio 2</p>
-                                    <p>9%</p>
-                                </div>
-                                <div class="py-3 flex items-center border-t border-pink-800">
-                                    <p>Criterio 3</p>
-                                    <p>0.8%</p>
+                                <div *ngFor="let criterio of criterios" class="py-3 flex items-center border-t border-pink-800">
+                                    <p>{{criterio[0].descripcion}} - </p>
+                                    <p>{{criterio[1]*100}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -42,17 +34,16 @@
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
                                     <tr>
                                         <th *ngFor="let item of thead; index as i" scope="col" class="p-3">
-                                            {{item.title}}
+                                            {{item.descripcion}}
                                         </th>
                                 </thead>
                                 <tbody class="text-black">
                                     <tr *ngFor="let item of tr; index as i" class="bg-white  ">
-                                        <th class="border p-2 border-gray-200">{{item.td1}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td2}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td3}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td4}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td5}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td6}}</th>
+                                        <td *ngFor="let x of item">
+                                            <p *ngIf="x instanceof Object === true">{{x.descripcion}}</p>
+                                            <p *ngIf="x instanceof Object ===false">{{x}}</p>
+                                        
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -60,18 +51,10 @@
                         <div class="p-5 rounded-md bg-indigo-400 w-full my-7 text-left">
                             <h3 class="mb-3 text-xl font-semibold text-white">Alternativas</h3>
                             <div class="px-5 py-2 bg-indigo-100 rounded-md">
-                                <h3 class="my-3 font-bold">Criterio 1</h3>
-                                <div class="py-3 flex items-center border-t border-indigo-800">
-                                    <p>Alternativa 1</p>
-                                    <p>60%</p>
-                                </div>
-                                <div class="py-3 flex items-center border-t border-indigo-800">
-                                    <p>Alternativa 2</p>
-                                    <p>30%</p>
-                                </div>
-                                <div class="py-3 flex items-center border-t border-indigo-800">
-                                    <p>Alternativa 3</p>
-                                    <p>10%</p>
+                                <h3 class="my-3 font-bold">Criterio ganador: {{criterioGanador}}</h3>
+                                <div *ngFor="let alt of alternativas" class="py-3 flex items-center border-t border-indigo-800">
+                                    <p>{{alt[0].descripcion}} - </p>
+                                    <p>{{alt[1]*100}}%</p>
                                 </div>
                             </div>
                         </div>
@@ -79,18 +62,17 @@
                             <table class="text-center w-full text-sm text-gray-50">
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:text-gray-400">
                                     <tr>
-                                        <th *ngFor="let item of thead; index as i" scope="col" class="p-3">
-                                            {{item.title}}
+                                        <th *ngFor="let item of thead2; index as i" scope="col" class="p-3">
+                                            {{item.descripcion}}
                                         </th>
                                 </thead>
                                 <tbody class="text-black">
-                                    <tr *ngFor="let item of tr; index as i" class="bg-white  ">
-                                        <th class="border p-2 border-gray-200">{{item.td1}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td2}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td3}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td4}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td5}}</th>
-                                        <th class="border p-2 border-gray-200">{{item.td6}}</th>
+                                    <tr *ngFor="let item of tr2; index as i" class="bg-white  ">
+                                        <td *ngFor="let x of item; index as j">
+                                            <p *ngIf="x instanceof Object === true">{{x.descripcion}}</p>
+                                            <p *ngIf="x instanceof Object ===false">{{x}}</p>
+                                        
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

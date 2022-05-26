@@ -12,64 +12,34 @@ import { QulifyService } from 'src/app/service/qulify.service';
 })
 export class ResultComponent implements OnInit {
 
+  criterios:any;
+  matrizPareadaCrit:any;
+
+  criterioGanador:any;
+
+  matrizPareadaAlt:any;
+  alternativas:any;
+
   thead:any = [
     {title: ' '},
     {title: 'Alternativa '},
     {title: 'Alternativa '},
     {title: 'Alternativa '},
+
+  ]
+
+  thead2:any = [
+    {title: ' '},
     {title: 'Alternativa '},
     {title: 'Alternativa '},
+    {title: 'Alternativa '},
+
   ]
-  tr:any = [
-    {
-      td1: 'Alterinativa',
-      td2: '1',
-      td3: '2',
-      td4: '3',
-      td5: '4',
-      td6: '5',
-    },
-    {
-      td1: 'Alterinativa ',
-      td2: '1',
-      td3: '2',
-      td4: '3',
-      td5: '4',
-      td6: '5',
-    },
-    {
-      td1: 'Alterinativa',
-      td2: '1',
-      td3: '2',
-      td4: '3',
-      td5: '4',
-      td6: '5',
-    },
-    {
-      td1: 'Alterinativa',
-      td2: '1',
-      td3: '2',
-      td4: '3',
-      td5: '4',
-      td6: '5',
-    },
-    {
-      td1: 'Alterinativa',
-      td2: '1',
-      td3: '2',
-      td4: '3',
-      td5: '4',
-      td6: '5',
-    },
-    {
-      td1: 'Alterinativa',
-      td2: '1',
-      td3: '2',
-      td4: '3',
-      td5: '4',
-      td6: '5',
-    },
-  ]
+
+  b:any=[];
+  tr:any[]=[];
+  tr2:any[]=[];
+
   var = this.thead.lenght;
   
 
@@ -94,8 +64,41 @@ export class ResultComponent implements OnInit {
     }
     
     ngOnInit(): void {
+      this.loadResults();
     }
     ngAfterViewInit():void {
     }
+
+    loadResults(){
+      this.qualifyService.getPrioritiesCriterions(this.emailDecisor,this.tokenProblem).subscribe(result=>{
+        this.matrizPareadaCrit=result[0]
+        this.criterios = result[2]
+        this.thead=(result[0][0]);
+        console.log(result);
+        console.log(this.tr);
+        this.tr=[]
+        this.criterioGanador = result[4].descripcion;
+        for (let i = 1; i < result[0].length; i++) {
+          this.tr.push(result[0][i])
+        }
+
+      })
+
+      this.qualifyService.getPrioritiesAlternatives(this.emailDecisor,this.tokenProblem).subscribe(result=>{
+        this.matrizPareadaAlt=result[0]
+        this.alternativas = result[2]
+        this.thead2=(result[0][0]);
+        console.log(result);
+        console.log(this.tr);
+        this.tr2=[]
+
+        for (let i = 1; i < result[0].length; i++) {
+          this.tr2.push(result[0][i])
+        }
+        console.log(this.tr);
+
+      })
+    }
+    
    
 }

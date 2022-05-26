@@ -38,4 +38,12 @@ export class QulifyService {
   public saveQualifiesAlternatives(puntuaciones:any): Observable<any>{
     return this.httpClient.post<any>(this.url+"puntuacionalternativa/",puntuaciones);
   }
+
+  public getPrioritiesCriterions(email:any,token:any): Observable<any>{
+    return this.httpClient.get<any>(this.url+"puntuacioncriterio/"+email+"/"+token);
+  }
+  public getPrioritiesAlternatives(email:any,token:any): Observable<any>{
+    return this.httpClient.get<any>(this.url+"puntuacionalternativa/"+email+"/"+token);
+  }
+
 }
