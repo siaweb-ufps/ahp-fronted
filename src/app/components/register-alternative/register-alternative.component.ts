@@ -45,7 +45,6 @@ export class RegisterAlternativeComponent implements OnInit {
         this.problem = el
       })
     }
-    console.log('id register-alternative: ', this.idProblema);
     
 
     if(localStorage.getItem("alternativas") !== null){

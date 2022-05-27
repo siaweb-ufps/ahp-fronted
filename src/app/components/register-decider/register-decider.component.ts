@@ -56,7 +56,6 @@ export class RegisterDeciderComponent implements OnInit {
     }
 
     this.deciderInfo.value.problema = this.idProblema;
-    console.log(this.deciderInfo.value);
     
     this.deciderS.saveDeciderByProblem(this.deciderInfo.value).subscribe(resp=>{
       this.router.navigate(['/list-decider/',this.idProblema]);
