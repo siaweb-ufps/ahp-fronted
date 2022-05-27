@@ -11,12 +11,9 @@ import { QulifyService } from 'src/app/service/qulify.service';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit {
-
   criterios:any;
   matrizPareadaCrit:any;
-
   criterioGanador:any;
-
   matrizPareadaAlt:any;
   alternativas:any;
 
@@ -25,7 +22,6 @@ export class ResultComponent implements OnInit {
     {title: 'Alternativa '},
     {title: 'Alternativa '},
     {title: 'Alternativa '},
-
   ]
 
   thead2:any = [
@@ -33,7 +29,6 @@ export class ResultComponent implements OnInit {
     {title: 'Alternativa '},
     {title: 'Alternativa '},
     {title: 'Alternativa '},
-
   ]
 
   b:any=[];
@@ -64,44 +59,51 @@ export class ResultComponent implements OnInit {
     }
     
     ngOnInit(): void {
+      this.getAccess(this.emailDecisor,this.tokenProblem)
       this.loadResults();
     }
     ngAfterViewInit():void {
     }
 
+    public getAccess(email:string,token:string){
+      this.qualifyService.getAccessProblem(token,email).subscribe(resp=>{
+        this.toastr.success(resp.mensaje, "Bienvenido", {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+         })
+         this.isValidDecisor=true;
+      },error=>{
+        this.msg=error.error.mensaje;
+        this.toastr.error(error.error.mensaje, "Acceso denegado", {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+         })
+      })
+    }
+
     isNumber(val:any): boolean { return typeof val === 'number'; }
     isString(val:any): boolean { return typeof val === 'string'; }
-
 
     loadResults(){
       this.qualifyService.getPrioritiesCriterions(this.emailDecisor,this.tokenProblem).subscribe(result=>{
         this.matrizPareadaCrit=result[0]
         this.criterios = result[2]
         this.thead=(result[0][0]);
-        console.log(result);
-        console.log(this.tr);
         this.tr=[]
         this.criterioGanador = result[4].descripcion;
         for (let i = 1; i < result[0].length; i++) {
           this.tr.push(result[0][i])
         }
-
       })
-
 
       this.qualifyService.getPrioritiesAlternatives(this.emailDecisor,this.tokenProblem).subscribe(result=>{
         this.matrizPareadaAlt=result[0]
         this.alternativas = result[2]
         this.thead2=(result[0][0]);
-        console.log(result);
-        console.log(this.tr);
         this.tr2=[]
-
         for (let i = 1; i < result[0].length; i++) {
           this.tr2.push(result[0][i])
         }
-        console.log(this.tr);
-
       })
     }
     
