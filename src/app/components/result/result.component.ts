@@ -1,8 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild, Renderer2 } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { ProblemService } from 'src/app/service/problem.service';
 import { QulifyService } from 'src/app/service/qulify.service';
 
 @Component({
@@ -37,7 +35,6 @@ export class ResultComponent implements OnInit {
 
   var = this.thead.lenght;
   
-
   emailDecisor!:any;
   tokenProblem!:any;
   isValidDecisor=false;
@@ -51,8 +48,6 @@ export class ResultComponent implements OnInit {
     private qualifyService:QulifyService,
     private aRouter: ActivatedRoute,
     private toastr: ToastrService,
-    private problemS:ProblemService,
-    private renderer2: Renderer2,
     ) {
       this.tokenProblem = aRouter.snapshot.paramMap.get('idProblema');
       this.emailDecisor = aRouter.snapshot.paramMap.get('emailDecisor');
@@ -106,6 +101,4 @@ export class ResultComponent implements OnInit {
         }
       })
     }
-    
-   
 }

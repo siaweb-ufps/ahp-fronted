@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProblemService } from 'src/app/service/problem.service';
 import { QulifyService } from 'src/app/service/qulify.service';
@@ -24,6 +24,7 @@ export class QualifyComponent implements OnInit {
   constructor(
     private qualifyService:QulifyService,
     private aRouter: ActivatedRoute,
+    private router: Router,
     private toastr: ToastrService,
     private problemS:ProblemService,
     ) {
@@ -75,9 +76,21 @@ export class QualifyComponent implements OnInit {
   }
 
   public guardarPuntajes(){
-    this.qualifyService.saveQualifies(this.puntajes).subscribe(resp=>{
-      // console.log(resp)
-    })
+    this.qualifyService.saveQualifies(this.puntajes).subscribe(
+      (resp)=>{
+        this.router.navigate(["/qualify-alternatives",this.tokenProblem,this.emailDecisor]);
+        this.toastr.success(resp.mensaje, "Calificación de criterios guardado", {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+        })
+      },
+      (error) => {
+        this.toastr.error(error, "Error al guardar Calificación de criterios ", {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+         })
+      }
+    )
   }
 
   public getCriterios(){
