@@ -109,10 +109,7 @@ export class QualifyAlternativesComponent implements OnInit {
 
   public getAccess(email:string,token:string){
     this.qualifyService.getAccessProblem(token,email).subscribe(resp=>{
-      this.toastr.success(resp.mensaje, "Bienvenido", {
-        positionClass: 'toast-top-center',
-        timeOut: 3000
-       })
+
        this.isValidDecisor=true;
     },error=>{
       this.msg=error.error.mensaje;
