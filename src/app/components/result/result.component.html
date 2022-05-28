@@ -25,8 +25,9 @@
                                 <h3 class="my-3 font-bold">Prioridades</h3>
                                 <div *ngFor="let criterio of criterios"
                                     class="py-3 flex items-center border-t border-pink-800">
-                                    <p>{{criterio[0].descripcion}} - </p>
-                                    <p>{{criterio[1]*100}}%</p>
+                                    <p>{{criterio[0].descripcion}} ➡ </p>
+                                    <code *ngIf="criterio[1]==percentCritMax">{{criterio[1]*100 | number:'1.1-1'}}% GANADOR ✔️</code>
+                                    <code *ngIf="criterio[1]!=percentCritMax">{{criterio[1]*100 | number:'1.1-1'}}%</code>
                                 </div>
                             </div>
                         </div>
@@ -55,8 +56,9 @@
                                 <h3 class="my-3 font-bold">Criterio ganador: {{criterioGanador}}</h3>
                                 <div *ngFor="let alt of alternativas"
                                     class="py-3 flex items-center border-t border-indigo-800">
-                                    <p>{{alt[0].descripcion}} - </p>
-                                    <p>{{alt[1]*100}}%</p>
+                                    <p>{{alt[0].descripcion}} ➡</p>
+                                    <code *ngIf="alt[1]==percentAltMax">{{alt[1]*100 | number:'1.1-1'}}% GANADOR ✔️</code>
+                                    <code *ngIf="alt[1]!=percentAltMax">{{alt[1]*100 | number:'1.1-1'}}%</code>
                                 </div>
                             </div>
                         </div>

@@ -15,6 +15,10 @@ export class ResultComponent implements OnInit {
   matrizPareadaAlt:any;
   alternativas:any;
 
+  percentCritMax:number = 0
+  percentAltMax:number = 0
+
+
   thead:any = [
     {title: ' '},
     {title: 'Alternativa '},
@@ -83,6 +87,13 @@ export class ResultComponent implements OnInit {
       this.qualifyService.getPrioritiesCriterions(this.emailDecisor,this.tokenProblem).subscribe(result=>{
         this.matrizPareadaCrit=result[0]
         this.criterios = result[2]
+        let valores = []
+
+        for (let i = 0; i < this.criterios.length; i++) {
+          valores.push(this.criterios[i][1])
+        }
+
+        this.percentCritMax = Math.max(...valores)
         this.thead=(result[0][0]);
         this.tr=[]
         this.criterioGanador = result[4].descripcion;
@@ -94,6 +105,15 @@ export class ResultComponent implements OnInit {
       this.qualifyService.getPrioritiesAlternatives(this.emailDecisor,this.tokenProblem).subscribe(result=>{
         this.matrizPareadaAlt=result[0]
         this.alternativas = result[2]
+        
+        let valores = []
+
+        for (let i = 0; i < this.alternativas.length; i++) {
+          valores.push(this.alternativas[i][1])
+        }
+
+        this.percentAltMax = Math.max(...valores)
+
         this.thead2=(result[0][0]);
         this.tr2=[]
         for (let i = 1; i < result[0].length; i++) {
@@ -101,4 +121,5 @@ export class ResultComponent implements OnInit {
         }
       })
     }
+
 }
