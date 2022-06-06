@@ -42,6 +42,12 @@ export class QulifyService {
   public getPrioritiesCriterions(email:any,token:any): Observable<any>{
     return this.httpClient.get<any>(this.url+"puntuacioncriterio/"+email+"/"+token);
   }
+  public getPrioritiesCriterionsTotal(token:any): Observable<any>{
+    return this.httpClient.get<any>(this.url+"puntuacioncriterio/"+token+"/totalizar");
+  }
+  public getPrioritiesAlternativesTotal(token:any): Observable<any>{
+    return this.httpClient.get<any>(this.url+"puntuacionalternativa/"+token+"/totalizar");
+  }
   public getPrioritiesAlternatives(email:any,token:any): Observable<any>{
     return this.httpClient.get<any>(this.url+"puntuacionalternativa/"+email+"/"+token);
   }

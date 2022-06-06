@@ -45,6 +45,7 @@ import { EditCriterionComponent } from './components/edit-criterion/edit-criteri
 import { ListAlternativeComponent } from './components/list-alternative/list-alternative.component';
 import { QualifyAlternativesComponent } from './components/qualify-alternatives/qualify-alternatives.component';
 import { ResultComponent } from './components/result/result.component';
+import { TotalResultsComponent } from './components/total-results/total-results.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,7 @@ import { ResultComponent } from './components/result/result.component';
     ListAlternativeComponent,
     QualifyAlternativesComponent,
     ResultComponent,
+    TotalResultsComponent,
   ],
   imports: [
     BrowserModule,

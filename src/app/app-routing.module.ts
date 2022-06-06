@@ -22,6 +22,7 @@ import { MyaccountComponent } from './components/myaccount/myaccount.component';
 import { AccessGuard } from './guards/AccessGuard';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { EditCriterionComponent } from './components/edit-criterion/edit-criterion.component';
+import { TotalResultsComponent } from './components/total-results/total-results.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -46,6 +47,7 @@ const routes: Routes = [
   {path: 'my-account', component:MyaccountComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path:"edit-problem/:idProblema", component:RegisterProblemComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
   {path:"result/:idProblema/:emailDecisor", component:ResultComponent},
+  {path:"results/:idProblema", component:TotalResultsComponent},
   {path:"edit-criterion/:idProblema", component:EditCriterionComponent,data:{requiresLogin: true},canActivate: [ AccessGuard]},
 ];
 
