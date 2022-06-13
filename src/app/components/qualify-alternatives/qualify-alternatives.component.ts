@@ -75,6 +75,12 @@ export class QualifyAlternativesComponent implements OnInit {
   }
 
   public guardarPuntajes(){
+    if(!this.isQualify()){
+      this.toastr.warning("Por favor, rellena todos los campos", "Warn", {
+        positionClass: 'toast-top-center',
+        timeOut: 3000
+       })
+  }else{
     this.qualifyService.saveQualifiesAlternatives(this.puntajes).subscribe(
       (resp)=>{
         
@@ -88,10 +94,9 @@ export class QualifyAlternativesComponent implements OnInit {
         this.toastr.error(error, "Error al guardar Calificación de criterios ", {
           positionClass: 'toast-top-center',
           timeOut: 3000
-         })
-      }
-      )
-  }
+         })})
+   }
+}
 
   public getAlternatives(){
     this.qualifyService.getAlternativeProblem(this.tokenProblem).subscribe(el=>{
@@ -102,6 +107,15 @@ export class QualifyAlternativesComponent implements OnInit {
     })
   }
 
+  public isQualify():boolean{
+    for (let i = 0; i < this.puntajes.length; i++) {
+      const element = this.puntajes[i];
+      if(element.valor==-1){
+        return false;
+      }
+    }
+    return true;
+}
   public getCriterion(){
     this.qualifyService.getCriterionProblem(this.tokenProblem).subscribe(el=>{
       this.totalCriterios=el.length

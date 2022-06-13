@@ -38,20 +38,54 @@ export class QualifyComponent implements OnInit {
     this.getProblem();
     this.getPairsCriterion();
     this.getCriterios();
+    
+  }
+
+  public lastQualifies(){
+    this.qualifyService.getQualifysCriterions(this.emailDecisor,this.tokenProblem).subscribe(total=>{
+      console.log(total);
+      for (let i = 0; i < this.puntajes.length; i++) {
+        let totalE = total[i];
+        let copiaPuntaje = {
+          idPuntuacion:totalE.idPuntuacion,
+          puntuacionCriterio:totalE.puntuacionCriterio,
+          valor:totalE.valor,
+          decisor:{
+            email:this.emailDecisor
+          }
+        }
+          this.puntajes[i] = copiaPuntaje;
+      }
+      console.log(this.puntajes);
+    },error=>{
+
+    })
   }
 
   public cambiarPuntaje(valor:number, idPuntaje:number){
-    
     for (let i = 0; i < this.puntajes.length; i++) {
       let puntaje = this.puntajes[i];
-      if(puntaje.puntuacionCriterio == idPuntaje){
-        let copiaPuntaje = {
-          puntuacionCriterio:puntaje.puntuacionCriterio,
-          valor:valor,
-          decisor:{
-            email:puntaje.decisor.email
+      if(puntaje.puntuacionCriterio.idPuntuacionDecisor == idPuntaje){
+        let copiaPuntaje = null;
+        if(puntaje.idPuntuacion!=null){
+          copiaPuntaje = {
+            idPuntuacion:puntaje.idPuntuacion,
+            puntuacionCriterio:puntaje.puntuacionCriterio,
+            valor:valor,
+            decisor:{
+              email:puntaje.decisor.email
+          }
         }
-      }
+        }else{
+          copiaPuntaje = {
+            puntuacionCriterio:puntaje.puntuacionCriterio,
+            valor:valor,
+            decisor:{
+              email:puntaje.decisor.email
+          }
+        }
+        }
+      console.log(this.puntajes);   
       this.puntajes[i]=copiaPuntaje
       break;
     }
@@ -63,6 +97,7 @@ export class QualifyComponent implements OnInit {
       this.criteriosComparados = pairs;
       for (let i = 0; i < this.criteriosComparados.length; i++) {
         this.puntajes.push({
+          idPuntuacion:null,
           puntuacionCriterio:this.criteriosComparados[i].idPuntuacionDecisor,
           valor:-1,
           decisor:{
@@ -70,26 +105,35 @@ export class QualifyComponent implements OnInit {
           }
         })
       }
-
+      this.lastQualifies();
     })
   }
 
   public guardarPuntajes(){
-    this.qualifyService.saveQualifies(this.puntajes).subscribe(
-      (resp)=>{
-        this.router.navigate(["/qualify-alternatives",this.tokenProblem,this.emailDecisor]);
-        this.toastr.success(resp.mensaje, "Calificación de criterios guardado", {
-          positionClass: 'toast-top-center',
-          timeOut: 3000
-        })
-      },
-      (error) => {
-        this.toastr.error(error.txt, "Error al guardar Calificación de criterios ", {
-          positionClass: 'toast-top-center',
-          timeOut: 3000
-         })
-      }
-    )
+    if(!this.isQualify()){
+      this.toastr.warning("Por favor, rellena todos los campos", "", {
+        positionClass: 'toast-top-center',
+        timeOut: 3000
+       })
+    }else{
+      console.log(this.puntajes);
+      this.qualifyService.saveQualifies(this.puntajes).subscribe(
+        (resp)=>{
+          this.router.navigate(["/qualify-alternatives",this.tokenProblem,this.emailDecisor]);
+          this.toastr.success(resp.mensaje, "Calificación de criterios guardado", {
+            positionClass: 'toast-top-center',
+            timeOut: 3000
+          })
+        },
+        (error) => {
+          this.toastr.error(error.txt, "Error al guardar Calificación de criterios ", {
+            positionClass: 'toast-top-center',
+            timeOut: 3000
+           })
+        }
+      )
+    }
+    
   }
 
   public getCriterios(){
@@ -99,6 +143,16 @@ export class QualifyComponent implements OnInit {
         
       }
     })
+  }
+
+  public isQualify():boolean{
+      for (let i = 0; i < this.puntajes.length; i++) {
+        const element = this.puntajes[i];
+        if(element.valor== (-1)){
+          return false;
+        }
+      }
+      return true;
   }
 
   public getAccess(email:string,token:string){
@@ -121,6 +175,18 @@ export class QualifyComponent implements OnInit {
     this.problemS.getProblem(this.tokenProblem).subscribe(problem=>{
       this.problema=problem;
     })
+  }
+
+  isSameValue(idPuntuacion:number,value:any):boolean{
+    value = value.toFixed(6);
+    for (let i = 0; i < this.puntajes.length; i++) {
+      const element = this.puntajes[i];
+      if(element.puntuacionCriterio.idPuntuacionDecisor == idPuntuacion && element.valor==value){
+        return true;
+      }
+      
+    }
+    return false;
   }
 
   nums = [
