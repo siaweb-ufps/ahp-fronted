@@ -21,6 +21,7 @@ export class QualifyComponent implements OnInit {
   criterios!:any;
   puntajes:any[] = [];
 
+
   constructor(
     private qualifyService:QulifyService,
     private aRouter: ActivatedRoute,
@@ -55,13 +56,11 @@ export class QualifyComponent implements OnInit {
       break;
     }
     }
-    // console.log(this.puntajes);
   }
 
   public getPairsCriterion(){
     this.qualifyService.getPairsCriterion(this.tokenProblem).subscribe(pairs=>{
       this.criteriosComparados = pairs;
-      // console.log(this.criteriosComparados);
       for (let i = 0; i < this.criteriosComparados.length; i++) {
         this.puntajes.push({
           puntuacionCriterio:this.criteriosComparados[i].idPuntuacionDecisor,
@@ -85,7 +84,7 @@ export class QualifyComponent implements OnInit {
         })
       },
       (error) => {
-        this.toastr.error(error, "Error al guardar Calificación de criterios ", {
+        this.toastr.error(error.txt, "Error al guardar Calificación de criterios ", {
           positionClass: 'toast-top-center',
           timeOut: 3000
          })

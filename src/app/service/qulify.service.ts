@@ -51,5 +51,11 @@ export class QulifyService {
   public getPrioritiesAlternatives(email:any,token:any): Observable<any>{
     return this.httpClient.get<any>(this.url+"puntuacionalternativa/"+email+"/"+token);
   }
+  public getQualifysAlternatives(email:any,token:any): Observable<any>{
+    return this.httpClient.get<any>(this.url+"puntuacionalternativa/puntuacionesanteriores/"+email+"/"+token);
+  }
+  public getQualifysCriterions(email:any,token:any): Observable<any>{
+    return this.httpClient.get<any>(this.url+"puntuacioncriterio/puntuacionesanteriores/"+email+"/"+token);
+  }
 
 }

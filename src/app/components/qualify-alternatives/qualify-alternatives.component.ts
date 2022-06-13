@@ -61,6 +61,7 @@ export class QualifyAlternativesComponent implements OnInit {
   public getPairsCriterion(){
     this.qualifyService.getPairsCriterionAlternative(this.tokenProblem).subscribe(pairs=>{
       this.criteriosComparados = pairs;
+      console.log(this.criteriosComparados.length);
       for (let i = 0; i < this.criteriosComparados.length; i++) {
         this.puntajes.push({
           puntuacionAlternativaCriterio:this.criteriosComparados[i].idPuntuacionAltCrit,

@@ -76,7 +76,7 @@
                         <br>
                         <div *ngFor="let pair of criteriosComparados let j=index">
 
-                            <p *ngIf="j%totalCriterios==0">{{pair.criterio.descripcion}}</p>
+                            <p *ngIf="(j)%(criteriosComparados.length/totalCriterios)==0">{{pair.criterio.descripcion}}</p>
 
                             <div
                                 class="mb-3 lg:flex flex-wrap justify-center border-2 border-indigo-600 rounded-md w-full">
@@ -86,7 +86,7 @@
                                         {{pair.alternativa1.descripcion}}</p>
 
                                     <div *ngFor="let num of nums; let i=index"
-                                        class="flex sm:flex-col w-full sm:w-3/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200">
+                                        class="flex sm:flex-col w-full sm:w-3/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200 radio-toolbar">
 
                                         <div *ngIf="i>=9" class="flex items-center justify-center w-1/2 sm:w-full h-8">
                                             <input (click)="cambiarPuntaje(1/num.id,pair.idPuntuacionAltCrit)"
