@@ -61,7 +61,6 @@ export class QualifyAlternativesComponent implements OnInit {
   public getPairsCriterion(){
     this.qualifyService.getPairsCriterionAlternative(this.tokenProblem).subscribe(pairs=>{
       this.criteriosComparados = pairs;
-      console.log(this.criteriosComparados.length);
       for (let i = 0; i < this.criteriosComparados.length; i++) {
         this.puntajes.push({
           puntuacionAlternativaCriterio:this.criteriosComparados[i].idPuntuacionAltCrit,
@@ -71,6 +70,8 @@ export class QualifyAlternativesComponent implements OnInit {
           }
         })
       }
+    this.lastQualifies();
+
     })
   }
 
@@ -139,6 +140,37 @@ export class QualifyAlternativesComponent implements OnInit {
     this.problemS.getProblem(this.tokenProblem).subscribe(problem=>{
       this.problema=problem;
     })
+  }
+
+  public lastQualifies(){
+    this.qualifyService.getQualifysAlternatives(this.emailDecisor,this.tokenProblem).subscribe(total=>{
+      for (let i = 0; i < this.puntajes.length; i++) {
+        let totalE = total[i];
+        let copiaPuntaje = {
+          idPuntuacionAlternativa:totalE.idPuntuacionAlternativa,
+          puntuacionAlternativaCriterio:totalE.puntuacionAlternativaCriterio,
+          valor:totalE.valor,
+          decisor:{
+            email:this.emailDecisor
+          }
+        }
+          this.puntajes[i] = copiaPuntaje;
+      }
+    },error=>{
+
+    })
+  }
+
+  isSameValue(idPuntuacion:number,value:any):boolean{
+    value = value.toFixed(6);
+    for (let i = 0; i < this.puntajes.length; i++) {
+      const element = this.puntajes[i];
+      if(element.puntuacionAlternativaCriterio.idPuntuacionAltCrit == idPuntuacion && element.valor==value){
+        return true;
+      }
+      
+    }
+    return false;
   }
 
   nums = [

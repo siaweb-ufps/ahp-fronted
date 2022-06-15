@@ -65,7 +65,6 @@ export class PasswordComponent implements OnInit {
        })
        this.route.navigateByUrl("")
     },error=>{
-        console.log(error);
         this.toastr.error(error.mensaje, "ERROR", {
           positionClass: 'toast-top-center',
           timeOut: 3000

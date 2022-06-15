@@ -81,13 +81,10 @@ export class TotalResultsComponent implements OnInit {
 
     loadResults(){
       this.qualifyService.getPrioritiesCriterionsTotal(this.tokenProblem).subscribe(result=>{
-        console.log(result);
         this.matrizPareadaCrit=result[0]
         this.criterios = result[2]
         this.procedimientoCrit = result[3]
         this.estadisticasCritPorDecisor = result[5]
-        console.log(this.estadisticasCritPorDecisor);
-
         let valores = []
 
         for (let i = 0; i < this.criterios.length; i++) {
@@ -117,7 +114,6 @@ export class TotalResultsComponent implements OnInit {
         this.alternativas = result[2]
         this.procedimientoAlt = result[3]
         this.estadisticasAltPorDecisor = result[5]
-        console.log(this.estadisticasAltPorDecisor);
         let valores = []
 
         for (let i = 0; i < this.alternativas.length; i++) {

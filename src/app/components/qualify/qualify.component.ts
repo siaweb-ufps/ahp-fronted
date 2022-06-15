@@ -43,7 +43,6 @@ export class QualifyComponent implements OnInit {
 
   public lastQualifies(){
     this.qualifyService.getQualifysCriterions(this.emailDecisor,this.tokenProblem).subscribe(total=>{
-      console.log(total);
       for (let i = 0; i < this.puntajes.length; i++) {
         let totalE = total[i];
         let copiaPuntaje = {
@@ -56,7 +55,6 @@ export class QualifyComponent implements OnInit {
         }
           this.puntajes[i] = copiaPuntaje;
       }
-      console.log(this.puntajes);
     },error=>{
 
     })
@@ -65,7 +63,7 @@ export class QualifyComponent implements OnInit {
   public cambiarPuntaje(valor:number, idPuntaje:number){
     for (let i = 0; i < this.puntajes.length; i++) {
       let puntaje = this.puntajes[i];
-      if(puntaje.puntuacionCriterio.idPuntuacionDecisor == idPuntaje){
+      if(puntaje.puntuacionCriterio == idPuntaje){
         let copiaPuntaje = null;
         if(puntaje.idPuntuacion!=null){
           copiaPuntaje = {
@@ -85,7 +83,6 @@ export class QualifyComponent implements OnInit {
           }
         }
         }
-      console.log(this.puntajes);   
       this.puntajes[i]=copiaPuntaje
       break;
     }
@@ -110,13 +107,13 @@ export class QualifyComponent implements OnInit {
   }
 
   public guardarPuntajes(){
+
     if(!this.isQualify()){
       this.toastr.warning("Por favor, rellena todos los campos", "", {
         positionClass: 'toast-top-center',
         timeOut: 3000
        })
     }else{
-      console.log(this.puntajes);
       this.qualifyService.saveQualifies(this.puntajes).subscribe(
         (resp)=>{
           this.router.navigate(["/qualify-alternatives",this.tokenProblem,this.emailDecisor]);

@@ -92,7 +92,6 @@ export class RegisterComponent implements OnInit {
     }
 
     this.newUser = new NewUser(this.email, this.password, this.celular, this.empresa, this.nombre, this.profesion);
-    console.log(this.newUser);console.log(usuarioNuevo);
     this.authService.new(usuarioNuevo).subscribe(
       data => {
         this.isRegister = true;

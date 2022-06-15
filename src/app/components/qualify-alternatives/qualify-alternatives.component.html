@@ -93,11 +93,15 @@
                                         class="flex sm:flex-col w-full sm:w-3/5 border-t-2 sm:border-t-0 sm:border-l-2 border-indigo-200 radio-toolbar">
 
                                         <div *ngIf="i>=9" class="flex items-center justify-center w-1/2 sm:w-full h-8">
-                                            <input (click)="cambiarPuntaje(1/num.id,pair.idPuntuacionAltCrit)"
+                                            <input *ngIf="isSameValue(pair.idPuntuacionAltCrit, (1/num.id))" checked (click)="cambiarPuntaje(1/num.id,pair.idPuntuacionAltCrit)"
                                                 name={{pair.idPuntuacionAltCrit}} type="radio" value="{{1/num.id}}" />
+
+                                            <input *ngIf="!isSameValue(pair.idPuntuacionAltCrit, (1/num.id))" (click)="cambiarPuntaje(1/num.id,pair.idPuntuacionAltCrit)" name={{pair.idPuntuacionAltCrit}} type="radio" value="{{1/num.id}}" />
                                         </div>
                                         <div *ngIf="i<=8" class="flex items-center justify-center w-1/2 sm:w-full h-8">
-                                            <input (click)="cambiarPuntaje(num.id,pair.idPuntuacionAltCrit)"
+                                            <input *ngIf="isSameValue(pair.idPuntuacionAltCrit, (num.id))" checked (click)="cambiarPuntaje(num.id,pair.idPuntuacionAltCrit)"
+                                                name={{pair.idPuntuacionAltCrit}} type="radio" value="{{num.id}}" />
+                                                <input *ngIf="!isSameValue(pair.idPuntuacionAltCrit, (num.id))" (click)="cambiarPuntaje(num.id,pair.idPuntuacionAltCrit)"
                                                 name={{pair.idPuntuacionAltCrit}} type="radio" value="{{num.id}}" />
                                         </div>
                                         <p

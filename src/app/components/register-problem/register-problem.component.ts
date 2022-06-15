@@ -81,7 +81,6 @@ export class RegisterProblemComponent implements OnInit {
         this.toastr.error('¡Datos incorrectos!', 'ERROR', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
-        console.log('error en send data valid');
         return;
       }
 

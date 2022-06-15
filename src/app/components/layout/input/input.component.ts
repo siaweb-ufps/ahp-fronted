@@ -16,6 +16,5 @@ export class InputComponent implements OnInit {
   @Input('input') input:any;
   
   ngOnInit(): void {
-    console.log(this.input)
   }
 }
