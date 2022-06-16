@@ -43,7 +43,7 @@
                                 pareada: Criterios</h3>
                             <div class="overflow-x-scroll">
 
-                                <textarea class="px-5 py-2 bg-pink-100 rounded-md" name="" id="" cols="500" rows="10"
+                                <textarea class="px-5 py-2 bg-pink-100 rounded-md w-full" name="" id="" rows="10"
                                     style="padding: 20px;">
                                 {{procedimientoCrit}}
                             </textarea>
@@ -88,7 +88,7 @@
                                 pareada: Alternativas</h3>
                             <div class="overflow-x-scroll">
 
-                                <textarea class="px-5 py-2 bg-indigo-100 rounded-md" name="" id="" cols="500" rows="10"
+                                <textarea class="w-full px-5 py-2 bg-indigo-100 rounded-md" name="" id=""
                                     style="padding: 20px;">
                                     {{procedimientoAlt}}
                                 </textarea>
@@ -130,39 +130,42 @@
                         <div class="p-5 rounded-md bg-pink-400 w-full my-7 text-left">
                             <h3 class="mb-3 text-xl font-semibold text-white">Resultados de la puntuacion de criterios
                                 de los decisores</h3>
-                            <div class="px-5 py-2 bg-pink-100 rounded-md">
+                            <div class="px-5 py-5 bg-pink-100 rounded-md">
                                 <div class="overflow-x-scroll">
-                                    <table class="text-center w-full text-sm text-gray-60">
-                                        <thead class="text-xs text-pink-700 uppercase bg-black-50 text-black-400">
-                                            <tr class="border p-2 border-gray-500">
-                                                <td>Decisor</td>
-                                                <td>Email</td>
-                                                <td>Criterio ganador</td>
-                                                <td>Otros criterios</td>
-
+                                    <table class="w-full text-sm text-left">
+                                        <thead class="text-xs uppercase bg-pink-200 text-pink-700 bg-black-50">
+                                            <tr class="border p-2 border-pink-500">
+                                                <th class="p-3 text-center" scope="col">
+                                                    Decisor</th>
+                                                <th class="p-3 text-center" scope="col">
+                                                    Email</th>
+                                                <th class="p-3 text-center" scope="col">
+                                                    Criterio ganador</th>
+                                                <th class="p-3 text-center" scope="col">
+                                                    Otros criterios
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-black">
                                             <tr *ngFor="let est of estadisticasCritPorDecisor"
-                                                class="border p-2 border-gray-500">
-                                                <td>{{est[5].nombre}}</td>
-                                                <td>{{est[5].email}}</td>
-                                                <td>{{est[4].descripcion}}</td>
-                                                <td>
+                                                class="border p-2 border-pink-500">
+                                                <td class="p-3 text-center">{{est[5].nombre}}</td>
+                                                <td class="p-3 text-center">{{est[5].email}}</td>
+                                                <td class="p-3 text-center">{{est[4].descripcion}}</td>
+                                                <td class="p-3 text-center">
                                                     <table class="text-center w-full text-sm text-gray-60">
                                                         <thead
-                                                            class="text-xs text-pink-700 uppercase bg-black-50 text-black-400">
+                                                            class="bg-pink-200 text-xs text-pink-700 uppercase bg-black-50 text-black-400">
                                                             <tr class="border p-2 border-pink-400">
-                                                                <td>Alternativa</td>
-                                                                <td>Porcentaje</td>
+                                                                <td class="p-2">Alternativa</td>
+                                                                <td class="p-2">Porcentaje</td>
                                                             </tr>
                                                         </thead>
 
                                                         <tr *ngFor="let x of est[2]" class="border p-2 border-pink-400">
-                                                            <td>{{x[0].descripcion}}</td>
-                                                            <td>{{x[1]*100 | number:'1.1-1'}}%</td>
+                                                            <td class="p-2">{{x[0].descripcion}}</td>
+                                                            <td class="p-2">{{x[1]*100 | number:'1.1-1'}}%</td>
                                                         </tr>
-
                                                     </table>
                                                 </td>
 
@@ -177,39 +180,39 @@
                         <div class="p-5 rounded-md bg-indigo-400 w-full my-7 text-left">
                             <h3 class="mb-3 text-xl font-semibold text-white">Resultados de la puntuacion de
                                 alternativas por criterios de los decisores</h3>
-                            <div class="px-5 py-2 bg-indigo-100 rounded-md">
+                            <div class="px-5 py-5 bg-indigo-100 rounded-md">
                                 <div class="overflow-x-scroll">
 
                                     <table class="text-center w-full text-sm text-gray-60">
-                                        <thead class="text-xs text-indigo-700 uppercase bg-black-50 text-black-400">
-                                            <tr class="border p-2 border-gray-500">
-                                                <td>Decisor</td>
-                                                <td>Email</td>
-                                                <td>Alternativa ganadora</td>
-                                                <td>Otras alternativas</td>
-
+                                        <thead
+                                            class="text-xs bg-indigo-200  text-indigo-700 uppercase bg-black-50 text-black-400">
+                                            <tr class="border p-2 border-indigo-500">
+                                                <th class="p-3">Decisor</th>
+                                                <th class="p-3">Email</th>
+                                                <th class="p-3">Alternativa ganadora</th>
+                                                <th class="p-3">Otras alternativas</th>
                                             </tr>
                                         </thead>
                                         <tbody class="text-black">
                                             <tr *ngFor="let est of estadisticasAltPorDecisor"
-                                                class="border p-2 border-gray-500">
-                                                <td>{{est[4].nombre}}</td>
-                                                <td>{{est[4].email}}</td>
-                                                <td>{{est[5].descripcion}}</td>
-                                                <td>
+                                                class="border p-2 border-indigo-500">
+                                                <td class="p-3">{{est[4].nombre}}</td>
+                                                <td class="p-3">{{est[4].email}}</td>
+                                                <td class="p-3">{{est[5].descripcion}}</td>
+                                                <td class="p-3">
                                                     <table class="text-center w-full text-sm text-gray-60">
                                                         <thead
-                                                            class="text-xs text-indigo-700 uppercase bg-black-50 text-black-400">
+                                                            class="bg-indigo-200 text-xs text-indigo-700 uppercase bg-black-50 text-black-400">
                                                             <tr class="border p-2 border-indigo-400">
-                                                                <td>Alternativa</td>
-                                                                <td>Porcentaje</td>
+                                                                <td class="p-2">Alternativa</td>
+                                                                <td class="p-2">Porcentaje</td>
                                                             </tr>
                                                         </thead>
 
                                                         <tr *ngFor="let x of est[2]"
                                                             class="border p-2 border-indigo-400">
-                                                            <td>{{x[0].descripcion}}</td>
-                                                            <td>{{x[1]*100 | number:'1.1-1'}}%</td>
+                                                            <td class="p-2">{{x[0].descripcion}}</td>
+                                                            <td class="p-2">{{x[1]*100 | number:'1.1-1'}}%</td>
                                                         </tr>
 
                                                     </table>
