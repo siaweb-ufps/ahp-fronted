@@ -1,11 +1,11 @@
 <main class="mx-auto w-full md:w-11/12 lg:w-5/6 md:flex justify-between relative">
     <app-nav class="lg:w-1/5 lg:fixed top-0 z-40"></app-nav>
     <section class="w-full lg:w-9/12 bg-white lg:absolute top-0 right-0">
-        <article class="w-full min-h-screen p-5 flex justify-center">
+        <article class="w-full min-h-screen p-3 md:p-5 flex justify-center">
             <div
                 class="rounded-xl bg-gradient-to-r bg-white border border-gray-200 dark:border-gray-700 p-2 sm:p-6 overflow-hidden w-full shadow-lg">
-                <div class="mb-8 flex items-center justify-between">
-                    <p class="text-2xl">Lista problemas</p>
+                <div class="mb-8 flex items-center justify-between flex-col md:flex-row">
+                    <p class="text-2xl mb-2 md:mb-0">Lista problemas</p>
                     <div class="flex items-center">
                         <a class="mr-3 duration-300 hover:bg-indigo-600 hover:text-white py-1 px-3 border rounded-md border-indigo-600 text-indigo-600"
                             routerLink="/register-problem">
@@ -17,65 +17,65 @@
                             [icon]="faLeftLong"></fa-icon>
                     </div>
                 </div>
-                <table datatable class="shadow-md text-left w-full">
-                    <thead class="text-xs uppercase bg-indigo-200">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">ID</th>
-                            <th scope="col" class="px-6 py-3">Descripción</th>
-                            <th scope="col" class="px-6 py-3">Fecha Inicio</th>
-                            <th scope="col" class="px-6 py-3">Fecha Finalizacion</th>
-                            <th scope="col" class="px-6 py-3">Estado</th>
-                            <th scope="col" class="px-6 py-3">
-                                <span class="sr-only">Edit</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody *ngIf="data.length>0">
-                        <tr *ngFor="let problema of data" class="odd:bg-white even:bg-indigo-50">
-                            <td class="px-6 py-4">{{ problema.idProblema}}</td>
-                            <td class="px-6 py-4">{{ problema.descripcion}}</td>
-                            <td class="px-6 py-4">{{ problema.fechaCreacion}}</td>
-                            <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td>
-                            <td class="px-6 py-4">
-                                <span *ngIf="problema.estado==1"
-                                    class='justify-center rounded-full mr-2 bg-green-600 text-white p-2 leading-none flex items-center'
-                                    style='color:White; font-size: 11px;'>ACTIVO</span>
-                                <span *ngIf="problema.estado==0"
-                                    class='justify-center rounded-full mr-2 bg-red-600 text-white p-2 leading-none flex items-center'
-                                    style='color:White;font-size: 11px;'>INACTIVO</span>
-                            </td>
+                <div class="shadow-md text-left w-full overflow-x-scroll">
+                    <table datatable class="w-full">
+                        <thead class="text-xs uppercase bg-indigo-200">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">ID</th>
+                                <th scope="col" class="px-6 py-3">Descripción</th>
+                                <th scope="col" class="px-6 py-3">Fecha Inicio</th>
+                                <th scope="col" class="px-6 py-3">Fecha Finalizacion</th>
+                                <th scope="col" class="px-6 py-3">Estado</th>
+                                <th scope="col" class="px-6 py-3">
+                                    <span class="sr-only">Edit</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="data.length>0">
+                            <tr *ngFor="let problema of data" class="odd:bg-white even:bg-indigo-50">
+                                <td class="px-6 py-4">{{ problema.idProblema}}</td>
+                                <td class="px-6 py-4">{{ problema.descripcion}}</td>
+                                <td class="px-6 py-4">{{ problema.fechaCreacion}}</td>
+                                <td class="px-6 py-4">{{ problema.fechaFinalizacion}}</td>
+                                <td class="px-6 py-4">
+                                    <span *ngIf="problema.estado==1"
+                                        class='justify-center rounded-full mr-2 bg-green-600 text-white p-2 leading-none flex items-center'
+                                        style='color:White; font-size: 11px;'>ACTIVO</span>
+                                    <span *ngIf="problema.estado==0"
+                                        class='justify-center rounded-full mr-2 bg-red-600 text-white p-2 leading-none flex items-center'
+                                        style='color:White;font-size: 11px;'>INACTIVO</span>
+                                </td>
 
-                            <td class="px-6 py-4 flex items-center">
-                                <a [routerLink]="['/problem',problema.token]"
-                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faEye"></fa-icon>
-                                </a>
-                                <a [routerLink]="['/edit-problem',problema.token]"
-                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
-                                </a>
-                                <button *ngIf="problema.estado==1" (click)="deshabilitar(problema.token)"
-                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faXmarkSquare"></fa-icon>
-                                </button>
-                                <button *ngIf="problema.estado==0" (click)="habilitar(problema.token)"
-                                    class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
-                                    <fa-icon class="text-lg" [icon]="faCheck"></fa-icon>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tbody *ngIf="data.length==0" class="text-gray-700">
-                        <tr>
-                            <td colspan="6">
-                                <h3 class="px-6 py-3" style="text-align: center;">No cuenta con problemas creados</h3>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <ng-template>
-
-                </ng-template>
+                                <td class="px-6 py-4 flex items-center">
+                                    <a [routerLink]="['/problem',problema.token]"
+                                        class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                        <fa-icon class="text-lg" [icon]="faEye"></fa-icon>
+                                    </a>
+                                    <a [routerLink]="['/edit-problem',problema.token]"
+                                        class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                        <fa-icon class="text-lg" [icon]="faEdit"></fa-icon>
+                                    </a>
+                                    <button *ngIf="problema.estado==1" (click)="deshabilitar(problema.token)"
+                                        class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                        <fa-icon class="text-lg" [icon]="faXmarkSquare"></fa-icon>
+                                    </button>
+                                    <button *ngIf="problema.estado==0" (click)="habilitar(problema.token)"
+                                        class="hover:bg-indigo-100 rounded-md py-1 px-2 font-medium text-indigo-600 dark:text-indigo-500 hover:underline">
+                                        <fa-icon class="text-lg" [icon]="faCheck"></fa-icon>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tbody *ngIf="data.length==0" class="text-gray-700">
+                            <tr>
+                                <td colspan="6">
+                                    <h3 class="px-6 py-3" style="text-align: center;">No cuenta con problemas creados
+                                    </h3>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </article>
     </section>
