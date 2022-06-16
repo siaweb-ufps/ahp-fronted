@@ -106,7 +106,6 @@ export class TotalResultsComponent implements OnInit {
          })
 
          this.delay(3000);
-         this.redirigir();
          return;
       } )
 
@@ -129,7 +128,6 @@ export class TotalResultsComponent implements OnInit {
           this.tr2.push(result[0][i])
         }
       }, error=>{
-        this.redirigir();
       })
     }
 
