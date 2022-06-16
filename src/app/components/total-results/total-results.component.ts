@@ -99,6 +99,7 @@ export class TotalResultsComponent implements OnInit {
           this.tr.push(result[0][i])
         }
       }, error=>{
+        console.log(error);
         this.toastr.warning(error.error.mensaje, "Warning", {
           positionClass: 'toast-top-center',
           timeOut: 3000
