@@ -46,7 +46,7 @@ const routes: Routes = [
   { path: 'qualify-alternatives/:idProblema/:emailDecisor', component: QualifyAlternativesComponent },
   { path: 'my-account', component: MyaccountComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
   { path: "edit-problem/:idProblema", component: RegisterProblemComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
-  { path: "result/:idProblema/:emailDecisor", component: ResultComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
+  { path: "result/:idProblema/:emailDecisor", component: ResultComponent},
   { path: "results/:idProblema", component: TotalResultsComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
   { path: "edit-criterion/:idProblema", component: EditCriterionComponent, data: { requiresLogin: true }, canActivate: [AccessGuard] },
 ];
