@@ -14,7 +14,7 @@
                         class="transform hover:scale-110 duration-300 cursor-pointer w-10 h-10 flex items-center justify-center rounded-full bg-indigo-200 text-indigo-400 text-2xl">2</span>
 
                 </div>
-                <div class="border-2 border-indigo-600 mt-3 md:mt-10 rounded-lg" *ngIf="actualPage==1">
+                Criterios <div class="border-2 border-indigo-600 mt-3 md:mt-10 rounded-lg" *ngIf="actualPage==1">
                     <div class="w-full text-center p-2 md:p-10 ">
                         <div class="flex items-center">
                             <fa-icon (click)="goBack()"
@@ -32,7 +32,7 @@
                                     class="py-3 flex items-center border-t border-pink-800">
                                     <p>{{criterio[0].descripcion}} ➡ </p>
                                     <code
-                                        *ngIf="criterio[1]==percentCritMax">{{criterio[1]*100 | number:'1.1-1'}}% GANADOR ✔️</code>
+                                        *ngIf="criterio[1]==percentCritMax">{{criterio[1]*100 | number:'1.1-1'}}% SELECCIONADO ✔️</code>
                                     <code
                                         *ngIf="criterio[1]!=percentCritMax">{{criterio[1]*100 | number:'1.1-1'}}%</code>
                                 </div>
@@ -73,7 +73,7 @@
                         <div class="p-5 rounded-md bg-indigo-400 w-full my-7 text-left">
                             <h3 class="mb-3 text-xl font-semibold text-white">Alternativas</h3>
                             <div class="px-5 py-2 bg-indigo-100 rounded-md">
-                                <h3 class="my-3 font-bold">Criterio ganador: {{criterioGanador}}</h3>
+                                <h3 class="my-3 font-bold">Criterio Seleccionado: {{criterioGanador}}</h3>
                                 <div *ngFor="let alt of alternativas"
                                     class="py-3 flex items-center border-t border-indigo-800">
                                     <p>{{alt[0].descripcion}} ➡</p>
@@ -89,7 +89,7 @@
                             <div class="overflow-x-scroll">
 
                                 <textarea class="w-full px-5 py-2 bg-indigo-100 rounded-md" name="" id=""
-                                    style="padding: 20px;">
+                                    style="padding: 20px;" rows="10">
                                     {{procedimientoAlt}}
                                 </textarea>
                             </div>
@@ -140,7 +140,7 @@
                                                 <th class="p-3 text-center" scope="col">
                                                     Email</th>
                                                 <th class="p-3 text-center" scope="col">
-                                                    Criterio ganador</th>
+                                                    Criterio seleccionado</th>
                                                 <th class="p-3 text-center" scope="col">
                                                     Otros criterios
                                                 </th>
@@ -189,7 +189,7 @@
                                             <tr class="border p-2 border-indigo-500">
                                                 <th class="p-3">Decisor</th>
                                                 <th class="p-3">Email</th>
-                                                <th class="p-3">Alternativa ganadora</th>
+                                                <th class="p-3">Alternativa seleccionada</th>
                                                 <th class="p-3">Otras alternativas</th>
                                             </tr>
                                         </thead>
