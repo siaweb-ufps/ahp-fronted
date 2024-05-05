@@ -6,7 +6,7 @@
 // ****Produccion****
 // export const url = "http://localhost:5000";
 // export const url = "https://ahp-seminario.herokuapp.com";
-export const url = "http://ahp-env.eba-mumapkxa.us-east-1.elasticbeanstalk.com";
+export const url = "http://ahp-api.us-east-1.elasticbeanstalk.com";
 // ==============================Frontend==============================
 // ****Pruebas****
 // export const url_front = "http://localhost:4200";
@@ -14,4 +14,4 @@ export const url = "http://ahp-env.eba-mumapkxa.us-east-1.elasticbeanstalk.com";
 // ****Produccion****
 // export const url_front = "http://localhost:5000";
 // export const url_front = "https://ahp-seminario.herokuapp.com";
-export const url_front = "http://ahp-env.eba-mumapkxa.us-east-1.elasticbeanstalk.com";
+export const url_front = "http://ahp-api.us-east-1.elasticbeanstalk.com";
